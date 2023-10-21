@@ -21,10 +21,6 @@ router.put(
   ]),
   songController.edit
 );
-router.delete(
-  "/:id/delete",
-  middlewareController.verifyTokenAndArtistAuth,
-  songController.delete
-);
+router.delete("/:id/delete", songController.delete);
 
 module.exports = router;

@@ -26,5 +26,6 @@ router.delete(
   middlewareController.verifyTokenAndArtistAuth,
   songController.delete
 );
+router.get("/newSongs", songController.getNewSong);
 
 module.exports = router;

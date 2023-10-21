@@ -9,7 +9,7 @@ const storage = require("../../config/fireBase");
 class UserController {
   //[GET] user/
   async index(req, res) {
-    const listUser = await User.findAll();
+    const listUser = await User.findAll({ where: { isBan: false } });
     res.status(200).json(listUser);
   }
 

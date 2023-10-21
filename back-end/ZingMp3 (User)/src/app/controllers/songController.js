@@ -6,6 +6,7 @@ const {
 } = require("firebase/storage");
 const giveCurrentDateTime = require("../../utils/giveCurrentDateTime");
 const storage = require("../../config/fireBase");
+const { sequelize } = require("../../config/db");
 class SongControllers {
   //[GET] song/
   async index(req, res) {
@@ -102,6 +103,14 @@ class SongControllers {
       },
     });
     res.status(200).json("Delete successful");
+  }
+
+  //[GET] song/newSongs
+  async getNewSong(req, res) {
+    const listNewSong = await sequelize.query("Exec pro_getNewSong ", {
+      type: QueryTypes.SELECT,
+    });
+    res.json(listNewSong);
   }
 }
 module.exports = new SongControllers();
