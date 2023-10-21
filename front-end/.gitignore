@@ -1,0 +1,5 @@
+.env
+dist/
+.vscode
+node_modules
+/assets/font

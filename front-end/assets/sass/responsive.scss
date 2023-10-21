@@ -1,0 +1,263 @@
+/* MOBILE AND TABLET */
+@media screen and (max-width:1024px) {
+    .header{
+        padding: 0 20px;
+        .container{
+            gap:0 20px;
+        }
+        .vip{
+            display: none;
+        }
+    }
+    .header-private{
+        justify-content:center!important;
+    }
+    .container-private{
+        padding: 0 20px!important;
+    }
+}
+/* TABLET */
+@media screen and (min-width: 740px) and (max-width:1024px){ 
+    :root{
+        --sidebar-width:70px;
+    }
+    .header{
+        padding: 0 20px;
+        left : var(--sidebar-width);
+    }
+    .sideBar{
+        width: var(--sidebar-width);
+        .menu-above{
+            .logo{
+                margin: 12px 0;
+                width: 70px;
+                height:40px; 
+                .logo-large{
+                    display:none;
+                }
+                .logo-mini{
+                    width: 100%;
+                    height: 100%;
+                    display:flex;           
+                } 
+            }
+            ::after{
+                left: 0;
+                width: 100%;
+            }              
+            .list-menu{
+                .menu-item{
+                    border-left:none;                  
+                    padding: 18px 23px;  
+                    a{
+                        display: none;
+                    }        
+                    .tooltip-live{
+                        display: none;
+                    }
+                }
+            }
+        }
+        .menu-under{ 
+            overflow: hidden; 
+            max-height: 100vh;
+            .banner-login{
+                display: none;
+            }
+            .banner-vip{
+                display: none;
+            }
+            .list-menu{
+                .menu-item{                    
+                    border:none;
+                    padding: 18px 23px;                                                                      
+                    a{
+                        display: none;
+                    }                                 
+                }
+            }
+            h1{
+                display:none;
+            }
+            .library-item{                
+                padding: 18px 23px !important; 
+            }
+            a{
+                svg{
+                    height:24px;
+                }
+                p{
+                    display:none;
+                }
+            }
+        }
+        .create-playlist{
+            display: none;
+        }
+    }
+    .container-wrapper{
+        left:var(--sidebar-width);
+        .container-private{
+            padding:0 10px!important;
+            .header-private{
+                width: 100%;
+                .code{
+                    .btn.enter-code{
+                        display: none;
+                    }
+                }
+            }
+            .slider-title{
+                margin-left: 48px!important;
+            }
+            .list-tab{
+                li:last-child{
+                    display: none;
+                }
+            }
+            .list{
+                max-height: 100vh!important;
+                overflow:unset!important;
+            }
+            .slider-song{
+                display: none;
+            }
+            .list-songs{
+                width: 100%!important;
+            }
+        }
+    }
+    .play-music{
+        .music-info{
+            .icon-info{
+                display: none;
+            }
+        }
+        .music-control{
+            .progress{
+                justify-content:space-around!important;
+                input{
+                    flex:1;
+                }
+            }
+        }
+        .control-other{
+            .hide{
+                display: none;
+            }
+        }
+    }
+}
+/* MOBILE */
+@media screen and (max-width : 739px) {
+    :root{
+        --width-sidebar:0;
+        --player-height: 45px;
+    }
+    .header{
+        padding: 0 10px;
+        left : var(--width-sidebar);
+        .upload,.setting,.btn-move{
+            display:none;
+        }
+        .container{
+            .search{
+                gap:0 0;
+            }
+        }
+    }
+    .sideBar{
+        display: none;
+    }
+    .container-wrapper{
+        left: 0 !important;;
+        width: 100%!important;
+        .container-private{
+            width: 100%;
+            padding:0 10px;
+            .header-private{
+                width: 100%;
+                justify-content:center;
+                .code{
+                   display: none!important;
+                }
+            }
+            .list-tab{             
+               .tab-title{
+                 padding: 5px 7px !important;
+                 min-width: 60px;
+               }
+                .hide{
+                    display: none;
+                }
+            }
+            .list-songs-wrapper{
+                .list-songs{
+                    .btn-song{
+                        .upload{
+                            display: none;
+                        }
+                    }
+                    .songs{
+                        .list{
+                            li{
+                                .song-time{
+                                    display: none;
+                                }
+                                .song-option{
+                                    .hide{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .play-music{
+        overflow: hidden;
+        height: var(--player-height) !important;;
+        padding: 0 5px!important;
+        justify-content:space-between!important;
+        .music-info{
+            .wrapper-img{
+                width: 40px!important;
+                height: 40px!important;
+            }
+            .icon-info{
+                display: none;
+            }
+        }
+        .music-control{
+            gap: 0 !important;;
+            align-items: flex-end!important;
+        }
+        .control-other{
+            flex: 0 !important;;
+        }
+        .hide-on-mobile *{          
+            display: none;
+        }
+    }
+    .list-playlist,.list-album,.list-mv,.list-singer{
+        flex-wrap: wrap!important;
+    }
+    .list-mv{
+        margin-bottom: 10px;
+    }
+    .singer-wrapper{
+        display: none!important;
+    }
+}
+
+// 
+@media screen and (min-width:1024px) {
+   .sideBar{
+    .menu-under{
+        max-height:100%;
+    }
+   }
+}

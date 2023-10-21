@@ -1,0 +1,31 @@
+:root {
+        --black-color: #000;
+        --bg-content-color: rgba(255, 255, 255, 0.1);
+        --border-box: rgba(255, 255, 255, 0.2);
+        --border-primary: rgba(255, 255, 255, 0.1);
+        --layout-bg: #170f23;
+        --link-text-hover: #c662ef;
+        --main-box-shadow: rgba(66, 66, 66, 0.4);
+        --modal-scrollbar: rgba(41, 21, 71, 0.8);
+        --navigation-text: #dadada;
+        --placeholder-text: #dadada;
+        --player-bg: rgba(0, 0, 0, 0.2);
+        --primary-bg: #432275;
+        --purple-primary: #7200a1;
+        --sidebar-bg: rgba(255, 255, 255, 0.05);
+        --sidebar-popup-bg: #2a213a;
+        --tab-active-color: rgba(255, 255, 255, 0.3);
+        --text-color: #fff;
+        --text-item-hover: #fff;
+        --text-secondary: rgba(255, 255, 255, 0.5);
+        --white-color: #fff;
+        --player-height: 90px;
+        --header-height: 70px;
+        --sidebar-width:240px;
+        --sidebar-height: calc(100% - var(--player-height));
+        --offset-x-second: calc(0px - ((230px - (230px * var(--scale-rate-second))) / 2 + 20px));
+        --offset-x-third: calc(0px - ((230px - (230px * var(--scale-rate-third))) / 2 + 40px));
+        --scale-rate-second: calc(196 / 230);
+        --scale-rate-third: calc(162 / 230);
+}
+    
