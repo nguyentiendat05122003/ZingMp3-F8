@@ -5,6 +5,7 @@ const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const middlewareController = require("../app/controllers/middleWareController");
 router.get("/getArtist", userController.getArtist);
+router.get("/getFollowArtist/:id", userController.getFollowArtistFromUser);
 router.post("/add", upload.single("image"), userController.add);
 router.put("/:id/edit", upload.single("image"), userController.edit);
 router.delete("/:id/delete", userController.delete);

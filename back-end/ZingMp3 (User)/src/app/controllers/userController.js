@@ -98,6 +98,18 @@ class UserController {
     });
     res.json(listArtist);
   }
+
+  //[GET] user/FollowArtist/:id
+  async getFollowArtistFromUser(req, res) {
+    const listSong = await sequelize.query(
+      "Exec pro_getFollowerArtistFromUser :useIdFollowed",
+      {
+        type: QueryTypes.SELECT,
+        replacements: { useIdFollowed: req.params.id },
+      }
+    );
+    res.json(listSong);
+  }
 }
 
 module.exports = new UserController();
