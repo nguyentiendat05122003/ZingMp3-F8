@@ -4,6 +4,8 @@ const songController = require("../app/controllers/songController");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const middlewareController = require("../app/controllers/middleWareController");
+router.get("/newSongs", songController.getNewSong);
+router.get("/typeSong/:id", songController.getSongFollowTypeSong);
 router.get("/", songController.index);
 router.post(
   "/add",
@@ -26,6 +28,4 @@ router.delete(
   middlewareController.verifyTokenAndArtistAuth,
   songController.delete
 );
-router.get("/newSongs", songController.getNewSong);
-
 module.exports = router;

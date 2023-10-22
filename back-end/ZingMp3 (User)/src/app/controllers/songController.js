@@ -112,5 +112,17 @@ class SongControllers {
     });
     res.json(listNewSong);
   }
+
+  //[GET] song/typeSong/:id
+  async getSongFollowTypeSong(req, res) {
+    const listSong = await sequelize.query(
+      "Exec pro_getSongFollowTypeSong :typeSongId",
+      {
+        type: QueryTypes.SELECT,
+        replacements: { playListId: req.params.id },
+      }
+    );
+    res.json(listSong);
+  }
 }
 module.exports = new SongControllers();

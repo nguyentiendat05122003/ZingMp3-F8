@@ -5,11 +5,15 @@ const {
   uploadBytesResumable,
 } = require("firebase/storage");
 const giveCurrentDateTime = require("../../utils/giveCurrentDateTime");
+const { sequelize } = require("../../config/db");
 const storage = require("../../config/fireBase");
+const { QueryTypes } = require("sequelize");
 class UserController {
   //[GET] user/
   async index(req, res) {
-    const listUser = await User.findAll();
+    const listUser = await User.findAll({
+      where: { accountId: process.env.ID_ARTIST },
+    });
     res.status(200).json(listUser);
   }
 
@@ -86,5 +90,14 @@ class UserController {
     });
     res.status(200).json("Delete successful");
   }
+
+  //[GET] user/artist
+  async getArtist(req, res) {
+    const listArtist = await sequelize.query("Exec pro_GetArtist ", {
+      type: QueryTypes.SELECT,
+    });
+    res.json(listArtist);
+  }
 }
+
 module.exports = new UserController();
