@@ -4,8 +4,10 @@ const {
   getDownloadURL,
   uploadBytesResumable,
 } = require("firebase/storage");
+const { sequelize } = require("../../config/db");
 const giveCurrentDateTime = require("../../utils/giveCurrentDateTime");
 const storage = require("../../config/fireBase");
+const { QueryTypes } = require("sequelize");
 class UserController {
   //[GET] user/
   async index(req, res) {
@@ -15,28 +17,36 @@ class UserController {
 
   //[POST] user/add
   async add(req, res, next) {
-    try {
-      const dateTime = giveCurrentDateTime();
-      const storageRef = ref(
-        storage,
-        `avatar/${req.file.originalname + dateTime}`
-      );
-      const metadata = {
-        contentType: req.file.mimetype,
-      };
-      const snapshot = await uploadBytesResumable(
-        storageRef,
-        req.file.buffer,
-        metadata
-      );
-      const downloadURLAvatar = await getDownloadURL(snapshot.ref);
+    if (req.file) {
+      try {
+        const dateTime = giveCurrentDateTime();
+        const storageRef = ref(
+          storage,
+          `avatar/${req.file.originalname + dateTime}`
+        );
+        const metadata = {
+          contentType: req.file.mimetype,
+        };
+        const snapshot = await uploadBytesResumable(
+          storageRef,
+          req.file.buffer,
+          metadata
+        );
+        const downloadURLAvatar = await getDownloadURL(snapshot.ref);
+        const newUser = await User.create({
+          ...req.body,
+          image: downloadURLAvatar,
+        });
+        res.status(200).json("add user successful");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
       const newUser = await User.create({
         ...req.body,
-        image: downloadURLAvatar,
+        image: "",
       });
       res.status(200).json("add user successful");
-    } catch (error) {
-      console.log(error);
     }
   }
 
@@ -85,6 +95,18 @@ class UserController {
       },
     });
     res.status(200).json("Delete successful");
+  }
+
+  //[GET] user/typeAccount/:id
+  async getUserFollowType(req, res) {
+    const listUser = await sequelize.query(
+      "Exec pro_GetUserFollowTypeAccount :typeAccountId",
+      {
+        type: QueryTypes.SELECT,
+        replacements: { typeAccountId: req.params.id },
+      }
+    );
+    res.json(listUser);
   }
 }
 module.exports = new UserController();
