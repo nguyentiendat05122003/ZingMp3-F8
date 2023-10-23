@@ -7,6 +7,7 @@ const {
 const giveCurrentDateTime = require("../../utils/giveCurrentDateTime");
 const storage = require("../../config/fireBase");
 const { sequelize } = require("../../config/db");
+const { QueryTypes } = require("sequelize");
 class SongControllers {
   //[GET] song/
   async index(req, res) {
@@ -119,10 +120,26 @@ class SongControllers {
       "Exec pro_getSongFollowTypeSong :typeSongId",
       {
         type: QueryTypes.SELECT,
-        replacements: { playListId: req.params.id },
+        replacements: { typeSongId: req.params.id },
       }
     );
     res.json(listSong);
+  }
+
+  //[GET] song/:artistId
+  async getSongFollowArtist(req, res) {
+    try {
+      const data = await sequelize.query(
+        "Exec proc_getArtistAndSongs :userId",
+        {
+          type: QueryTypes.SELECT,
+          replacements: { userId: req.params.artistId },
+        }
+      );
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 }
 module.exports = new SongControllers();
