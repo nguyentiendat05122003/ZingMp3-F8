@@ -8,11 +8,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const port = 9000;
 
-// const authProxy = createProxyMiddleware({
-//   target: 'http://localhost:3001',
-//   changeOrigin: true
-// });
-
 const userProxy = createProxyMiddleware({
   target: "http://localhost:3002",
   pathRewrite: {
@@ -29,9 +24,7 @@ const adminProxy = createProxyMiddleware({
   changeOrigin: true,
 });
 
-//router.use('/auth', authProxy);
 app.use("/users", userProxy);
-// app.use("/auth", authProxy);
 app.use("/admin", adminProxy);
 
 router.use(cors());
