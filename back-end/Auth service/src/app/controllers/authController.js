@@ -48,7 +48,7 @@ class AuthController {
         );
         const { password, ...rest } = account.dataValues;
         //Why we need expiresIn because token can lost so after expiresIn token is'nt use
-        res.status(200).json({ account: rest, accessToken });
+        return res.status(200).json({ account: rest, accessToken });
       }
     } catch (error) {
       res.status(500).json(error);
