@@ -1,0 +1,26 @@
+http:
+  port: 8090
+apiEndpoints:
+  user:
+    paths:
+      - "/user/*"
+serviceEndpoints:
+  userService:
+    url: "http://127.0.0.1:3002"
+policies:
+  - proxy
+  - cors
+pipelines:
+  user:
+    apiEndpoints:
+      - user
+    policies:
+      - proxy:
+          - condition:
+              name: pathExact
+              path: /user
+          - action:
+              serviceEndpoint: userService
+              prependPath: true
+              ignorePath: false
+              stripPath: true

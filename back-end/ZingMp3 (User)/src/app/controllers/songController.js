@@ -17,42 +17,46 @@ class SongControllers {
 
   //[POST] song/add
   async add(req, res, next) {
-    try {
-      const dateTime = giveCurrentDateTime();
-      const storageRef = ref(
-        storage,
-        `images/${req.files["image"][0].originalname + dateTime}`
-      );
-      const metadata = {
-        contentType: req.files["image"][0].mimetype,
-      };
-      const snapshot = await uploadBytesResumable(
-        storageRef,
-        req.files["image"][0].buffer,
-        metadata
-      );
-      const downloadURLImage = await getDownloadURL(snapshot.ref);
-      const storageRefAudio = ref(
-        storage,
-        `source/${req.files["source"][0].originalname + dateTime}`
-      );
-      const metadataAudio = {
-        contentType: "audio/mp3",
-      };
-      const snapshotAudio = await uploadBytesResumable(
-        storageRefAudio,
-        req.files["source"][0].buffer,
-        metadataAudio
-      );
-      const downloadURLAudio = await getDownloadURL(snapshotAudio.ref);
-      const newSong = Song.create({
-        ...req.body,
-        image: downloadURLImage,
-        source: downloadURLAudio,
-      });
-      res.status(200).json("add song successful");
-    } catch (error) {
-      next(error);
+    if (!req.files["image"] && !req.files["source"]) {
+      res.status(500).json("add song failure because miss audio or image");
+    } else {
+      try {
+        const dateTime = giveCurrentDateTime();
+        const storageRef = ref(
+          storage,
+          `images/${req.files["image"][0].originalname + dateTime}`
+        );
+        const metadata = {
+          contentType: req.files["image"][0].mimetype,
+        };
+        const snapshot = await uploadBytesResumable(
+          storageRef,
+          req.files["image"][0].buffer,
+          metadata
+        );
+        const downloadURLImage = await getDownloadURL(snapshot.ref);
+        const storageRefAudio = ref(
+          storage,
+          `source/${req.files["source"][0].originalname + dateTime}`
+        );
+        const metadataAudio = {
+          contentType: "audio/mp3",
+        };
+        const snapshotAudio = await uploadBytesResumable(
+          storageRefAudio,
+          req.files["source"][0].buffer,
+          metadataAudio
+        );
+        const downloadURLAudio = await getDownloadURL(snapshotAudio.ref);
+        const newSong = Song.create({
+          ...req.body,
+          image: downloadURLImage,
+          source: downloadURLAudio,
+        });
+        res.status(200).json("add song successful");
+      } catch (error) {
+        next(error);
+      }
     }
   }
 
