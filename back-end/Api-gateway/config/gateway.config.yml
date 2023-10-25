@@ -4,23 +4,48 @@ apiEndpoints:
   user:
     paths:
       - "/user/*"
+  admin:
+    paths:
+      - "/admin/*"
 serviceEndpoints:
   userService:
     url: "http://127.0.0.1:3002"
+  adminService:
+    url: "http://127.0.0.1:3001"
+
 policies:
   - proxy
   - cors
+  - jwt
 pipelines:
   user:
     apiEndpoints:
       - user
     policies:
+      - jwt:
+          - action:
+              secretOrPublicKey: dat dep trai
+              checkCredentialExistence: true
       - proxy:
           - condition:
               name: pathExact
               path: /user
           - action:
               serviceEndpoint: userService
+              prependPath: true
+              ignorePath: false
+              stripPath: true
+  admin:
+    apiEndpoints:
+      - admin
+    policies:
+      - jwt:
+          - action:
+              secretOrPublicKey: dat dep trai
+              checkCredentialExistence: true
+      - proxy:
+          - action:
+              serviceEndpoint: adminService
               prependPath: true
               ignorePath: false
               stripPath: true

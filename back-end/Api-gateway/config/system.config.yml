@@ -5,8 +5,8 @@ db:
     namespace: EG
 
 # plugins:
-  # express-gateway-plugin-example:
-  #   param1: 'param from system.config' 
+# express-gateway-plugin-example:
+#   param1: 'param from system.config'
 
 crypto:
   cipherKey: sensitiveKey
@@ -20,6 +20,7 @@ session:
   saveUninitialized: false
 accessTokens:
   timeToExpiry: 7200000
+  secretOrPrivateKey: "dat dep trai"
 refreshTokens:
   timeToExpiry: 7200000
 authorizationCodes:
