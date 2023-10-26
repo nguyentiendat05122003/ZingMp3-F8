@@ -12,7 +12,6 @@ serviceEndpoints:
     url: "http://127.0.0.1:3002"
   adminService:
     url: "http://127.0.0.1:3001"
-
 policies:
   - proxy
   - cors
@@ -25,7 +24,7 @@ pipelines:
       - jwt:
           - action:
               secretOrPublicKey: dat dep trai
-              checkCredentialExistence: true
+              checkCredentialExistence: false
       - proxy:
           - condition:
               name: pathExact

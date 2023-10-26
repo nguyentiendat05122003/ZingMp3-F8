@@ -47,7 +47,6 @@ class AuthController {
           { expiresIn: "365d" }
         );
         const { password, ...rest } = account.dataValues;
-        //Why we need expiresIn because token can lost so after expiresIn token is'nt use
         return res.status(200).json({ account: rest, accessToken });
       }
     } catch (error) {
