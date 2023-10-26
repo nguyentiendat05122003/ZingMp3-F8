@@ -1,5 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const middleWareController = require("../app/controllers/middleWareController");
-router.get("/", middleWareController.search);
+const songController = require("../app/controllers/songController");
+router.get("/", songController.search);
 module.exports = router;
