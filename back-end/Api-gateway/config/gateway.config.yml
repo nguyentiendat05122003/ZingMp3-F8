@@ -7,16 +7,28 @@ apiEndpoints:
   admin:
     paths:
       - "/admin/*"
+  auth:
+    paths:
+      - "/auth/*"
 serviceEndpoints:
   userService:
     url: "http://127.0.0.1:3002"
   adminService:
     url: "http://127.0.0.1:3001"
+  authService:
+    url: "http://127.0.0.1:3003"
 policies:
   - proxy
   - cors
   - jwt
 pipelines:
+  auth:
+    apiEndpoints:
+      - auth
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: authService
   user:
     apiEndpoints:
       - user
@@ -34,6 +46,7 @@ pipelines:
               prependPath: true
               ignorePath: false
               stripPath: true
+
   admin:
     apiEndpoints:
       - admin
