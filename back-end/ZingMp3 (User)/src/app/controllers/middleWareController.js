@@ -33,7 +33,20 @@ class MiddleWareController {
   };
   verifyTokenAndArtistAuth = (req, res, next) => {
     this.verifyToken(req, res, () => {
-      if (req.account.typeAccountId === process.env.ID_ARTIST) {
+      if (req.account.typeAccount == process.env.ID_ARTIST) {
+        next();
+      } else {
+        res.status(403).json("you're not allowed to use function");
+      }
+    });
+  };
+  verifyTokenAndArtistSelfAuth = (req, res, next) => {
+    this.verifyToken(req, res, () => {
+      console.log(req.account);
+      if (
+        req.account.typeAccount == process.env.ID_ARTIST &&
+        req.account.accountId == req.params.artistId
+      ) {
         next();
       } else {
         res.status(403).json("you're not allowed to use function");

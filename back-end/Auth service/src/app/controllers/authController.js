@@ -40,7 +40,7 @@ class AuthController {
       if (account && validPassword) {
         const accessToken = jwt.sign(
           {
-            id: account.id,
+            accountId: account.accountId,
             typeAccount: account.typeAccountId,
           },
           process.env.ACCESS_TOKEN_SECRET_KEY,

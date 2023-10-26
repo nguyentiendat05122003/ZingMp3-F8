@@ -4,12 +4,14 @@ const songController = require("../app/controllers/songController");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const middlewareController = require("../app/controllers/middleWareController");
+
 router.get("/artist/:artistId", songController.getSongFollowArtist);
 router.get("/newSongs", songController.getNewSong);
 router.get("/typeSong/:id", songController.getSongFollowTypeSong);
 router.get("/", songController.index);
 router.post(
   "/add",
+  middlewareController.verifyTokenAndArtistAuth,
   upload.fields([
     { name: "image", maxCount: 1 },
     { name: "source", maxCount: 1 },
@@ -25,8 +27,8 @@ router.put(
   songController.edit
 );
 router.delete(
-  "/:id/delete",
-  middlewareController.verifyTokenAndArtistAuth,
+  "/:artistId/delete/:id",
+  middlewareController.verifyTokenAndArtistSelfAuth,
   songController.delete
 );
 module.exports = router;

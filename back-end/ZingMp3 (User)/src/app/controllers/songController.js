@@ -100,7 +100,7 @@ class SongControllers {
     }
   }
 
-  //[DELETE] song/:id/delete
+  //[DELETE] song/:artistId/delete/:id
   async delete(req, res) {
     await Song.destroy({
       where: {
