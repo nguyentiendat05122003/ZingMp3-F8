@@ -6,8 +6,7 @@ class FollowController {
     const listData = await Follow.findAll();
     res.status(200).json(listData);
   }
-
-  // [POST] /follower/add
+  // [POST] /follow/add
   async follower(req, res) {
     try {
       const newFollow = await Follow.create({
@@ -18,7 +17,7 @@ class FollowController {
       res.status(500).json(`follow failure : ${error}`);
     }
   }
-  // [POST] /follower/add
+  // [POST] /follow/delete?useIdFollowed=3&userId=4
   async unFollower(req, res) {
     try {
       const result = await sequelize.query(
@@ -35,6 +34,17 @@ class FollowController {
     } catch (error) {
       res.status(500).json(`unFollow failure : ${error}`);
     }
+  }
+
+  //[GET] /follow/:artistId
+  async countFollower(req, res) {
+    const result = await sequelize.query("Exec pro_getUserFollowNumber :id", {
+      type: QueryTypes.SELECT,
+      replacements: {
+        id: req.params.artistId,
+      },
+    });
+    res.status(200).json(result);
   }
 }
 module.exports = new FollowController();

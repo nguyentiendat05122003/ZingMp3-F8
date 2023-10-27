@@ -1,4 +1,3 @@
-const authRouter = require("./auth");
 const songRouter = require("./song");
 const accountRouter = require("./account");
 const userRouter = require("./user");
@@ -10,7 +9,6 @@ const statisticalRouter = require("./statistical");
 function router(app) {
   app.use("/statistical", statisticalRouter);
   app.use("/search", searchRouter);
-  app.use("/auth", authRouter);
   app.use("/song", songRouter);
   app.use("/user", userRouter);
   app.use("/account", accountRouter);
