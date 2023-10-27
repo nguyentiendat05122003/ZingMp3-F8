@@ -22,11 +22,12 @@ class PlayListSongControllers {
     res.status(200).json("add Song into PlayList successful");
   }
 
-  //[DELETE] /playListSong/:id/delete
+  //[DELETE] /playListSong/:id/delete/:songId
   async delete(req, res) {
     await PlayListSong.destroy({
       where: {
         playListSongId: req.params.id,
+        songId: req.params.songId,
       },
     });
     res.status(200).json("Delete successful");

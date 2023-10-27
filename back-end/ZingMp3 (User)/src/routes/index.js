@@ -6,6 +6,7 @@ const userRouter = require("./user");
 const searchRouter = require("./search");
 const followRouter = require("./follow");
 const banAccountRouter = require("./banAccount");
+const typeSongRouter = require("./typeSong");
 function router(app) {
   app.use("/search", searchRouter);
   app.use("/song", songRouter);
@@ -15,6 +16,7 @@ function router(app) {
   app.use("/account", accountRouter);
   app.use("/follow", followRouter);
   app.use("/banAccount", banAccountRouter);
+  app.use("/typeSong", typeSongRouter);
 }
 
 module.exports = router;

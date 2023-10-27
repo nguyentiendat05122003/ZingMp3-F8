@@ -38,9 +38,6 @@ pipelines:
               secretOrPublicKey: dat dep trai
               checkCredentialExistence: false
       - proxy:
-          - condition:
-              name: pathExact
-              path: /user
           - action:
               serviceEndpoint: userService
               prependPath: true

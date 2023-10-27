@@ -40,5 +40,14 @@ class MiddleWareController {
       }
     });
   };
+  verifyTokenAndSelfAuth = (req, res, next) => {
+    this.verifyToken(req, res, () => {
+      if (req.account.accountId == req.params.id) {
+        next();
+      } else {
+        res.status(403).json("you're not allowed to use function");
+      }
+    });
+  };
 }
 module.exports = new MiddleWareController();
