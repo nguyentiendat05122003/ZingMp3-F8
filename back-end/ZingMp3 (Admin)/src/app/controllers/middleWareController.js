@@ -1,7 +1,4 @@
 const jwt = require("jsonwebtoken");
-const Song = require("../models/Songs");
-const { sequelize } = require("../../config/db");
-const { QueryTypes } = require("sequelize");
 class MiddleWareController {
   verifyToken(req, res, next) {
     const token = req.headers.token;
@@ -31,39 +28,5 @@ class MiddleWareController {
       }
     });
   };
-  verifyTokenAndArtistAuth = (req, res, next) => {
-    this.verifyToken(req, res, () => {
-      if (req.account.typeAccountId === process.env.ID_ARTIST) {
-        next();
-      } else {
-        res.status(403).json("you're not allowed to use function");
-      }
-    });
-  };
-
-  //[GET] search?q=mck
-  async search(req, res, next) {
-    const listDat = await sequelize.query("Exec pro_getSearchData", {
-      type: QueryTypes.SELECT,
-    });
-    const query = req.query.q;
-    const valueSearch = query.toString().toLowerCase();
-    let listDataMatch = [];
-    listDat.forEach((data) => {
-      for (let x in data) {
-        if (typeof data[x] === "string") {
-          if (data[x].toString().toLowerCase().includes(valueSearch)) {
-            listDataMatch = [...listDataMatch, data];
-            return;
-          }
-        }
-      }
-    });
-    if (listDataMatch.length >= 1) {
-      res.status(200).json(listDataMatch);
-    } else {
-      res.status(200).json("Not found");
-    }
-  }
 }
 module.exports = new MiddleWareController();

@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { sequelize } = require("../../config/db");
 class MiddleWareController {
   verifyToken(req, res, next) {
     const token = req.headers.token;
@@ -17,18 +16,9 @@ class MiddleWareController {
         }
       );
     } else {
-      res.status(404).json("you're not authenticated");
+      res.status(403).json("you're not authenticated");
     }
   }
-  verifyTokenAndAdminAuth = (req, res, next) => {
-    this.verifyToken(req, res, () => {
-      if (req.account.typeAccountId === process.env.ID_AMIN) {
-        next();
-      } else {
-        res.status(403).json("you're not allowed to delete other");
-      }
-    });
-  };
   verifyTokenAndArtistAuth = (req, res, next) => {
     this.verifyToken(req, res, () => {
       if (req.account.typeAccount == process.env.ID_ARTIST) {
@@ -40,7 +30,6 @@ class MiddleWareController {
   };
   verifyTokenAndArtistSelfAuth = (req, res, next) => {
     this.verifyToken(req, res, () => {
-      console.log(req.account);
       if (
         req.account.typeAccount == process.env.ID_ARTIST &&
         req.account.accountId == req.params.artistId
