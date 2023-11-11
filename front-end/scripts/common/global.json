@@ -1,0 +1,7 @@
+{
+    "configuration":
+	{
+		"url": "https://test.com",
+		"port": "443"
+    }
+}

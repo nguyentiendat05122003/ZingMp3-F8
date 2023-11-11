@@ -1,0 +1,234 @@
+<div class="container-wrapper">
+  <div class="container-private container-discover" style="padding: 0 60px">
+    <div class="container-discover-slider comp grid">
+      <div class="list-slider row no-gutter">
+        <div class="slider-item col l-4">
+          <a href="">
+            <div class="image-card">
+              <img
+                src="https://photo-zmp3.zmdcdn.me/banner/b/d/b/0/bdb040b2951d069187ff4190f4164193.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+        <div class="slider-item col l-4">
+          <a href="">
+            <div class="image-card">
+              <img
+                src="https://photo-zmp3.zmdcdn.me/banner/8/0/5/7/805734691d29bed1d7ca14fd3a10987f.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+        <div class="slider-item col l-4">
+          <a href="">
+            <div class="image-card">
+              <img
+                src="https://photo-zmp3.zmdcdn.me/banner/e/0/d/c/e0dc410c917031c56b13e22d7db84bf6.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+        <div class="slider-item col l-4">
+          <a href="">
+            <div class="image-card">
+              <img
+                src="https://photo-zmp3.zmdcdn.me/banner/a/4/8/6/a48627295642a4ea16e91cce7a58081d.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="grid tab-container comp">
+      <div class="tab-contents show">
+        <div class="playList-wrapper">
+          <div class="playlist-title">
+            <div class="text">
+              <h1>Một chút yêu đời</h1>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="playlist-move">
+              <button class="btn-prev disabled">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="playlist-main grid">
+            <div class="list-playlist row">
+              <div
+                class="item-playlist col l-3 m-3 c-4"
+                ng-repeat="playList in playLists"
+              >
+                <div style="margin-bottom: 4px" class="img-item">
+                  <div class="img-container">
+                    <img ng-src="{{playList.image}}" alt="" />
+                    <div class="img-icon">
+                      <button class="btn btn-close">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <button class="btn btn-play">
+                        <i class="fa-regular fa-circle-play play"></i>
+                      </button>
+                      <button class="btn btn-list">
+                        <i class="fa-solid fa-ellipsis"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <span style="font-size: 1.3rem">{{playList.desc}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="singer-wrapper">
+          <div class="singer-title">
+            <div class="text">
+              <h1>Nghệ sĩ</h1>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="singer-move">
+              <button class="btn-prev disabled">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="singer-main grid">
+            <div class="list-singer row">
+              <div
+                class="item-singer col l-2-4 m-3 c-6"
+                ng-repeat="singer in singers"
+              >
+                <div class="singer-img">
+                  <img ng-src="{{singer.image}}" alt="" />
+                </div>
+                <h2>{{singer.name}}</h2>
+                <button>
+                  <i class="fa-solid fa-check"></i>
+                  <p>ĐÃ QUAN TÂM</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new-song-container comp">
+      <div class="title">
+        <p>Mới phát hành</p>
+        <a href="" class="select-all-link">
+          <span>TẤT CẢ</span>
+          <span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </span>
+        </a>
+      </div>
+      <div class="tab-country">
+        <button class="btn btn-active">VIỆT NAM</button>
+        <button class="btn">QUỐC TẾ</button>
+      </div>
+      <div class="list-song row">
+        <div class="col l-6" ng-repeat="song in songs">
+          <div class="item">
+            <div class="item-left">
+              <div class="image-song">
+                <img ng-src="{{song.image}}" alt="" />
+                <div class="icon-play">
+                  <i class="fa-solid fa-play"></i>
+                </div>
+              </div>
+              <div class="info-song">
+                <div class="name">{{song.name}}</div>
+                <div class="author">{{song.nameArtist}}</div>
+                <div class="time">1 ngày trước</div>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="song-option">
+                <i class="fa-regular fa-heart"></i>
+                <i
+                  ng-click="ShowDetailSong(song.songId)"
+                  class="fa-solid fa-ellipsis"
+                ></i>
+              </div>
+              <div class="list-detail-song list-detail-song-{{song.songId}}">
+                <ul class="menu-list">
+                  <li>
+                    <button>
+                      <i class="fa-regular fa-heart"></i>
+                      <span>Thêm vào thư viện</span>
+                    </button>
+                  </li>
+                  <li class="playList">
+                    <button class="btn-playList">
+                      <i class="fa-solid fa-circle-plus"></i>
+                      <span>Thêm vào playlist</span>
+                      <i class="fa-solid fa-angle-right icon-right"></i>
+                    </button>
+                    <div class="list-playlist">
+                      <button ng-click="ShowHideCreatePlayList()">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Tạo playlist mới</span>
+                      </button>
+                      <button
+                        ng-click="addSongIntoPlayList(playList.playListId,song.songId)"
+                        ng-repeat="playList in listPlayList"
+                      >
+                        <i class="fa-solid fa-music"></i>
+                        <span>{{playList.name}}</span>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-zing-chart">
+      <div class="chart-weekend_list row">
+        <div class="chart-weekend_list-item col l-4 m-4 c-5">
+          <a href="">
+            <div class="chart-weekend-img">
+              <img
+                src="https://zmp3-static.zmdcdn.me/skins/zmp3-v5.2/images/song-vn-2x.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+        <div class="chart-weekend_list-item col l-4 m-4 c-5">
+          <a href="">
+            <div class="chart-weekend-img">
+              <img
+                src="https://zmp3-static.zmdcdn.me/skins/zmp3-v5.2/images/web_song_usuk.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+        <div class="chart-weekend_list-item col l-4 m-4 c-5">
+          <a href="">
+            <div class="chart-weekend-img">
+              <img
+                src="https://zmp3-static.zmdcdn.me/skins/zmp3-v5.2/images/web_song_kpop.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

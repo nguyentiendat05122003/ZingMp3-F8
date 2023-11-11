@@ -52,3 +52,5 @@ const playlists = [
 
 const listPlayLists = "PLAY_LISTS";
 localStorage.setItem(listPlayLists, JSON.stringify(playlists));
+
+export default playlists;

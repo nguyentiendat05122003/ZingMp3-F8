@@ -1,0 +1,167 @@
+<div class="container-wrapper">
+  <div class="container-private">
+    <div class="header-private">
+      <div class="account">
+        <img ng-src="{{imageUser}}" alt="" />
+        <h1>{{username}}</h1>
+      </div>
+      <div class="code">
+        <button class="btn buy-vip">MUA VIP NGAY</button>
+        <button class="btn enter-code">NHẬP CODE VIP</button>
+        <button class="option">
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+      </div>
+    </div>
+    <div class="tab-private">
+      <div class="tab-container">
+        <ul class="list-tab">
+          <li class="tab-title active"><h3>Tổng quan</h3></li>
+          <li class="tab-title"><h3>Bài hát</h3></li>
+          <li class="tab-title"><h3>PLAYLIST</h3></li>
+          <li class="tab-title hide"><h3>Nghệ sĩ</h3></li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid tab-container">
+      <div class="tab-contents show">
+        <div class="list-songs-wrapper row">
+          <div class="slider-song col m-0 l-3 c-0">
+            <div class="slider-title">
+              <h1>Bài hát</h1>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="slider-main hide-on-mobile">
+              <div class="slider-main-container">
+                <div class="slide-item one">
+                  <img src="./assets/img/ImageSlider/slide1.jpg" alt="" />
+                </div>
+                <div class="slide-item two">
+                  <img src="./assets/img/ImageSlider/slide2.jpg" alt="" />
+                </div>
+                <div class="slide-item three">
+                  <img src="./assets/img/ImageSlider/slide3.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-songs col m-12 l-9 c-12">
+            <div class="btn-song">
+              <button class="upload">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                TẢI LÊN
+              </button>
+              <button class="play-all">
+                <i class="fa-solid fa-play"></i>
+                PHÁT TẤT CẢ
+              </button>
+            </div>
+            <div class="songs">
+              <ul ng-repeat="song in songs" class="list">
+                <li class="item-song">
+                  <div class="song-info">
+                    <div class="song-img">
+                      <img ng-src="{{song.image}}" alt="" />
+                      <div class="song-run none"></div>
+                    </div>
+                    <div class="info">
+                      <h3>{{song.name}}</h3>
+                      <p>{{song.singer}}</p>
+                    </div>
+                  </div>
+                  <div class="song-time">{{song.time}}</div>
+                  <div class="song-option">
+                    <span class="hide"
+                      ><i class="fa-solid fa-microphone"></i
+                    ></span>
+                    <span class="hide"
+                      ><i class="fa-solid fa-heart heart"></i
+                    ></span>
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="playList-wrapper">
+          <div class="playlist-title">
+            <div class="text">
+              <h1>PlayList</h1>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="playlist-move">
+              <button class="btn-prev disabled">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="playlist-main grid">
+            <div class="list-playlist row">
+              <div
+                class="item-playlist col l-2-4 m-3 c-4"
+                ng-repeat="playList in playLists"
+              >
+                <div class="img-item">
+                  <div class="img-container">
+                    <img ng-src="{{playList.image}}" alt="" />
+                    <div class="img-icon">
+                      <button class="btn btn-close">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <button class="btn btn-play">
+                        <i class="fa-regular fa-circle-play play"></i>
+                      </button>
+                      <button class="btn btn-list">
+                        <i class="fa-solid fa-ellipsis"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <p>{{playList.name}}</p>
+                <span>{{playList.singer}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="singer-wrapper">
+          <div class="singer-title">
+            <div class="text">
+              <h1>Nghệ sĩ</h1>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="singer-move">
+              <button class="btn-prev disabled">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="singer-main grid">
+            <div class="list-singer row">
+              <div
+                class="item-singer col l-2-4 m-3 c-6"
+                ng-repeat="singer in singers"
+              >
+                <div class="singer-img">
+                  <img ng-src="{{singer.image}}" alt="" />
+                </div>
+                <h2>{{singer.name}}</h2>
+                <span>{{singer.follower}} quan tân</span>
+                <button>
+                  <i class="fa-solid fa-check"></i>
+                  <p>ĐÃ QUAN TÂM</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

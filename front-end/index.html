@@ -17,998 +17,430 @@
       href="./assets//font/fontawesome-free-6.1.1-web/css/all.min.css"
     />
     <link rel="stylesheet" href="./assets/sass/style.css" />
-    <link rel="icon" href="./assets/img/logo/small-logo.svg">
+    <link rel="icon" href="./assets/img/logo/small-logo.svg" />
     <title>Nhạc cá nhân | Xem bài hát, album, MV đang hot nhất hiện tại</title>
+    <script src="scripts/common/library/jquery-1.11.3.min.js"></script>
+    <script src="scripts/common/library/angularJS.min_1.4.0.js"></script>
+    <script src="scripts/common/library/angularJS-route.min_1.4.0.js"></script>
+    <script src="scripts/js/app.js"></script>
   </head>
-  <body>
-    <div id="app">
-      <div class="header">
-        <div class="container">
-          <div class="wrapper-left">
-            <div class="btn-move">
-              <button class="btn-left">
-                <i class="fa-solid fa-arrow-left-long"></i>
-              </button>
-              <button class="btn-right">
-                <i class="fa-solid fa-arrow-right-long"></i>
-              </button>
-            </div>
-            <div class="search">
-              <div class="btn-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-              <input
-                class="input-search"
-                type="text"
-                placeholder="Tìm kiếm bài hát,nghệ sĩ,lời bài hát,..."
-              />
-              <div class="history-search">
-                <div class="history-search-container">
-                  <h3>Đề xuất cho bạn</h3>
-                  <ul class="history-list">
-                    <li class="history-item">
-                      <i class="fa-solid fa-arrow-trend-up"></i>
-                      <p>Em là</p>
-                    </li>
-                    <li class="history-item">
-                      <i class="fa-solid fa-arrow-trend-up"></i>
-                      <p>Em là</p>
-                    </li>
-                    <li class="history-item">
-                      <i class="fa-solid fa-arrow-trend-up"></i>
-                      <p>Em là</p>
-                    </li>
-                    <li class="history-item">
-                      <i class="fa-solid fa-arrow-trend-up"></i>
-                      <p>karaoke</p>
-                    </li>
-                    <li class="history-item">
-                      <i class="fa-solid fa-arrow-trend-up"></i>
-                      <p>XONE radio</p>
-                    </li>
-                  </ul>
-                  <div class="history-separate"></div>
-                  <div class="history-near">
-                    <div class="history-near-title">
-                      <h3>Tìm kiếm gần đây</h3>
-                      <button class="remove">Xóa</button>
-                    </div>
-                    <ul class="list-video">
-                      <li class="video-item">
-                        <div class="video-image">
-                          <img src="./assets/img/mvs/mono.webp" alt="" />
-                          <i class="fa-solid fa-play icon-play"></i>
-                        </div>
-                        <div class="video-discription">
-                          <h4>Em là</h4>
-                          <p>MONO,Onionn</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="wrapper-right">
-            <div class="btn-wrapper">
-              <button class="btn background-item">
-                <svg width="20" height="20" viewBox="0 0 20 20">
-                  <defs>
-                    <linearGradient
-                      id="j32lhg93hd"
-                      x1="62.206%"
-                      x2="18.689%"
-                      y1="70.45%"
-                      y2="39.245%"
-                    >
-                      <stop offset="0%" stop-color="#F81212"></stop>
-                      <stop offset="100%" stop-color="red"></stop>
-                    </linearGradient>
-                    <linearGradient
-                      id="hjoavsus6g"
-                      x1="50%"
-                      x2="11.419%"
-                      y1="23.598%"
-                      y2="71.417%"
-                    >
-                      <stop offset="0%" stop-color="#00F"></stop>
-                      <stop offset="100%" stop-color="#0031FF"></stop>
-                    </linearGradient>
-                    <linearGradient
-                      id="la1y5u3dvi"
-                      x1="65.655%"
-                      x2="25.873%"
-                      y1="18.825%"
-                      y2="56.944%"
-                    >
-                      <stop offset="0%" stop-color="#FFA600"></stop>
-                      <stop offset="100%" stop-color="orange"></stop>
-                    </linearGradient>
-                    <linearGradient
-                      id="2dsmrlvdik"
-                      x1="24.964%"
-                      x2="63.407%"
-                      y1="8.849%"
-                      y2="55.625%"
-                    >
-                      <stop offset="0%" stop-color="#13EFEC"></stop>
-                      <stop offset="100%" stop-color="#00E8DF"></stop>
-                    </linearGradient>
-                    <filter
-                      id="4a7imk8mze"
-                      width="230%"
-                      height="230%"
-                      x="-65%"
-                      y="-65%"
-                      filterUnits="objectBoundingBox"
-                    >
-                      <feGaussianBlur
-                        in="SourceGraphic"
-                        stdDeviation="3.9"
-                      ></feGaussianBlur>
-                    </filter>
-                    <filter
-                      id="301mo6jeah"
-                      width="312.7%"
-                      height="312.7%"
-                      x="-106.4%"
-                      y="-106.4%"
-                      filterUnits="objectBoundingBox"
-                    >
-                      <feGaussianBlur
-                        in="SourceGraphic"
-                        stdDeviation="3.9"
-                      ></feGaussianBlur>
-                    </filter>
-                    <filter
-                      id="b2zvzgq7fj"
-                      width="295%"
-                      height="295%"
-                      x="-97.5%"
-                      y="-97.5%"
-                      filterUnits="objectBoundingBox"
-                    >
-                      <feGaussianBlur
-                        in="SourceGraphic"
-                        stdDeviation="3.9"
-                      ></feGaussianBlur>
-                    </filter>
-                    <filter
-                      id="a1wq161tvl"
-                      width="256%"
-                      height="256%"
-                      x="-78%"
-                      y="-78%"
-                      filterUnits="objectBoundingBox"
-                    >
-                      <feGaussianBlur
-                        in="SourceGraphic"
-                        stdDeviation="3.9"
-                      ></feGaussianBlur>
-                    </filter>
-                    <path
-                      id="qtpqrj1oda"
-                      d="M3.333 14.167V5.833l-1.666.834L0 3.333 3.333 0h3.334c.04 1.57.548 2.4 1.524 2.492l.142.008C9.403 2.478 9.958 1.645 10 0h3.333l3.334 3.333L15 6.667l-1.667-.834v8.334h-10z"
-                    ></path>
-                    <path id="jggzvnjgfc" d="M0 0H20V20H0z"></path>
-                    <path
-                      id="2eiwxjmc7m"
-                      d="M3.333 14.167V5.833l-1.666.834L0 3.333 3.333 0h3.334c.04 1.57.548 2.4 1.524 2.492l.142.008C9.403 2.478 9.958 1.645 10 0h3.333l3.334 3.333L15 6.667l-1.667-.834v8.334h-10z"
-                    ></path>
-                  </defs>
-                  <g fill="none" fill-rule="evenodd" transform="translate(2 3)">
-                    <mask id="tinejqaasb" fill="#fff">
-                      <use xlink:href="#qtpqrj1oda"></use>
-                    </mask>
-                    <use
-                      fill="#FFF"
-                      fill-opacity="0"
-                      xlink:href="#qtpqrj1oda"
-                    ></use>
-                    <g mask="url(#tinejqaasb)">
-                      <g transform="translate(-2 -3)">
-                        <mask id="uf3ckvfvpf" fill="#fff">
-                          <use xlink:href="#jggzvnjgfc"></use>
-                        </mask>
-                        <use fill="#D8D8D8" xlink:href="#jggzvnjgfc"></use>
-                        <circle
-                          cx="8.9"
-                          cy="6.8"
-                          r="9"
-                          fill="url(#j32lhg93hd)"
-                          filter="url(#4a7imk8mze)"
-                          mask="url(#uf3ckvfvpf)"
-                        ></circle>
-                        <circle
-                          cx="9.3"
-                          cy="13.7"
-                          r="5.5"
-                          fill="url(#hjoavsus6g)"
-                          filter="url(#301mo6jeah)"
-                          mask="url(#uf3ckvfvpf)"
-                        ></circle>
-                        <circle
-                          cx="15.9"
-                          cy="6.9"
-                          r="6"
-                          fill="url(#la1y5u3dvi)"
-                          filter="url(#b2zvzgq7fj)"
-                          mask="url(#uf3ckvfvpf)"
-                        ></circle>
-                        <circle
-                          cx="16.4"
-                          cy="17.7"
-                          r="7.5"
-                          fill="url(#2dsmrlvdik)"
-                          filter="url(#a1wq161tvl)"
-                          mask="url(#uf3ckvfvpf)"
-                        ></circle>
-                      </g>
-                    </g>
-                    <use
-                      fill="#FFF"
-                      fill-opacity="0.05"
-                      xlink:href="#2eiwxjmc7m"
-                    ></use>
-                  </g>
-                </svg>
-                <div class="tooltip tooltip-background none">
-                  <p>Chủ đề</p>
-                </div>
-              </button>
-              <button class="btn vip">
-                <a href="#">
-                  <i class="fa-regular fa-gem"></i>
-                  <div class="tooltip tooltip-vip none">
-                    <p>Nâng cấp VIP</p>
-                  </div>
-                </a>
-              </button>
-              <button class="btn upload">
-                <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                <div class="tooltip tooltip-upload none">
-                  <p>Tải lên</p>
-                </div>
-              </button>
-              <button class="btn setting">
-                <i class="fa-solid fa-gear"></i>
-                <!-- <div class="tooltip tooltip-setting none">
-                  <p>Cài đặt</p>
-                </div> -->
-                <div class="setting-list">
-                  <ul class="setting-option">
-                    <li class="setting-item">
-                      <i class="fa-solid fa-ban"></i>
-                      <p>Danh sách chặn</p>
-                    </li>
-                    <li class="setting-item">
-                      <i class="fa-solid fa-circle-play"></i>
-                      <p>Chất lượng nhạc</p>
-                      <i class="fa-solid fa-chevron-right"></i>
-                      <div class="option none">
-                        <ul>
-                          <li>
-                            <div class="option-left">
-                              <h3>SQ.128</h3>
-                              <p>
-                                Giảm sử dụng dữ liệu cho các kết nối chậm hơn.
-                              </p>
-                            </div>
-                            <div class="option-icon">
-                              <i class="fa-solid fa-check"></i>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="option-left">
-                              <h3>SQ.128</h3>
-                              <p>
-                                Giảm sử dụng dữ liệu cho các kết nối chậm hơn.
-                              </p>
-                            </div>
-                            <div class="option-icon none">
-                              <i class="fa-solid fa-check"></i>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="setting-item">
-                      <i class="fa-solid fa-square-virus"></i>
-                      <p>Giao diện</p>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </li>
-                  </ul>
-                  <div class="separate"></div>
-                  <ul class="list-link">
-                    <li class="setting-item">
-                      <i class="fa-solid fa-circle-exclamation"></i>
-                      <p>Giới thiệu</p>
-                    </li>
-                    <li class="setting-item">
-                      <i class="fa-solid fa-phone"></i>
-                      <a>Liên hệ</a>
-                    </li>
-                    <li class="setting-item">
-                      <i class="fa-solid fa-rectangle-ad"></i>
-                      <a>Quảng cáo</a>
-                    </li>
-                    <li class="setting-item">
-                      <i class="fa-solid fa-file-lines"></i>
-                      <a>Thỏa thuận sử dụng</a>
-                    </li>
-                    <li class="setting-item">
-                      <i class="fa-solid fa-shield"></i>
-                      <a>Chính sách bảo mật</a>
-                    </li>
-                  </ul>
-                </div>
-              </button>
-              <div class="Account-Image sub_header_item-login">
-                <img src="./assets/img/avatar/avatar.jpg" alt="" />
-              </div>
-            </div>
-          </div>
+  <body ng-app="musicApp" ng-controller="eventController">
+    <div id="content-wrapper">
+      <div id="app">
+        <div id="header" ng-include="'views/common/header.html'"></div>
+        <div id="ng-view">
+          <ng-view></ng-view>
         </div>
-      </div>
-      <div class="sideBar">
-        <div class="menu-above">
-          <div class="logo">
-            <a class="logo-large"
-              ><img src="./assets/img/logo/main-logo.svg" alt=""
-            /></a>
-            <a class="none logo-mini" href=""
-              ><img src="./assets/img/logo/small-logo.svg" alt=""
-            /></a>
-          </div>
-          <ul class="list-menu">
-            <li class="menu-item">
-              <i class="fa-solid fa-circle-user"></i>
-              <a href="#">Cá nhân</a>
-            </li>
-            <li class="menu-item">
-              <i class="fa-solid fa-circle-dot"></i>
-              <a href="#">Khám phá</a>
-            </li>
-            <li class="menu-item">
-              <i class="fa-solid fa-signal"></i>
-              <a href="#">#Zingchart</a>
-            </li>
-            <li class="menu-item">
-              <i class="fa-solid fa-headphones"></i>
-              <a href="#">Radio</a>
-              <div class="tooltip-live">Live</div>
-            </li>
-            <li class="menu-item">
-              <i class="fa-solid fa-bars"></i>
-              <a href="#">Theo dõi</a>
-            </li>
-          </ul>
-        </div>
-        <div class="menu-under">
-          <ul class="list-menu">
-            <li class="menu-item">
-              <i class="fa-solid fa-music"></i>
-              <a href="#">Nhạc mới</a>
-            </li>
-            <li class="menu-item">
-              <i class="fa-regular fa-snowflake"></i>
-              <a href="#">Thể loại</a>
-            </li>
-            <li class="menu-item">
-              <i class="fa-regular fa-star"></i>
-              <a href="#">Top 100</a>
-            </li>
-            <li class="menu-item">
-              <i class="fa-solid fa-video"></i>
-              <a href="#">MV</a>
-            </li>
-          </ul>
-          <div class="banner-login">
-            <div class="text">
-              Đăng nhập để khám phá playlist dành riêng cho bạn
+        <div class="sideBar">
+          <div class="menu-above">
+            <div class="logo">
+              <a class="logo-large"
+                ><img src="./assets/img/logo/main-logo.svg" alt=""
+              /></a>
+              <a class="none logo-mini" href=""
+                ><img src="./assets/img/logo/small-logo.svg" alt=""
+              /></a>
             </div>
-            <button>Đăng nhập</button>
-          </div>
-          <div class="banner-vip">
-            <div class="text">Nghe nhạc không quảng cáo cùng kho nhạc VIP</div>
-            <a href="#">Nâng cấp VIP</a>
-          </div>
-          <div class="menu-library">
-            <h1>THƯ VIỆN</h1>
-            <ul class="library">
-              <li class="library-item">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="0783s0j89a"
-                        x1="0%"
-                        x2="0%"
-                        y1="0%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stop-color="#3CA2FF"></stop>
-                        <stop offset="100%" stop-color="#008FFF"></stop>
-                      </linearGradient>
-                      <linearGradient
-                        id="prx3tly02b"
-                        x1="21.839%"
-                        x2="21.839%"
-                        y1="43.679%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stop-color="#FFF"></stop>
-                        <stop
-                          offset="100%"
-                          stop-color="#FFF"
-                          stop-opacity=".9"
-                        ></stop>
-                      </linearGradient>
-                    </defs>
-                    <g fill="none" fill-rule="evenodd">
-                      <g>
-                        <g>
-                          <path
-                            fill="url(#0783s0j89a)"
-                            d="M.516 7.143c.812-3.928 3.31-6.115 7.207-6.776 2.88-.489 5.762-.495 8.637.014 4.012.709 6.424 3.024 7.192 7.011.594 3.082.603 6.196-.009 9.274-.821 3.9-3.384 6.309-7.266 6.967-2.88.489-5.762.495-8.637-.014-4.012-.709-6.435-3.14-7.203-7.127-.624-3.102-.564-6.235.08-9.349z"
-                            transform="translate(-21 -433) translate(21 433)"
-                          ></path>
-                          <path
-                            fill="url(#prx3tly02b)"
-                            d="M3.995 9.479c-.245.48-.245 1.11-.245 2.371v3.3c0 1.26 0 1.89.245 2.371.216.424.56.768.984.984.48.245 1.11.245 2.371.245h9.3c1.26 0 1.89 0 2.372-.245.423-.216.767-.56.983-.983.245-.482.245-1.112.245-2.372v-3.3c0-1.26 0-1.89-.245-2.371-.216-.424-.56-.768-.983-.984-.482-.245-1.112-.245-2.372-.245h-9.3c-1.26 0-1.89 0-2.371.245-.424.216-.768.56-.984.984zm8.567.571l.06.004.068.015.057.02.017.008c.556.27 1.067.623 1.516 1.046.075.07.148.142.22.217.172.18.166.464-.014.636-.18.172-.464.167-.636-.013-.061-.063-.123-.125-.187-.185-.202-.19-.42-.365-.65-.521v3.442c0 1.025-.832 1.856-1.857 1.856S9.3 15.744 9.3 14.719c0-1.025.831-1.856 1.856-1.856.35 0 .677.096.957.264V10.5c0-.249.201-.45.45-.45z"
-                            transform="translate(-21 -433) translate(21 433)"
-                          ></path>
-                          <path
-                            fill="#FFF"
-                            fill-opacity=".6"
-                            fill-rule="nonzero"
-                            d="M7.5 5.25c0-.414.336-.75.75-.75h7.5c.414 0 .75.336.75.75h-9z"
-                            transform="translate(-21 -433) translate(21 433)"
-                          ></path>
-                          <path
-                            fill="#FFF"
-                            fill-opacity=".9"
-                            fill-rule="nonzero"
-                            d="M6 6.75c0-.414.336-.75.75-.75h10.5c.414 0 .75.336.75.75H6z"
-                            transform="translate(-21 -433) translate(21 433)"
-                          ></path>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                  <p>Bài hát</p>
-                </a>
-              </li>
-              <li class="library-item">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="ghd4ngt38a"
-                        x1="50%"
-                        x2="50%"
-                        y1="0%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stop-color="#9FD465"></stop>
-                        <stop offset="100%" stop-color="#70B129"></stop>
-                      </linearGradient>
-                    </defs>
-                    <g fill="none" fill-rule="evenodd">
-                      <g>
-                        <g>
-                          <path
-                            fill="url(#ghd4ngt38a)"
-                            d="M.516 7.143c.812-3.928 3.31-6.115 7.207-6.776 2.88-.489 5.762-.495 8.637.014 4.012.709 6.424 3.024 7.192 7.011.594 3.082.603 6.196-.009 9.274-.821 3.9-3.384 6.309-7.266 6.967-2.88.489-5.762.495-8.637-.014-4.012-.709-6.435-3.14-7.203-7.127-.624-3.102-.564-6.235.08-9.349z"
-                            transform="translate(-21 -467) translate(21 467)"
-                          ></path>
-                          <path
-                            stroke="#FFF"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M13.5 11.5h5m-5 3h5M6 17.5h12.5"
-                            transform="translate(-21 -467) translate(21 467)"
-                          ></path>
-                          <path
-                            fill="#FFF"
-                            d="M10.786 4.025c-.053-.016-.11-.025-.167-.025-.316 0-.572.262-.572.585v4.782c-.532-.44-1.21-.704-1.948-.704C6.387 8.663 5 10.082 5 11.831 5 13.581 6.387 15 8.099 15c1.711 0 3.099-1.419 3.099-3.169 0-.074-.003-.147-.007-.22l.001-6.04c.534.336 1.033.728 1.49 1.169.114.109.225.22.334.337.218.233.58.24.808.017.228-.223.235-.593.017-.826-.123-.131-.247-.257-.375-.38-.766-.738-1.64-1.355-2.589-1.826l-.091-.037z"
-                            transform="translate(-21 -467) translate(21 467)"
-                          ></path>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                  <p>Playlist</p>
-                </a>
-              </li>
-              <li class="library-item">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="v6mduhifwa"
-                        x1="50%"
-                        x2="50%"
-                        y1="0%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stop-color="#FFD677"></stop>
-                        <stop offset="100%" stop-color="#F7AA45"></stop>
-                      </linearGradient>
-                      <linearGradient
-                        id="dkfkk30hhb"
-                        x1="21.205%"
-                        x2="21.205%"
-                        y1="43.042%"
-                        y2="100.632%"
-                      >
-                        <stop offset="0%" stop-color="#FFF"></stop>
-                        <stop
-                          offset="100%"
-                          stop-color="#FFF"
-                          stop-opacity=".9"
-                        ></stop>
-                      </linearGradient>
-                    </defs>
-                    <g fill="none" fill-rule="evenodd">
-                      <g>
-                        <g>
-                          <path
-                            fill="url(#v6mduhifwa)"
-                            d="M.516 7.143c.812-3.928 3.31-6.115 7.207-6.776 2.88-.489 5.762-.495 8.637.014 4.012.709 6.424 3.024 7.192 7.011.594 3.082.603 6.196-.009 9.274-.821 3.9-3.384 6.309-7.266 6.967-2.88.489-5.762.495-8.637-.014-4.012-.709-6.435-3.14-7.203-7.127-.624-3.102-.564-6.235.08-9.349z"
-                            transform="translate(-21 -569) translate(21 569)"
-                          ></path>
-                          <path
-                            fill="url(#dkfkk30hhb)"
-                            d="M12 3.75c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25 8.25-3.694 8.25-8.25S16.556 3.75 12 3.75zm3.805 12.388c-.13.13-.301.195-.472.195-.17 0-.341-.065-.47-.195l-3.334-3.333c-.126-.125-.196-.294-.196-.472V8c0-.369.299-.667.667-.667.368 0 .667.298.667.667v4.057l3.138 3.138c.26.261.26.682 0 .943z"
-                            transform="translate(-21 -569) translate(21 569)"
-                          ></path>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                  <p>Gần đây</p>
-                </a>
-              </li>
+            <ul class="list-menu">
+              <a href="#/home" ng-class="{'active':homeMenu}" class="menu-item">
+                <li class="menu-item-list">
+                  <i class="fa-solid fa-circle-user"></i>
+                  <p>Cá nhân</p>
+                </li>
+              </a>
+              <a
+                href="#/discover"
+                ng-class="{'active':discoverMenu}"
+                class="menu-item"
+              >
+                <li class="menu-item-list">
+                  <i class="fa-solid fa-circle-dot"></i>
+                  <p>Khám phá</p>
+                </li>
+              </a>
+              <a
+                ng-hide="isArtist"
+                href="#/follow"
+                ng-class="{'active':followMenu}"
+                class="menu-item"
+              >
+                <li class="menu-item-list">
+                  <i class="fa-solid fa-bars"></i>
+                  <p>Theo dõi</p>
+                </li>
+              </a>
+              <a
+                ng-if="isArtist"
+                href="#/store"
+                ng-class="{'active':storeMenu}"
+                class="menu-item"
+              >
+                <li class="menu-item-list">
+                  <i class="fa-solid fa-store"></i>
+                  <p>Kho của tôi</p>
+                </li>
+              </a>
             </ul>
           </div>
-        </div>
-        <div class="create-playlist">
-          <i class="fa-solid fa-plus"></i>
-          <p>Tạo playlist mới</p>
-        </div>
-      </div>
-      <div class="container-wrapper">
-        <div class="container-private">
-          <div class="header-private">
-            <div class="account">
-              <img src="./assets/img/avatar/avatar.jpg" alt="" />
-              <h1>Trần Huyền My</h1>
+          <div class="menu-under">
+            <ul class="list-menu">
+              <li class="menu-item">
+                <i class="fa-solid fa-music"></i>
+                <a href="#">Nhạc mới</a>
+              </li>
+              <li class="menu-item">
+                <i class="fa-regular fa-snowflake"></i>
+                <a href="#">Thể loại</a>
+              </li>
+              <li class="menu-item">
+                <i class="fa-regular fa-star"></i>
+                <a href="#">Top 100</a>
+              </li>
+            </ul>
+            <div class="banner-login">
+              <div class="text">
+                Đăng nhập để khám phá playlist dành riêng cho bạn
+              </div>
+              <button>Đăng nhập</button>
             </div>
-            <div class="code">
-              <button class="btn buy-vip">MUA VIP NGAY</button>
-              <button class="btn enter-code">NHẬP CODE VIP</button>
-              <button class="option">
-                <i class="fa-solid fa-ellipsis"></i>
-              </button>
+            <div class="banner-vip">
+              <div class="text">
+                Nghe nhạc không quảng cáo cùng kho nhạc VIP
+              </div>
+              <a href="#">Nâng cấp VIP</a>
             </div>
-          </div>
-          <div class="tab-private">
-            <div class="tab-container">
-              <ul class="list-tab">
-                <li class="tab-title active"><h3>Tổng quan</h3></li>
-                <li class="tab-title"><h3>Bài hát</h3></li>
-                <li class="tab-title"><h3>PLAYLIST</h3></li>
-                <li class="tab-title hide"><h3>Album</h3></li>
-                <li class="tab-title"><h3>MV</h3></li>
-                <li class="tab-title hide"><h3>Nghệ sĩ</h3></li>
+            <div class="menu-library">
+              <h1>THƯ VIỆN</h1>
+              <ul class="library">
+                <li class="library-item">
+                  <a href="#/playList">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <defs>
+                        <linearGradient
+                          id="ghd4ngt38a"
+                          x1="50%"
+                          x2="50%"
+                          y1="0%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stop-color="#9FD465"></stop>
+                          <stop offset="100%" stop-color="#70B129"></stop>
+                        </linearGradient>
+                      </defs>
+                      <g fill="none" fill-rule="evenodd">
+                        <g>
+                          <g>
+                            <path
+                              fill="url(#ghd4ngt38a)"
+                              d="M.516 7.143c.812-3.928 3.31-6.115 7.207-6.776 2.88-.489 5.762-.495 8.637.014 4.012.709 6.424 3.024 7.192 7.011.594 3.082.603 6.196-.009 9.274-.821 3.9-3.384 6.309-7.266 6.967-2.88.489-5.762.495-8.637-.014-4.012-.709-6.435-3.14-7.203-7.127-.624-3.102-.564-6.235.08-9.349z"
+                              transform="translate(-21 -467) translate(21 467)"
+                            ></path>
+                            <path
+                              stroke="#FFF"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M13.5 11.5h5m-5 3h5M6 17.5h12.5"
+                              transform="translate(-21 -467) translate(21 467)"
+                            ></path>
+                            <path
+                              fill="#FFF"
+                              d="M10.786 4.025c-.053-.016-.11-.025-.167-.025-.316 0-.572.262-.572.585v4.782c-.532-.44-1.21-.704-1.948-.704C6.387 8.663 5 10.082 5 11.831 5 13.581 6.387 15 8.099 15c1.711 0 3.099-1.419 3.099-3.169 0-.074-.003-.147-.007-.22l.001-6.04c.534.336 1.033.728 1.49 1.169.114.109.225.22.334.337.218.233.58.24.808.017.228-.223.235-.593.017-.826-.123-.131-.247-.257-.375-.38-.766-.738-1.64-1.355-2.589-1.826l-.091-.037z"
+                              transform="translate(-21 -467) translate(21 467)"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                    <p>Playlist</p>
+                  </a>
+                </li>
+                <li class="library-item">
+                  <a href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <defs>
+                        <linearGradient
+                          id="0783s0j89a"
+                          x1="0%"
+                          x2="0%"
+                          y1="0%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stop-color="#3CA2FF"></stop>
+                          <stop offset="100%" stop-color="#008FFF"></stop>
+                        </linearGradient>
+                        <linearGradient
+                          id="prx3tly02b"
+                          x1="21.839%"
+                          x2="21.839%"
+                          y1="43.679%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stop-color="#FFF"></stop>
+                          <stop
+                            offset="100%"
+                            stop-color="#FFF"
+                            stop-opacity=".9"
+                          ></stop>
+                        </linearGradient>
+                      </defs>
+                      <g fill="none" fill-rule="evenodd">
+                        <g>
+                          <g>
+                            <path
+                              fill="url(#0783s0j89a)"
+                              d="M.516 7.143c.812-3.928 3.31-6.115 7.207-6.776 2.88-.489 5.762-.495 8.637.014 4.012.709 6.424 3.024 7.192 7.011.594 3.082.603 6.196-.009 9.274-.821 3.9-3.384 6.309-7.266 6.967-2.88.489-5.762.495-8.637-.014-4.012-.709-6.435-3.14-7.203-7.127-.624-3.102-.564-6.235.08-9.349z"
+                              transform="translate(-21 -433) translate(21 433)"
+                            ></path>
+                            <path
+                              fill="url(#prx3tly02b)"
+                              d="M3.995 9.479c-.245.48-.245 1.11-.245 2.371v3.3c0 1.26 0 1.89.245 2.371.216.424.56.768.984.984.48.245 1.11.245 2.371.245h9.3c1.26 0 1.89 0 2.372-.245.423-.216.767-.56.983-.983.245-.482.245-1.112.245-2.372v-3.3c0-1.26 0-1.89-.245-2.371-.216-.424-.56-.768-.983-.984-.482-.245-1.112-.245-2.372-.245h-9.3c-1.26 0-1.89 0-2.371.245-.424.216-.768.56-.984.984zm8.567.571l.06.004.068.015.057.02.017.008c.556.27 1.067.623 1.516 1.046.075.07.148.142.22.217.172.18.166.464-.014.636-.18.172-.464.167-.636-.013-.061-.063-.123-.125-.187-.185-.202-.19-.42-.365-.65-.521v3.442c0 1.025-.832 1.856-1.857 1.856S9.3 15.744 9.3 14.719c0-1.025.831-1.856 1.856-1.856.35 0 .677.096.957.264V10.5c0-.249.201-.45.45-.45z"
+                              transform="translate(-21 -433) translate(21 433)"
+                            ></path>
+                            <path
+                              fill="#FFF"
+                              fill-opacity=".6"
+                              fill-rule="nonzero"
+                              d="M7.5 5.25c0-.414.336-.75.75-.75h7.5c.414 0 .75.336.75.75h-9z"
+                              transform="translate(-21 -433) translate(21 433)"
+                            ></path>
+                            <path
+                              fill="#FFF"
+                              fill-opacity=".9"
+                              fill-rule="nonzero"
+                              d="M6 6.75c0-.414.336-.75.75-.75h10.5c.414 0 .75.336.75.75H6z"
+                              transform="translate(-21 -433) translate(21 433)"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                    <p>Bài hát</p>
+                  </a>
+                </li>
+                <li class="library-item">
+                  <a href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <defs>
+                        <linearGradient
+                          id="v6mduhifwa"
+                          x1="50%"
+                          x2="50%"
+                          y1="0%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stop-color="#FFD677"></stop>
+                          <stop offset="100%" stop-color="#F7AA45"></stop>
+                        </linearGradient>
+                        <linearGradient
+                          id="dkfkk30hhb"
+                          x1="21.205%"
+                          x2="21.205%"
+                          y1="43.042%"
+                          y2="100.632%"
+                        >
+                          <stop offset="0%" stop-color="#FFF"></stop>
+                          <stop
+                            offset="100%"
+                            stop-color="#FFF"
+                            stop-opacity=".9"
+                          ></stop>
+                        </linearGradient>
+                      </defs>
+                      <g fill="none" fill-rule="evenodd">
+                        <g>
+                          <g>
+                            <path
+                              fill="url(#v6mduhifwa)"
+                              d="M.516 7.143c.812-3.928 3.31-6.115 7.207-6.776 2.88-.489 5.762-.495 8.637.014 4.012.709 6.424 3.024 7.192 7.011.594 3.082.603 6.196-.009 9.274-.821 3.9-3.384 6.309-7.266 6.967-2.88.489-5.762.495-8.637-.014-4.012-.709-6.435-3.14-7.203-7.127-.624-3.102-.564-6.235.08-9.349z"
+                              transform="translate(-21 -569) translate(21 569)"
+                            ></path>
+                            <path
+                              fill="url(#dkfkk30hhb)"
+                              d="M12 3.75c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25 8.25-3.694 8.25-8.25S16.556 3.75 12 3.75zm3.805 12.388c-.13.13-.301.195-.472.195-.17 0-.341-.065-.47-.195l-3.334-3.333c-.126-.125-.196-.294-.196-.472V8c0-.369.299-.667.667-.667.368 0 .667.298.667.667v4.057l3.138 3.138c.26.261.26.682 0 .943z"
+                              transform="translate(-21 -569) translate(21 569)"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                    <p>Gần đây</p>
+                  </a>
+                </li>
               </ul>
             </div>
-          </div>
-          <div class="grid tab-container">
-            <div class="tab-contents show">
-              <div class="list-songs-wrapper row">
-                <div class="slider-song col m-0 l-3 c-0">
-                  <div class="slider-title">
-                    <h1>Bài hát</h1>
-                    <i class="fa-solid fa-chevron-right"></i>
-                  </div>
-                  <div class="slider-main hide-on-mobile">
-                    <div class="slider-main-container">
-                      <div class="slide-item one">
-                        <img src="./assets/img/ImageSlider/slide1.jpg" alt="" />
-                      </div>
-                      <div class="slide-item two">
-                        <img src="./assets/img/ImageSlider/slide2.jpg" alt="" />
-                      </div>
-                      <div class="slide-item three">
-                        <img src="./assets/img/ImageSlider/slide3.jpg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="list-songs col m-12 l-9 c-12">
-                  <div class="btn-song">
-                    <button class="upload">
-                      <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                      TẢI LÊN
-                    </button>
-                    <button class="play-all">
-                      <i class="fa-solid fa-play"></i>
-                      PHÁT TẤT CẢ
-                    </button>
-                  </div>
-                  <div class="songs">
-                    <ul class="list"></ul>
-                  </div>
-                </div>
-              </div>
-              <div class="playList-wrapper">
-                <div class="playlist-title">
-                  <div class="text">
-                    <h1>PlayList</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="playlist-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="playlist-main grid">
-                  <div class="list-playlist row"></div>
-                </div>
-              </div>
-              <div class="album-wrapper">
-                <div class="album-title">
-                  <div class="text">
-                    <h1>Album</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="album-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="album-main grid">
-                  <div class="list-album row"></div>
-                </div>
-              </div>
-              <div class="mv-wrapper">
-                <div class="mv-title">
-                  <div class="text">
-                    <h1>MV</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="mv-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-              </div>
-              <div class="mv-main grid">
-                <div class="list-mv row">
-                </div>
-              </div>
-              </div>
-              <div class="singer-wrapper">
-                <div class="singer-title">
-                  <div class="text">
-                    <h1>Nghệ sĩ</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="singer-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="singer-main grid">
-                  <div class="list-singer row">
-                    <div class="item-singer col l-2">
-                      <div class="singer-img">
-                        <img src="./assets/img/singer2/artist1.jpg" alt="">
-                      </div>
-                      <h2>BinZ</h2>
-                      <span>265k quan tân</span>
-                      <button>
-                        <i class="fa-solid fa-check"></i>
-                        <p>ĐÃ QUAN TÂM</p>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div ng-click="ShowHideCreatePlayList()" class="create-playlist">
+              <i class="fa-solid fa-plus"></i>
+              <p>Tạo playlist mới</p>
             </div>
-            <div class="tab-contents none">
-              <div class="list-songs-wrapper row">
-                <div class="slider-song col m-4 l-3 c-0">
-                  <div class="slider-title">
-                    <h1>Bài hát</h1>
-                    <i class="fa-solid fa-chevron-right"></i>
-                  </div>
-                  <div class="slider-main hide-on-mobile">
-                    <div class="slider-main-container">
-                      <div class="slide-item one">
-                        <img src="./assets/img/ImageSlider/slide1.jpg" alt="" />
-                      </div>
-                      <div class="slide-item two">
-                        <img src="./assets/img/ImageSlider/slide2.jpg" alt="" />
-                      </div>
-                      <div class="slide-item three">
-                        <img src="./assets/img/ImageSlider/slide3.jpg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="list-songs col m-8 l-9 c-12">
-                  <div class="btn-song">
-                    <button class="upload">
-                      <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                      TẢI LÊN
-                    </button>
-                    <button class="play-all">
-                      <i class="fa-solid fa-play"></i>
-                      PHÁT TẤT CẢ
-                    </button>
-                  </div>
-                  <div class="songs">
-                    <ul class="list"></ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-contents none">
-              <div class="playList-wrapper">
-                <div class="playlist-title">
-                  <div class="text">
-                    <h1>PlayList</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="playlist-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="playlist-main grid">
-                  <div class="list-playlist row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-contents none">
-              <div class="album-wrapper">
-                <div class="album-title">
-                  <div class="text">
-                    <h1>Album</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="album-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="album-main grid">
-                  <div class="list-album row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-contents none">
-              <div class="mv-wrapper">
-                <div class="mv-title">
-                  <div class="text">
-                    <h1>MV</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="mv-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-              </div>
-              <div class="mv-main grid">
-                <div class="list-mv row">
-                </div>
-              </div>
-              </div>
-            </div>
-            <div class="tab-contents none">
-              <div class="singer-wrapper">
-                <div class="singer-title">
-                  <div class="text">
-                    <h1>Nghệ sĩ</h1>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </div>
-                  <div class="singer-move">
-                    <button class="btn-prev disabled">
-                      <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="btn-next">
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="singer-main grid">
-                  <div class="list-singer row">
-                    <div class="item-singer col l-2">
-                      <div class="singer-img">
-                        <img src="./assets/img/singer2/artist1.jpg" alt="">
-                      </div>
-                      <h2>BinZ</h2>
-                      <span>265k quan tân</span>
-                      <button>
-                        <i class="fa-solid fa-check"></i>
-                        <p>ĐÃ QUAN TÂM</p>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="container-discover"></div>
-        <div class="container-charts"></div>
-        <div class="container-radio"></div>
-        <div class="container-following"></div>
-      </div>
-      <div class="play-music">
-        <div class="music-info">
-          <div class="singer-info">
-            <div class="wrapper-img">
-              <img src="./assets/img/avatar/avatar.jpg" alt="" />
-            </div>
-            <div class="info-text">
-              <div class="text-wrapper">
-                <div class="text-title">
-                  <h2>Cheating On You</h2>
-                  <h2 class="text-clone"></h2>
-                </div>
-              </div>
-              <a href="#">Charlie Puth</a>
-            </div>
-          </div>
-          <div class="icon-info">
-            <button><i class="fa-regular fa-heart icon-heart"></i></button>
-            <button><i class="fa-solid fa-ellipsis"></i></button>
           </div>
         </div>
-        <div class="music-control">
-          <div class="btn-wrapper">
-            <button class="btn random hide-on-mobile">
-              <i class="fa-solid fa-shuffle"></i>
-            </button>
-            <button class="btn previous hide-on-mobile">
-              <i class="fa-solid fa-backward-step"></i>
-            </button>
-            <button class="btn play">
-              <i class="fa-solid fa-pause none"></i>
-              <i class="fa-solid fa-play playMusic"></i>
-            </button>
-            <button class="btn next">
-              <i class="fa-solid fa-forward-step"></i>
-            </button>
-            <button class="btn repeat hide-on-mobile">
-              <i class="fa-solid fa-arrow-rotate-right"></i>
-            </button>
-          </div>
-          <div class="progress hide-on-mobile">
-            <div><p class="time-update">00:00</p></div>
-            <div class="progress-wrapper">
-              <input
-                type="range"
-                value="0"
-                step="1"
-                min="0"
-                max="100"
-                class="input-progress"
-              />
-              <div class="input-value"></div>
+        <div
+          id="playControl"
+          ng-include="'views/common/playControl.html'"
+        ></div>
+        <div
+          id="change-BackGround"
+          ng-include="'views/common/changeBackground.html'"
+        ></div>
+        <div
+          id="form-infoSong"
+          ng-include="'views/common/formUpload.html'"
+        ></div>
+        <div class="container-formInfo">
+          <div class="content">
+            <div class="content-header">
+              <h1>Thông tin</h1>
+              <i class="fa-solid fa-xmark btn-close-formInfo"></i>
             </div>
-            <div><p class="time-end">03:03</p></div>
+            <div class="wrapper-content">
+              <form
+                enctype="multipart/form-data"
+                ng-submit="updateInfoUser()"
+                class="form-info"
+                method="POST"
+              >
+                <div class="profile-pic">
+                  <label class="-label" for="file-image">
+                    <span class="glyphicon glyphicon-camera"></span>
+                    <span>Change Image</span>
+                  </label>
+                  <input
+                    id="file-image"
+                    type="file"
+                    custom-on-change="loadFile"
+                    accept="image/*"
+                  />
+                  <img ng-src="{{imageUser}}" id="img-user" width="200" />
+                </div>
+                <div class="form-text">
+                  <div class="left">
+                    <label for="name">Name:</label>
+                    <input
+                      ng-model="username"
+                      type="text"
+                      id="name"
+                      name="user_name"
+                    />
+                    <label for="date">Date:</label>
+                    <input ng-model="date" id="date" type="date" />
+                    <label for="name">Email:</label>
+                    <input
+                      ng-model="email"
+                      type="text"
+                      id="email"
+                      name="email"
+                    />
+                  </div>
+                  <div class="right">
+                    <label for="name">Country:</label>
+                    <input
+                      ng-model="country"
+                      type="text"
+                      id="country"
+                      name="country"
+                    />
+                    <label for="bio">Desc:</label>
+                    <textarea
+                      ng-model="desc"
+                      id="bio"
+                      name="user_bio"
+                    ></textarea>
+                  </div>
+                </div>
+                <button type="submit" class="btn-submit">Lưu thông tin</button>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="control-other hide-on-mobile">
-          <span class="hide"><i class="fa-solid fa-video"></i></span>
-          <span class="hide"><i class="fa-solid fa-microphone"></i></span>
-          <i class="fa-solid fa-volume-high"></i>
-          <div class="volume">
-            <input
-              type="range"
-              class="progress-volume"
-              min="0"
-              value="100"
-              max="100"
-              step="1"
-            />
-            <div class="volume-value"></div>
-          </div>
-        </div>
-      </div>
+        <div id="toast"></div>
 
-      <!-- MODAL CHANGEBACKGROUND -->
-    </div>
-    <div class="changeBackground">
-      <div class="content-background">
-        <div class="content-header">
-          <h1>Giao Diện</h1>
-          <i class="fa-solid fa-xmark btn-close"></i>
+        <div ng-hide="IsShowPlayList" class="modal-playList">
+          <div class="modal-wrapper">
+            <div class="modal-content">
+              <div class="form-playList-list">
+                <button
+                  ng-click="ShowHideCreatePlayList()"
+                  class="btn-close btn-close-playList"
+                >
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <h3 class="title">Tạo playlist mới</h3>
+                <div>
+                  <input
+                    type="text"
+                    class="input-playList"
+                    placeholder="Nhập tên playlist"
+                    ng-model="namePlayList"
+                  />
+                  <button
+                    ng-click="createNewPlayList()"
+                    class="btn-create btn-create-playlist"
+                  >
+                    Tạo mới
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="wrapper-content"></div>
+        <div id="loading">
+          <img
+            src="https://gucongnghe.com/wp-content/uploads/2018/05/Zing-MP3.jpg"
+          />
+        </div>
       </div>
     </div>
-    <audio src=""></audio>
-    <div class="modal-login isHidden">
-      <div class="modal-wrapper">
-          <h2 class="modal-login-header">Welcome Back</h2>
-          <p class="modal-login-text">Sign in to access your bookmarked content and saved trips.</p>
-          <form class="material-form">
-            <div class="form-group">
-              <input type="email" class="form-control">
-              <label>Email</label>
-              <span class="input-border"></span>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control">
-              <label>Password</label>
-              <span class="input-border"></span>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-            <p class="helper-text">Don't have an account? <a href="#">Sign up</a> here.</p>
-          </form>
-          <button class="modal-login-close">
-              <i class="fa-solid fa-xmark"></i>
-          </button>
-      </div>
-  </div>
-  </div>>
+    <script src="scripts/common/library/bootstrap.min_3.3.1.js"></script>
+    <script src="scripts/controllers/indexController.js"></script>
+    <script type="module" src="scripts/js/toast.js"></script>
+    <script type="module" src="scripts/js/confirm.js"></script>
+    <script type="module" src="util/covertTime.js"></script>
+    <script type="module" src="scripts/controllers/eventController.js"></script>
+    <script type="module" src="scripts/controllers/homeController.js"></script>
+    <script
+      type="module"
+      src="scripts/controllers/discoverController.js"
+    ></script>
+    <script src="scripts/controllers/followController.js"></script>
+    <script type="module" src="scripts/controllers/authController.js"></script>
+    <script src="scripts/controllers/mainController.js"></script>
+    <script type="module" src="data/InfoSong.js"></script>
+    <script type="module" src="data/StoragePlayLists.js"></script>
+    <script type="module" src="data/StorageBCTemplate.js"></script>
+    <script
+      type="module"
+      src="scripts/controllers/upLoadSongController.js"
+    ></script>
+    <script type="module" src="scripts/controllers/storeController.js"></script>
+    <script src="scripts/js/index.js"></script>
+    <script
+      type="module"
+      src="scripts/controllers/playListController.js"
+    ></script>
+    <script type="module" src="scripts/controllers/playListDetail.js"></script>
   </body>
-  <script src="./index.js"></script>
-  <script src="./authentication.js"></script>
-  <script src="./data/StorageBCTemplate.js"></script>
-  <script src="./data/StorageTheme.js"></script>
-  <script src="./data/InfoSong.js"></script>
-  <script src="./data/StoragePlayLists.js"></script>
-  <script src="./data/StorageAlbum.js"></script>
-  <s src="./data/StorageMV.js"></s cript>
-  <script src="./data/StorageSinger.js"></script>
+  <script>
+    $(function LoadingMethod() {
+      document.getElementById("content-wrapper").style.visibility = "hidden";
+      $("#loading").fadeOut(2000, function () {
+        document.getElementById("content-wrapper").style.visibility = "visible";
+      });
+    });
+  </script>
 </html>

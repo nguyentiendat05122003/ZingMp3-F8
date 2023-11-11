@@ -1,0 +1,82 @@
+<div class="container-formInfoSong" ng-controller="uploadSongController">
+  <div class="content">
+    <div class="content-header">
+      <h1>Thông tin bài hát</h1>
+      <i class="fa-solid fa-xmark btn-close-formInfoSong"></i>
+    </div>
+    <div class="wrapper-content">
+      <form
+        enctype="multipart/form-data"
+        ng-submit="uploadSong()"
+        class="form-info"
+        method="POST"
+      >
+        <div class="profile-pic">
+          <label class="-label" for="file-song">
+            <span class="glyphicon glyphicon-camera">
+              <i class="fa-solid fa-camera"></i>
+            </span>
+            <span>Change Image</span>
+          </label>
+          <input
+            id="file-song"
+            type="file"
+            custom-on-change="loadFile"
+            accept="image/*"
+          />
+          <img ng-src="{{imageSong}}" id="img-song" width="200" />
+        </div>
+        <div class="upload-audio">
+          <div class="formbold-mb-5 formbold-file-input">
+            <input
+              type="file"
+              class="input-audio"
+              accept="audio/*"
+              custom-on-change="previewFile"
+              name="file"
+              id="file-audio"
+            />
+            <label for="file-audio">
+              <div>
+                <span class="formbold-drop-file"> Drop files here </span>
+                <span class="formbold-or"> Or </span>
+                <span class="formbold-browse"> Browse </span>
+              </div>
+            </label>
+          </div>
+          <div id="result"></div>
+        </div>
+        <div class="form-text">
+          <div class="left">
+            <label for="name">Name:</label>
+            <input ng-model="nameSong" type="text" id="nameSong" />
+            <audio class="audio-preview" controls src=""></audio>
+          </div>
+          <div class="right">
+            <label for="typeSong">Choose typeSong:</label>
+            <select name="typeSong" id="typeSong" ng-model="selectedProduct">
+              <option
+                ng-repeat="type in listTypeSong"
+                value="{{type.typeSongId}}"
+              >
+                {{type.name}}
+              </option>
+            </select>
+            <label for="bio">Desc:</label>
+            <textarea ng-model="descSong" id="bio" name="user_bio"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">Upload Song</button>
+      </form>
+    </div>
+  </div>
+  <div ng-show="showLoader" class="loading">
+    <div class="loading-wrapper">
+      <div class="fancy-spinner">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+</div>

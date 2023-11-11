@@ -295,17 +295,20 @@
                                 }                               
                                 .song-option{
                                     i{
+                                        align-items: center;
+                                        border-radius: 50%;
+                                        display: flex;
+                                        justify-content: center;
                                         cursor: pointer;
                                         width: 13px;
                                         height: 13px;
-                                        padding-top: 1px;
                                         font-size: 1.3rem;
-                                        text-align: center;
                                         line-height: 1.3rem;
-                                        display: inline-block;
                                         color: var(--text-color);
-                                        padding: 9px 10px;
-                                        margin: 0px 4px;
+                                        padding: 10px 10px;
+                                        margin: 0px 2px;
+                                        transition: all 0.2s linear;
+                                        background-color: transparent;
                                     }
                                 }
                             }
@@ -386,49 +389,7 @@
                                     transition: 0.75s;
                                     width: 100%;
                                 }
-                                .img-icon{
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    right: 0;
-                                    z-index: 99999;
-                                    width: 100%;
-                                    height: 100%;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: space-evenly;    
-                                    transition:0.25s;                              
-                                    opacity: 0;
-                                    .btn{
-                                        border-radius: 999px;
-                                        line-height: normal;
-                                        border: 0;
-                                        display: inline-block;
-                                        font-weight: 400;
-                                        text-transform: none;
-                                        text-align: center;
-                                        cursor: pointer;
-                                        position: relative;
-                                        color: var(--text-color);
-                                        background-color: transparent;
-                                        i{
-                                            height: 18px;
-                                            padding-top: 1px;
-                                            font-size: 2em;
-                                            text-align: center;
-                                            line-height: 1.6rem;
-                                            display: inline-block;
-                                            background-color: transparent;
-                                        }
-                                        .play{
-                                            font-size:4rem;
-                                        }
-                                    }
-                                }
-                            }
-                            :hover .img-icon{
-                                opacity: 1;
-                                background-color:rgba(0,0,0,0.5);
+                               
                             }  
                         }
                         p{
@@ -536,6 +497,8 @@
                     img{
                         width: 100%;
                         border-radius:50%;
+                        max-height: 164px;
+                        object-fit: cover;
                     }
                 }
                 h2{

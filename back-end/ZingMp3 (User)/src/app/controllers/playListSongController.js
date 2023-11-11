@@ -24,13 +24,14 @@ class PlayListSongControllers {
 
   //[DELETE] /playListSong/:id/delete/:songId
   async delete(req, res) {
-    await PlayListSong.destroy({
-      where: {
-        playListSongId: req.params.id,
-        songId: req.params.songId,
-      },
-    });
-    res.status(200).json("Delete successful");
+    const result = await sequelize.query(
+      "Exec deleteSongInPlayList :songId,:playListId",
+      {
+        type: QueryTypes.DELETE,
+        replacements: { playListId: req.params.id, songId: req.params.songId },
+      }
+    );
+    return res.status(200).json("Delete successful");
   }
 }
 module.exports = new PlayListSongControllers();

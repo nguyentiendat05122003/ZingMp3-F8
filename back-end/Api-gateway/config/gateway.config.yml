@@ -26,6 +26,7 @@ pipelines:
     apiEndpoints:
       - auth
     policies:
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: authService

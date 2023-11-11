@@ -2,7 +2,9 @@ const PlayList = require("../models/PlayLists");
 class PlayListControllers {
   //[GET] /playList
   async index(req, res) {
-    const listPLayList = await PlayList.findAll();
+    const listPLayList = await PlayList.findAll({
+      where: { userId: req.params.userId },
+    });
     res.json(listPLayList);
   }
 

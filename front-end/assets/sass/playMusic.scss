@@ -110,9 +110,9 @@
                 }
             }
             .play{
-                padding: 8px;
-                border-radius: 50%;
-                border: 1px solid var(--text-color)
+                i{
+                    font-size: 2.5rem !important;
+                }
             }
         }
         .progress{
@@ -139,7 +139,7 @@
                 }
                 .input-value{
                     position:absolute;
-                    top:2px;
+                    top:3px;
                     left:2px;
                     height: 4px;
                     background-color: #fff;
@@ -180,8 +180,8 @@
             }
             .volume-value{
                 position: absolute;
-                top:2px;
-                left: 2px;               
+                top:3px;
+                left: 0px;               
                 height: 4px;
                 background-color: #fff;
                 border-top-left-radius: 8px;

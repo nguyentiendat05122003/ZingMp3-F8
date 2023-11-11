@@ -9,12 +9,12 @@ const { sequelize } = require("../../config/db");
 const storage = require("../../config/fireBase");
 const { QueryTypes } = require("sequelize");
 class UserController {
-  //[GET] user/
+  //[GET] user/accountId
   async index(req, res) {
-    const listUser = await User.findAll({
-      where: { accountId: process.env.ID_ARTIST },
+    const user = await User.findAll({
+      where: { accountId: req.params.accountId },
     });
-    res.status(200).json(listUser);
+    res.status(200).json(user);
   }
 
   //[POST] user/add
@@ -44,10 +44,11 @@ class UserController {
     }
   }
 
-  //[PUT] user/:id/edit
+  //[PUT] user/edit
   async edit(req, res) {
+    const accountId = req.body.accountId;
     const user = await User.findOne({
-      where: { userId: req.params.id },
+      where: { accountId: accountId },
     });
     if (user) {
       try {
@@ -68,13 +69,13 @@ class UserController {
           { ...updatedData },
           {
             where: {
-              userId: req.params.id,
+              accountId: accountId,
             },
           }
         );
-        res.json("edit success");
+        return res.status(200).json("edit success");
       } catch (error) {
-        res.json(error);
+        return res.status(200).json(error);
       }
     } else {
       res.json("user not found");
@@ -85,7 +86,7 @@ class UserController {
   async delete(req, res) {
     await User.destroy({
       where: {
-        userId: req.params.id,
+        accountId: req.params.id,
       },
     });
     res.status(200).json("Delete successful");

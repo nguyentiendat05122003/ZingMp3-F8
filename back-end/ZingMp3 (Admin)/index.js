@@ -2,13 +2,14 @@ const express = require("express");
 const router = require("./src/routes");
 const db = require("./src/config/db");
 const middlewareController = require("./src/app/controllers/middleWareController");
-
+const cors = require('cors')
 const app = express();
 const port = 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(cors())
 //middleWare Unauthorized
 // app.use(middlewareController.verifyTokenAndAdminAuth);
 

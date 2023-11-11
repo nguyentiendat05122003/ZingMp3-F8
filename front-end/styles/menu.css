@@ -1,0 +1,25 @@
+.brandIcon {
+	color: #397aec;
+}
+
+.navbar-default {
+	background-color: #4AC0E0;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	background-color: #c9edf7;
+	color: #555;
+}
+
+.navbar {
+	border-radius: 0;
+	border: 0;
+}
+
+.navbar-default .navbar-nav li a {
+	color: #555;
+}
+
+.bottom-menu {
+	background-color: #4AC0E0;
+}

@@ -1,0 +1,76 @@
+<div class="container-wrapper">
+  <div class="container-playList row">
+    <div ng-click="ShowHideCreatePlayList()" class="cart-add col l-2-4">
+      <div class="cart-add-content">
+        <i class="fa-solid fa-circle-plus"></i>
+        <span class="sub-title">Tạo playlist mới</span>
+      </div>
+    </div>
+    <div ng-repeat="playList in listPlayList">
+      <div class="cart-item col l-4 m-4 c-6">
+        <div class="cart-image">
+          <a href="">
+            <div class="image-wrapper">
+              <img
+                src="https://photo-zmp3.zmdcdn.me/album_default.png"
+                alt=""
+              />
+            </div>
+          </a>
+          <div class="img-icon">
+            <button
+              ng-click="deletePlayList($event,playList)"
+              class="btn btn-close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <a href="#/playList/{{playList.playListId}}">
+              <button class="btn btn-play">
+                <i class="fa-regular fa-circle-play play"></i>
+              </button>
+            </a>
+            <button
+              ng-click="showEditPlayList(playList.playListId,playList.name)"
+              class="btn btn-list"
+            >
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+          </div>
+        </div>
+        <div class="cart-content">
+          <h4 class="title">{{playList.name}}</h4>
+          <span class="sub-title">{{username}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-hide="IsShowEditPlayList" class="modal-playList">
+    <div class="modal-wrapper">
+      <div class="modal-content">
+        <div class="form-playList-list">
+          <button
+            ng-click="ShowHideEditPlayList()"
+            class="btn-close btn-close-playList"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="title">Chỉnh sửa playlist</h3>
+          <div>
+            <input
+              type="text"
+              class="input-playList"
+              placeholder="Nhập tên playlist"
+              ng-model="valueNamePlayList"
+            />
+            <button
+              ng-click="editPlayList()"
+              class="btn-create btn-create-playlist"
+            >
+              Lưu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

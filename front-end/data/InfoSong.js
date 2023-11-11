@@ -1,4 +1,4 @@
-const songs = [
+const listSong = [
   {
     id: "1",
     url: "./assets/music/song1.mp3",
@@ -58,4 +58,6 @@ const songs = [
 ];
 
 const LIST_INFO_SONGS = "listSongs";
-localStorage.setItem(LIST_INFO_SONGS, JSON.stringify(songs));
+localStorage.setItem(LIST_INFO_SONGS, JSON.stringify(listSong));
+
+export default listSong;

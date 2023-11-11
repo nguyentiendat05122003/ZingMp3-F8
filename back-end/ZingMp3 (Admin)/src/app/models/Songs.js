@@ -31,6 +31,9 @@ const Song = sequelize.define(
       type: DataTypes.INTEGER,
       field: "userId",
     },
+    duration: {
+      type: DataTypes.FLOAT,
+    },
   },
   {
     timestamps: true,

@@ -47,3 +47,4 @@ const singers = [
 ];
 
 const listSinger = localStorage.setItem("LIST_SINGER", JSON.stringify(singers));
+export default singers;

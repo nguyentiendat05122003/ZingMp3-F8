@@ -1,0 +1,65 @@
+@font-face {
+	font-family: RobotoRegular;
+	src: url(fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+	font-family: RobotoMedium;
+	src: url(fonts/Roboto-Medium.ttf);
+}
+
+
+html,body
+{
+	font-family: RobotoRegular;
+	font-size: 13px;
+	background-color:#FFF !important;
+	margin:0 auto !important;
+	padding:0 !important;
+	width:100% !important;
+	height:100% !important;
+	max-width: 1280px;
+}
+img
+{
+	border:0 !important;
+	outline:0 none !important;
+}
+a, a:visited
+{
+	text-decoration: none !important;
+}
+a:hover, a:focus
+{
+	outline:0 none !important;
+}
+input[type="text"], textarea
+{
+	color:#555;
+	font-family: RobotoRegular;
+}
+::-ms-clear
+{
+	display: none;
+}
+
+#ng-view
+{
+	height:270px;
+	width:100%;
+	position:relative;
+	padding-bottom:9px;
+    margin: 0 auto;
+}
+
+.myButton
+{
+	width: 99px;
+	height: 27px;
+	background-color: #CCC;
+	display: inline-block;
+	border-radius: 4px;
+	line-height: 27px;
+	text-align: center;
+	cursor: pointer;
+}

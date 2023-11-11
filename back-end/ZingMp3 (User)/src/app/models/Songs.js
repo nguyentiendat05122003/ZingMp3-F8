@@ -31,10 +31,9 @@ const Song = sequelize.define(
       type: DataTypes.INTEGER,
       field: "userId",
     },
-    // isBan: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: false,
-    // },
+    duration: {
+      type: DataTypes.FLOAT,
+    },
   },
   {
     timestamps: true,

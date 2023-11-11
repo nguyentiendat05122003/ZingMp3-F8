@@ -9,10 +9,12 @@ const storage = require("../../config/fireBase");
 const { sequelize } = require("../../config/db");
 const { QueryTypes } = require("sequelize");
 class SongControllers {
-  //[GET] song/
+  //[GET] song
   async index(req, res) {
-    const listSong = await Song.findAll();
-    res.json(listSong);
+    const listSong = await sequelize.query("Exec getSongAndArtist ", {
+      type: QueryTypes.SELECT,
+    });
+    return res.status(200).json(listSong);
   }
 
   //[POST] song/add

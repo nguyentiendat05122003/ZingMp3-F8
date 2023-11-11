@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../styles/signUp.css" />
+    <script src="../scripts/common/library/jquery-1.11.3.min.js"></script>
+    <script src="../scripts/common/library/angularJS.min_1.4.0.js"></script>
+    <script src="../scripts/common/library/angularJS-route.min_1.4.0.js"></script>
+    <script src="../scripts/common/library/bootstrap.min_3.3.1.js"></script>
+    <script
+      type="module"
+      src="../scripts/controllers/authController.js"
+    ></script>
+  </head>
+  <body ng-app="authController">
+    <div ng-controller="authCtrl" class="main">
+      <div id="toast"></div>
+      <input type="checkbox" id="chk" aria-hidden="true" />
+      <div class="signup">
+        <form>
+          <label for="chk" aria-hidden="true">Sign up</label>
+          <input
+            ng-model="username"
+            type="text"
+            placeholder="User name"
+            required=""
+          />
+          <input
+            type="password"
+            ng-model="password"
+            placeholder="Password"
+            required=""
+          />
+          <button ng-click="register()">Sign up</button>
+        </form>
+      </div>
+      <div class="login">
+        <form>
+          <label for="chk" aria-hidden="true">Login</label>
+          <input
+            type="text"
+            ng-model="usernameLogin"
+            name="txt"
+            placeholder="User name"
+            required=""
+          />
+          <input
+            type="password"
+            ng-model="passwordLogin"
+            placeholder="Password"
+            required=""
+          />
+          <button ng-click="login()">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -23,7 +23,7 @@ const Account = sequelize.define(
       field: "typeAccountId",
     },
   },
-  { timestamps: true }
+  { timestamps: true, hasTrigger: true }
 );
 Account.belongsTo(TypeAccount, {
   foreignKey: "typeAccountId",

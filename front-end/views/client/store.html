@@ -1,0 +1,48 @@
+<div class="container-wrapper">
+  <div class="container-private">
+    <div class="grid tab-container">
+      <div class="tab-contents show">
+        <div class="list-songs-wrapper row">
+          <div class="list-songs col m-12 l-12 c-12">
+            <div class="btn-song">
+              <button class="upload">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                TẢI LÊN
+              </button>
+              <button class="play-all">
+                <i class="fa-solid fa-play"></i>
+                PHÁT TẤT CẢ
+              </button>
+            </div>
+            <div class="songs">
+              <ul ng-repeat="song in songs" class="list">
+                <li class="item-song">
+                  <div class="song-info">
+                    <div class="song-img">
+                      <img ng-src="{{song.image}}" alt="" />
+                      <div class="song-run none"></div>
+                    </div>
+                    <div class="info">
+                      <h3>{{song.name}}</h3>
+                      <p>{{username}}</p>
+                    </div>
+                  </div>
+                  <div class="song-time">{{song.duration}}</div>
+                  <div class="song-option">
+                    <span class="hide"
+                      ><i class="fa-solid fa-microphone"></i
+                    ></span>
+                    <span class="hide"
+                      ><i class="fa-solid fa-heart heart"></i
+                    ></span>
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

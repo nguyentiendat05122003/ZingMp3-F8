@@ -1,5 +1,6 @@
 const Account = require("../models/Accounts");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 class AuthController {
   //[POST] /register
@@ -11,20 +12,19 @@ class AuthController {
         ...req.body,
         password: hashedPassword,
       });
+      console.log(account);
       res.send("register successful");
     } catch (error) {
-      res.status(500).json(err);
+      res.status(500).json(error);
     }
   }
 
   //[POST] /login
-  //create jwt after login
   async login(req, res) {
     try {
       const account = await Account.findOne({
         where: {
           username: req.body.username,
-          typeAccountId: req.body.typeAccountId,
         },
       });
       if (!account) {

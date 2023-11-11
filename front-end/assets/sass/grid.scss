@@ -30,7 +30,10 @@
     padding-left: 0;
     padding-right: 0;
 }
-
+.row.no-gutter .col {
+    padding-left: 6px;
+    padding-right: 6px;
+}
 .c-0 {
     display: none;
 }
