@@ -55,7 +55,6 @@ window.addEventListener("load", () => {
     0, 0,
   ]; // giá trị lưu bc
   //
-  const LIST_INFO_SONG = JSON.parse(localStorage.getItem("listSongs")) || [];
   const tmp = `url(./assets/img/BCplaymusic/theme1.png)`;
   const app = {
     currentIndex: 0,
@@ -171,20 +170,20 @@ window.addEventListener("load", () => {
         };
       }
       //click form upload song
-      if (btnFormInfoSong) {
-        btnFormInfoSong.onclick = (e) => {
-          modalFormInfoSong.classList.add("active");
-        };
-        modalFormInfoSong.onclick = (e) => {
-          const childrenElement = e.target.closest(".container-formInfoSong");
-          if (!childrenElement) {
-            modalFormInfoSong.classList.remove("active");
-          }
-        };
-        btnCloseInfoSong.onclick = (e) => {
-          modalFormInfoSong.classList.remove("active");
-        };
-      }
+      // if (btnFormInfoSong) {
+      //   btnFormInfoSong.onclick = (e) => {
+      //     modalFormInfoSong.classList.add("active");
+      //   };
+      //   modalFormInfoSong.onclick = (e) => {
+      //     const childrenElement = e.target.closest(".container-formInfoSong");
+      //     if (!childrenElement) {
+      //       modalFormInfoSong.classList.remove("active");
+      //     }
+      //   };
+      //   btnCloseInfoSong.onclick = (e) => {
+      //     modalFormInfoSong.classList.remove("active");
+      //   };
+      // }
       // click input search
       HistoryELement.onmousedown = (e) => {
         e.preventDefault();
@@ -492,11 +491,11 @@ window.addEventListener("load", () => {
           PlayRandom();
           _this.loadCurrentSong();
           audio.play();
-          ScrollActiveSong();
+          // ScrollActiveSong();
         } else {
           NextSong();
           audio.play();
-          ScrollActiveSong();
+          // ScrollActiveSong();
         }
       };
       // previous song
@@ -546,14 +545,14 @@ window.addEventListener("load", () => {
         console.log(newIndexSong);
         _this.currentIndex = newIndexSong;
       }
-      function ScrollActiveSong() {
-        setTimeout(function () {
-          $(".item-song.active").scrollIntoView({
-            behavior: "smooth",
-            inline: "nearest",
-          });
-        }, 300);
-      }
+      // function ScrollActiveSong() {
+      //   setTimeout(function () {
+      //     $(".item-song.active").scrollIntoView({
+      //       behavior: "smooth",
+      //       inline: "nearest",
+      //     });
+      //   }, 300);
+      // }
     },
     defineProperties: function () {
       Object.defineProperty(this, "currentSong", {
@@ -565,10 +564,10 @@ window.addEventListener("load", () => {
     loadCurrentSong: function () {
       thumb.setAttribute("src", this.currentSong.image);
       nameSong.innerText = this.currentSong.name;
-      nameSinger.innerText = this.currentSong.singer;
+      nameSinger.innerText = this.currentSong.nameArtist;
       textClone.innerText = this.currentSong.name;
-      audio.setAttribute("src", this.currentSong.url);
-      timeEnd.innerText = this.currentSong.time;
+      audio.setAttribute("src", this.currentSong.source);
+      timeEnd.innerText = this.currentSong.duration;
       inputProgress.value = 0;
     },
     start: function () {

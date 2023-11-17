@@ -25,27 +25,12 @@
     </div>
     <div class="grid tab-container">
       <div class="tab-contents show">
+        <div class="heading">
+          <h1>Các bài hát yêu thích</h1>
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
         <div class="list-songs-wrapper row">
-          <div class="slider-song col m-0 l-3 c-0">
-            <div class="slider-title">
-              <h1>Bài hát</h1>
-              <i class="fa-solid fa-chevron-right"></i>
-            </div>
-            <div class="slider-main hide-on-mobile">
-              <div class="slider-main-container">
-                <div class="slide-item one">
-                  <img src="./assets/img/ImageSlider/slide1.jpg" alt="" />
-                </div>
-                <div class="slide-item two">
-                  <img src="./assets/img/ImageSlider/slide2.jpg" alt="" />
-                </div>
-                <div class="slide-item three">
-                  <img src="./assets/img/ImageSlider/slide3.jpg" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-songs col m-12 l-9 c-12">
+          <div class="list-songs col m-12 l-12 c-12">
             <div class="btn-song">
               <button class="upload">
                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
@@ -57,7 +42,7 @@
               </button>
             </div>
             <div class="songs">
-              <ul ng-repeat="song in songs" class="list">
+              <ul ng-repeat="song in listSong" class="list">
                 <li class="item-song">
                   <div class="song-info">
                     <div class="song-img">
@@ -69,7 +54,7 @@
                       <p>{{song.singer}}</p>
                     </div>
                   </div>
-                  <div class="song-time">{{song.time}}</div>
+                  <div class="song-time">{{song.duration}}</div>
                   <div class="song-option">
                     <span class="hide"
                       ><i class="fa-solid fa-microphone"></i
@@ -103,26 +88,31 @@
             <div class="list-playlist row">
               <div
                 class="item-playlist col l-2-4 m-3 c-4"
-                ng-repeat="playList in playLists"
+                ng-repeat="playList in listPlayList"
               >
                 <div class="img-item">
-                  <div class="img-container">
-                    <img ng-src="{{playList.image}}" alt="" />
+                  <div
+                    style="position: relative; height: 172px; overflow: hidden"
+                    class="img-container"
+                  >
+                    <img
+                      style="border-radius: 8px"
+                      src="https://photo-zmp3.zmdcdn.me/album_default.png"
+                      alt=""
+                    />
                     <div class="img-icon">
-                      <button class="btn btn-close">
-                        <i class="fa-solid fa-xmark"></i>
-                      </button>
-                      <button class="btn btn-play">
-                        <i class="fa-regular fa-circle-play play"></i>
-                      </button>
-                      <button class="btn btn-list">
-                        <i class="fa-solid fa-ellipsis"></i>
-                      </button>
+                      <a href="#/playList/{{playList.playListId}}">
+                        <button
+                          ng-click="changeListSong(playList)"
+                          class="btn btn-play"
+                        >
+                          <i class="fa-regular fa-circle-play play"></i>
+                        </button>
+                      </a>
                     </div>
                   </div>
+                  <p>{{playList.name}}</p>
                 </div>
-                <p>{{playList.name}}</p>
-                <span>{{playList.singer}}</span>
               </div>
             </div>
           </div>
@@ -148,11 +138,12 @@
                 class="item-singer col l-2-4 m-3 c-6"
                 ng-repeat="singer in singers"
               >
-                <div class="singer-img">
-                  <img ng-src="{{singer.image}}" alt="" />
-                </div>
+                <a href="#/discover/artist/{{singer.userId}}">
+                  <div class="singer-img">
+                    <img ng-src="{{singer.image}}" alt="" />
+                  </div>
+                </a>
                 <h2>{{singer.name}}</h2>
-                <span>{{singer.follower}} quan tân</span>
                 <button>
                   <i class="fa-solid fa-check"></i>
                   <p>ĐÃ QUAN TÂM</p>

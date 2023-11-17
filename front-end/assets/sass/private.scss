@@ -194,32 +194,7 @@
                 }
                 .list-songs{
                     flex:2;
-                    .btn-song{
-                        display:flex;
-                        justify-content: flex-end;
-                        .upload{
-                            color: var(--text-color);
-                            border:none;
-                            padding: 0 19px;
-                            border-radius: 20px;
-                            line-height: 2.9rem;
-                            font-size: 1.2rem;
-                            cursor: pointer;
-                            background-color: var(--bg-content-color);
-                        }
-                        .play-all{
-                            margin-left: 15px;
-                            line-height: 1.2rem;
-                            font-size: 1.2rem;
-                            height: 27px;
-                            padding: 6px 19px;
-                            background-color: var(--purple-primary);
-                            color: var(--white-color);
-                            border:none;
-                            border-radius: 100px;
-                            cursor: pointer;
-                        }
-                    }
+                    
                     .songs{
                         margin-top: 10px;
                         .list{
@@ -231,95 +206,11 @@
                             overflow: hidden;
                             will-change: scroll-position;
                             scroll-behavior: smooth;                           
-                            .item-song{                                    
-                                display: flex;
-                                align-items:center;
-                                width: 100%;
-                                justify-content:space-between;                               
-                                height: 61px;
-                                padding: 10px;
-                                cursor: pointer;
-                                box-shadow: 0 1px 1px var(--bg-color);                              
-                                border-radius: 5px;                                                        
-                                .song-info{
-                                    display: flex;
-                                    align-items:center;
-                                    .song-img{
-                                        width: 40px;
-                                        height: 40px;
-                                        position: relative;
-                                        margin-right: 10px;
-                                        display: flex;
-                                        img{
-                                            border-radius: 4px;
-                                            width: 100%;
-                                            height: 100%;
-                                            object-fit:cover;                                            
-                                        }
-                                        .song-run{
-                                            position: absolute;
-                                            background-image: url('https://vikdang.github.io/Code_web_music_player/assets/img/SongActiveAnimation/icon-playing.gif');
-                                            background-repeat: no-repeat;
-                                            background-size: contain;
-                                            width: 18px;
-                                            height: 18px;
-                                            margin: auto; 
-                                            top:50%;
-                                            left:50%;
-                                            transform:translate(-50%,-50%);                         
-                                        }   
-                                    }
-                                    .info{
-                                        h3{
-                                            max-width: 100%;
-                                            font-size: 1.4rem;
-                                            line-height: 1.8rem;
-                                            color: var(--text-color);
-                                            margin: 0;
-                                        }
-                                        p{
-                                            font-size: 1.1rem;
-                                            white-space: nowrap;
-                                            line-height: 1.6rem;
-                                            text-overflow: ellipsis;
-                                            color: var(--text-secondary);
-                                            font-weight: 400;
-                                        }
-                                    }
-                                }
-                                .song-time{
-                                    color: #999;
-                                    font-size: 1.2rem;
-                                    margin-left: auto;
-                                    margin-right: 50px;
-                                }                               
-                                .song-option{
-                                    i{
-                                        align-items: center;
-                                        border-radius: 50%;
-                                        display: flex;
-                                        justify-content: center;
-                                        cursor: pointer;
-                                        width: 13px;
-                                        height: 13px;
-                                        font-size: 1.3rem;
-                                        line-height: 1.3rem;
-                                        color: var(--text-color);
-                                        padding: 10px 10px;
-                                        margin: 0px 2px;
-                                        transition: all 0.2s linear;
-                                        background-color: transparent;
-                                    }
-                                }
-                            }
+                            
                             .active{
                                 background-color: var(--bg-content-color);
                                 border-bottom: 1px solid var(--bg-content-color);                              
                             }                        
-                            .item-song:hover{
-                                background-color: var(--bg-content-color);
-                                border-bottom: 1px solid var(--bg-content-color);
-                            }
                         }
                         .list:hover{
                             overflow: overlay;
@@ -494,10 +385,12 @@
                 cursor: pointer;
                 .singer-img{
                     width:100%;
+                    width: 164px;
+                    height: 164px;
                     img{
                         width: 100%;
+                        height: 100%;
                         border-radius:50%;
-                        max-height: 164px;
                         object-fit: cover;
                     }
                 }
@@ -546,5 +439,116 @@
         .show{
             display:block;
         }
+    }
+    .item-song{                                    
+        display: flex;
+        align-items:center;
+        width: 100%;
+        justify-content:space-between;                               
+        height: 61px;
+        padding: 10px;
+        cursor: pointer;
+        box-shadow: 0 1px 1px var(--bg-color);                              
+        border-radius: 5px;                                                        
+        .song-info{
+            display: flex;
+            align-items:center;
+            .song-img{
+                width: 40px;
+                height: 40px;
+                position: relative;
+                margin-right: 10px;
+                display: flex;
+                img{
+                    border-radius: 4px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit:cover;                                            
+                }
+                .song-run{
+                    position: absolute;
+                    background-image: url('https://vikdang.github.io/Code_web_music_player/assets/img/SongActiveAnimation/icon-playing.gif');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 18px;
+                    height: 18px;
+                    margin: auto; 
+                    top:50%;
+                    left:50%;
+                    transform:translate(-50%,-50%);                         
+                }   
+            }
+            .info{
+                h3{
+                    max-width: 100%;
+                    font-size: 1.4rem;
+                    line-height: 1.8rem;
+                    color: var(--text-color);
+                    margin: 0;
+                }
+                p{
+                    font-size: 1.1rem;
+                    white-space: nowrap;
+                    line-height: 1.6rem;
+                    text-overflow: ellipsis;
+                    color: var(--text-secondary);
+                    font-weight: 400;
+                }
+            }
+        }
+        .song-time{
+            color: #999;
+            font-size: 1.2rem;
+            margin-left: auto;
+            margin-right: 50px;
+        }                               
+        .song-option{
+            i{
+                align-items: center;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+                width: 13px;
+                height: 13px;
+                font-size: 1.3rem;
+                line-height: 1.3rem;
+                color: var(--text-color);
+                padding: 10px 10px;
+                margin: 0px 2px;
+                transition: all 0.2s linear;
+                background-color: transparent;
+            }
+        }
+    }
+    .item-song:hover{
+        background-color: var(--bg-content-color);
+        border-bottom: 1px solid var(--bg-content-color);
+    }
+}
+.btn-song{
+    display:flex;
+    justify-content: flex-end;
+    .upload{
+        color: var(--text-color);
+        border:none;
+        padding: 0 19px;
+        border-radius: 20px;
+        line-height: 2.9rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        background-color: var(--bg-content-color);
+    }
+    .play-all{
+        margin-left: 15px;
+        line-height: 1.2rem;
+        font-size: 1.2rem;
+        height: 27px;
+        padding: 6px 19px;
+        background-color: var(--purple-primary);
+        color: var(--white-color);
+        border:none;
+        border-radius: 100px;
+        cursor: pointer;
     }
 }

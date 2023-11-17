@@ -49,12 +49,14 @@
     <ul class="list-menu">
       <li class="menu-item">
         <i class="fa-solid fa-music"></i>
-        <a href="#">Nhạc mới</a>
+        <a>Nhạc mới</a>
       </li>
-      <li class="menu-item">
-        <i class="fa-regular fa-snowflake"></i>
-        <a href="#">Thể loại</a>
-      </li>
+      <a class="menu-item" href="#/typeSong" ng-class="{'active':typeSongMenu}">
+        <li class="menu-item">
+          <i class="fa-regular fa-snowflake"></i>
+          <p>Thể loại 2</p>
+        </li>
+      </a>
       <li class="menu-item">
         <i class="fa-regular fa-star"></i>
         <a href="#">Top 100</a>

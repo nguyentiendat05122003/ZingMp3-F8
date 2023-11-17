@@ -16,7 +16,6 @@ class SongControllers {
     });
     return res.status(200).json(listSong);
   }
-
   //[POST] song/add
   async add(req, res, next) {
     if (!req.files["image"] && !req.files["source"]) {
@@ -120,16 +119,12 @@ class SongControllers {
     res.json(listNewSong);
   }
 
-  //[GET] song/typeSong/:id
+  //[GET] song/typeSong
   async getSongFollowTypeSong(req, res) {
-    const listSong = await sequelize.query(
-      "Exec pro_getSongFollowTypeSong :typeSongId",
-      {
-        type: QueryTypes.SELECT,
-        replacements: { typeSongId: req.params.id },
-      }
-    );
-    res.json(listSong);
+    const listSong = await sequelize.query("Exec pro_getSongType ", {
+      type: QueryTypes.SELECT,
+    });
+    res.status(200).json(listSong);
   }
 
   //[GET] song/:artistId
@@ -146,6 +141,42 @@ class SongControllers {
     } catch (error) {
       res.status(500).json(error);
     }
+  }
+
+  //[GET] song/vietnam
+  async getSongVietNam(req, res) {
+    try {
+      const data = await sequelize.query("Exec pro_getSongInVietNam", {
+        type: QueryTypes.SELECT,
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+
+  //[GET] song/otherCountry
+  async getSongOtherCountry(req, res) {
+    try {
+      const data = await sequelize.query("Exec pro_getSongInOtherCountry", {
+        type: QueryTypes.SELECT,
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+
+  //[GET] song/typeSong/:typeSongId
+  async getSongFollowTypeSongDetail(req, res) {
+    const listSong = await sequelize.query(
+      "Exec pro_getSongFollowTypeSong :typeSongId",
+      {
+        type: QueryTypes.SELECT,
+        replacements: { typeSongId: req.params.typeSongId },
+      }
+    );
+    res.status(200).json(listSong);
   }
 }
 module.exports = new SongControllers();

@@ -1,6 +1,10 @@
 <div class="container-wrapper">
   <div class="container-private">
     <div class="grid tab-container">
+      <div class="heading">
+        <h1>Danh sách nhạc</h1>
+        <i class="fa-solid fa-angle-right"></i>
+      </div>
       <div class="tab-contents show">
         <div class="list-songs-wrapper row">
           <div class="list-songs col m-12 l-12 c-12">
@@ -18,7 +22,7 @@
               <ul class="list">
                 <li
                   style="position: relative"
-                  ng-repeat="song in songs"
+                  ng-repeat="song in listSong"
                   class="item-song item"
                 >
                   <div class="song-info">

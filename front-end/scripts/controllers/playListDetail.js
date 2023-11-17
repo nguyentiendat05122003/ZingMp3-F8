@@ -16,7 +16,8 @@ app.controller(
           [...listSong].forEach((song) => {
             song.duration = convertTime(song.duration);
           });
-          $scope.songs = listSong;
+          $scope.listSong = listSong;
+          $rootScope.songs = listSong;
         },
         function errorCallback(response) {
           console.log(response);

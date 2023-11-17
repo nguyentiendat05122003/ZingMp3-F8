@@ -1,8 +1,15 @@
-<div class="container-formInfoSong" ng-controller="uploadSongController">
+<div
+  ng-hide="IsShowInfoSong"
+  class="container-formInfoSong"
+  ng-controller="uploadSongController"
+>
   <div class="content">
     <div class="content-header">
       <h1>Thông tin bài hát</h1>
-      <i class="fa-solid fa-xmark btn-close-formInfoSong"></i>
+      <i
+        ng-click="ShowFormInfoSong()"
+        class="fa-solid fa-xmark btn-close-formInfoSong"
+      ></i>
     </div>
     <div class="wrapper-content">
       <form
@@ -48,13 +55,17 @@
         </div>
         <div class="form-text">
           <div class="left">
-            <label for="name">Name:</label>
+            <label for="nameSong">Name:</label>
             <input ng-model="nameSong" type="text" id="nameSong" />
             <audio class="audio-preview" controls src=""></audio>
           </div>
           <div class="right">
             <label for="typeSong">Choose typeSong:</label>
-            <select name="typeSong" id="typeSong" ng-model="selectedProduct">
+            <select
+              name="typeSong"
+              id="selectedProduct"
+              ng-model="selectedProduct"
+            >
               <option
                 ng-repeat="type in listTypeSong"
                 value="{{type.typeSongId}}"
@@ -62,11 +73,29 @@
                 {{type.name}}
               </option>
             </select>
-            <label for="bio">Desc:</label>
-            <textarea ng-model="descSong" id="bio" name="user_bio"></textarea>
+            <label for="desc-song">Desc:</label>
+            <textarea
+              ng-model="descSong"
+              id="desc-song"
+              name="user_bio"
+            ></textarea>
           </div>
         </div>
-        <button type="submit" class="btn-submit">Upload Song</button>
+        <button
+          ng-click="addSong()"
+          ng-hide="!IsShowBtnEditSong"
+          type="submit"
+          class="btn-submit"
+        >
+          Add Song
+        </button>
+        <button
+          ng-click="editSong()"
+          ng-hide="IsShowBtnEditSong"
+          class="btn-submit"
+        >
+          Edit Song
+        </button>
       </form>
     </div>
   </div>

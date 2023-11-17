@@ -1,0 +1,169 @@
+<section class="main">
+  <div class="row">
+    <div class="col-11 col-s-12">
+      <div class="col-4 col-s-12 content">
+        <div class="tabcontent">
+          <div class="title">
+            <i class="fas fa-users"></i> Nhập thông tin tài khoản
+            <hr />
+          </div>
+          <div class="row">
+            <form>
+              <div class="col-12 col-s-12 padding-box">
+                <label for="txtright">Mã tài khoản:</label>
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <input
+                  type="text"
+                  id="makh"
+                  placeholder="Nhập mã người dùng...Tự động sinh nếu không nhập..."
+                />
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <label for="txtright">Tên khách hàng:</label>
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <input
+                  type="text"
+                  id="tenkh"
+                  placeholder="Nhập tên khách hàng..."
+                />
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <label for="txtright">Số điện thoại:</label>
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <input
+                  type="tel"
+                  id="sdtkh"
+                  placeholder="Nhập số điện thoại khách hàng..."
+                />
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <label for="txtright">Email:</label>
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <input
+                  type="email"
+                  id="emailkh"
+                  placeholder="Nhập email khách hàng..."
+                />
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <label for="txtright">Địa chỉ:</label>
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <input
+                  type="text"
+                  id="diachikh"
+                  placeholder="Nhập địa chỉ khách hàng..."
+                />
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <label for="txtright">Mật khẩu:</label>
+              </div>
+              <div class="col-12 col-s-12 padding-box">
+                <input
+                  type="password"
+                  id="mkkh"
+                  placeholder="Nhập mật khẩu khách hàng..."
+                />
+              </div>
+            </form>
+          </div>
+          <hr />
+          <button
+            class="btn-form"
+            style="background-color: rgba(44, 140, 15, 0.8)"
+          >
+            Thêm khách hàng
+          </button>
+          <button
+            class="btn-form"
+            style="background-color: rgba(227, 32, 21, 0.8)"
+          >
+            Nhập mới
+          </button>
+        </div>
+      </div>
+      <div class="col-8 col-s-12 content">
+        <div class="tabcontent">
+          <div class="title">
+            <i class="fas fa-users"></i> Danh sách khách hàng
+            <button style="margin-right: 3px">
+              <i class="far fa-trash-alt"></i> Xóa chọn
+            </button>
+            <hr />
+          </div>
+          <div class="row">
+            <div class="col-10 col-s-12 padding-box">
+              <input
+                type="text"
+                id="search-customer"
+                placeholder="Nhập mã, tên hoặc số điện thoại khách hàng..."
+              />
+            </div>
+            <div class="col-2 col-s-12 padding-box">
+              <button><i class="fas fas fa-search"></i> Tìm kiếm</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-s-12 padding-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="padding-top: 10px">
+                      <input type="checkbox" />
+                    </th>
+                    <th>Mã khách hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="listCustomer"></tbody>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center; padding-top: 10px">
+                      <input type="checkbox" value="" id="" />
+                    </td>
+                    <td>222221</td>
+                    <td>Nguyễn Văn Anh</td>
+                    <td>0965452458</td>
+                    <td>nvanh@gmail.com</td>
+                    <td>Gia Lộc - Hải Dương</td>
+                    <td style="text-align: center">
+                      <i
+                        class="fas fa-edit"
+                        title="Sửa"
+                        onclick="SuaKhachHang()"
+                      ></i>
+                      <i class="fas fa-trash-alt" title="Xóa"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-s-12 padding-box">
+              <div class="box-sum">
+                <div class="box-left">
+                  Số lượng khách hàng: <span id="soluong">0</span>
+                </div>
+                <div class="box-right">
+                  <button><i class="fas fa-angle-left"></i></button>
+                  <button>1</button>
+                  <button>2</button>
+                  <button>3</button>
+                  <button>4</button>
+                  <button><i class="fas fa-angle-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

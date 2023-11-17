@@ -230,7 +230,11 @@
             <p>Chủ đề</p>
           </div>
         </button>
-        <button ng-if="isArtist" class="btn upload">
+        <button
+          ng-click="ShowFormInfoSong()"
+          ng-if="isArtist"
+          class="btn upload"
+        >
           <i class="fa-solid fa-arrow-up-from-bracket"></i>
           <div class="tooltip tooltip-upload none">
             <p>Tải lên</p>

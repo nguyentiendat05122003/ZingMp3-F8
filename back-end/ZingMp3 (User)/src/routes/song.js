@@ -5,9 +5,12 @@ const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const middlewareController = require("../app/controllers/middleWareController");
 
+router.get("/vietnam", songController.getSongVietNam);
+router.get("/otherCountry", songController.getSongOtherCountry);
 router.get("/artist/:artistId", songController.getSongFollowArtist);
 router.get("/newSongs", songController.getNewSong);
-router.get("/typeSong/:id", songController.getSongFollowTypeSong);
+router.get("/typeSong/:typeSongId", songController.getSongFollowTypeSongDetail);
+router.get("/typeSong", songController.getSongFollowTypeSong);
 router.get("/", songController.index);
 router.post(
   "/add",

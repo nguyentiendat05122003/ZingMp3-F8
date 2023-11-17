@@ -72,7 +72,7 @@ angular
           if (typeId == 3 || typeId == 2) {
             $window.location.href = "../index.html";
           } else {
-            $window.location.href = "../views/admin/home.html";
+            $window.location.href = "../index2.html";
           }
         },
         function errorCallback(response) {

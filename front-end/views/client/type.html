@@ -1,0 +1,44 @@
+<div class="container-wrapper">
+  <div class="container-private">
+    <ul>
+      <li ng-repeat="typeSong in listFollowType">
+        <div class="heading">
+          <h1>Nhạc {{typeSong.typeSongName}}</h1>
+          <i class="fa-solid fa-angle-right"></i>
+          <div
+            ng-click="playSongFollowType(typeSong.songListJson)"
+            style="flex: 1"
+            class="btn-song"
+          >
+            <button
+              style="display: flex; align-items: center; gap: 0 3px"
+              class="play-all"
+            >
+              <i class="fa-solid fa-play"></i>
+              PHÁT TẤT CẢ
+            </button>
+          </div>
+        </div>
+        <ul style="padding-top: 20px">
+          <li class="item-song" ng-repeat="song in typeSong.songListJson">
+            <div class="song-info">
+              <div class="song-img">
+                <img ng-src="{{song.image}}" alt="" />
+                <div class="song-run none"></div>
+              </div>
+              <div class="info">
+                <h3>{{song.name}}</h3>
+                <p>{{song.singer}}</p>
+              </div>
+            </div>
+            <div class="song-time">{{song.duration}}</div>
+            <div class="song-option">
+              <span class="hide"> <i class="fa-solid fa-heart heart"></i></span>
+              <i class="fa-solid fa-ellipsis"></i>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

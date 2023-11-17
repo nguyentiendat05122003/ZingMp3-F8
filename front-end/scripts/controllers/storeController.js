@@ -1,9 +1,12 @@
 import convertTime from "../../util/covertTime.js";
+import toast from "../js/toast.js";
 app.controller("storeCtrl", function ($http, $rootScope, $scope, $window) {
   $rootScope.homeMenu = false;
   $rootScope.discoverMenu = false;
   $rootScope.followMenu = false;
   $rootScope.storeMenu = true;
+  $rootScope.typeSongMenu = false;
+  const account = JSON.parse(localStorage.getItem("account"));
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.userId;
   $scope.getListSong = () => {
@@ -17,7 +20,7 @@ app.controller("storeCtrl", function ($http, $rootScope, $scope, $window) {
         [...listSong].forEach((song) => {
           song.duration = convertTime(song.duration);
         });
-        $scope.songs = listSong;
+        $scope.listSongInStore = listSong;
       },
       function errorCallback(response) {
         console.log(response);
@@ -27,4 +30,31 @@ app.controller("storeCtrl", function ($http, $rootScope, $scope, $window) {
   if (user) {
     $scope.getListSong();
   }
+  $scope.deleteSong = (song) => {
+    const songId = song.songId;
+    const jwt = account?.accessToken;
+    const accountId = account?.account.accountId;
+    $http({
+      method: "DELETE",
+      url: `http://localhost:3002/song/${accountId}/delete/${songId}`,
+    }).then(
+      function successCallback(response) {
+        $scope.getListSong();
+        toast({
+          title: "Thành công!",
+          message: response.data,
+          type: "success",
+          duration: 2000,
+        });
+      },
+      function errorCallback(response) {
+        toast({
+          title: "Thất bại!",
+          message: response.data,
+          type: "error",
+          duration: 5000,
+        });
+      }
+    );
+  };
 });

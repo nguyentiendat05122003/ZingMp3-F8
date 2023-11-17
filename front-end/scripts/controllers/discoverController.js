@@ -1,3 +1,4 @@
+import convertTime from "../../util/covertTime.js";
 app.controller(
   "discoverCtrl",
   function ($http, $rootScope, $scope, $location, $routeParams) {
@@ -5,6 +6,10 @@ app.controller(
     $rootScope.discoverMenu = true;
     $rootScope.followMenu = false;
     $rootScope.storeMenu = false;
+    $rootScope.typeSongMenu = false;
+    $scope.isActive = true;
+    $scope.isActiveVietNam = true;
+    $scope.isActiveOther = false;
     const playlists = [
       {
         id: 1,
@@ -82,48 +87,47 @@ app.controller(
     setTimeout(() => {
       $scope.slick();
     }, 100);
-    $scope.getListTypeSong = () => {
-      $http({
-        method: "GET",
-        url: "http://localhost:3002/typeSong",
-      }).then(
-        function successCallback(response) {
-          localStorage.setItem("typeSong", JSON.stringify(response.data));
-        },
-        function errorCallback(response) {
-          console.log(response);
-        }
-      );
-    };
-    $scope.getListArtist = () => {
-      $http({
-        method: "GET",
-        url: "http://localhost:3002/user/getArtist",
-      }).then(
-        function successCallback(response) {
-          $scope.singers = response.data;
-        },
-        function errorCallback(response) {
-          console.log(response);
-        }
-      );
-    };
-    $scope.getListSong = () => {
-      $http({
-        method: "GET",
-        url: "http://localhost:3002/song",
-      }).then(
-        function successCallback(response) {
-          $scope.songs = response.data;
-          console.log($scope.songs);
-        },
-        function errorCallback(response) {
-          console.log(response);
-        }
-      );
-    };
+
     $scope.getListTypeSong();
     $scope.getListArtist();
-    $scope.getListSong();
+
+    $scope.getListSongVietNam = () => {
+      $scope.isActiveVietNam = false;
+      $scope.isActive = true;
+      $http({
+        method: "GET",
+        url: "http://localhost:3002/song/vietnam",
+      }).then(
+        function successCallback(response) {
+          const listSong = response.data;
+          [...listSong].forEach((song) => {
+            song.duration = convertTime(song.duration);
+          });
+          $scope.listSong = listSong;
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
+    };
+    $scope.getListSongOther = () => {
+      $scope.isActive = false;
+      $http({
+        method: "GET",
+        url: "http://localhost:3002/song/otherCountry",
+      }).then(
+        function successCallback(response) {
+          const listSong = response.data;
+          [...listSong].forEach((song) => {
+            song.duration = convertTime(song.duration);
+          });
+          $scope.listSong = listSong;
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
+    };
+    $scope.getListSongVietNam();
   }
 );

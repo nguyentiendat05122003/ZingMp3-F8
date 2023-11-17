@@ -34,10 +34,10 @@ pipelines:
     apiEndpoints:
       - user
     policies:
-      - jwt:
-          - action:
-              secretOrPublicKey: dat dep trai
-              checkCredentialExistence: false
+      # - jwt:
+      #     - action:
+      #         secretOrPublicKey: dat dep trai
+      #         checkCredentialExistence: false
       - proxy:
           - action:
               serviceEndpoint: userService

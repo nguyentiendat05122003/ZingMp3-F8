@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Zing-Mp3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="scripts/common/library/angularJS.min_1.4.0.js"></script>
+    <script src="scripts/common/library/angularJS-route.min_1.4.0.js"></script>
+    <script src="scripts/controllersOfAdmin/app.js"></script>
+    <link rel="stylesheet" href="./styles/main_QT.css" />
+  </head>
+  <body ng-app="musicAppOfAdmin" ng-controller="mainController">
+    <div id="warraper">
+      <div id="logo"><span>Zing-MP3</span></div>
+      <span id="show-label-menu">using only small screen</span>
+      <div id="left-menu">
+        <ul>
+          <li ng-class="{'active':userMenu}">
+            <a href="#/"><i class="icon-basket"></i><span>Người dùng</span></a>
+          </li>
+          <li ng-class="{'active':statisticalMenu}">
+            <a href="#/statistical"
+              ><i class="icon-fire"></i><span>Thống kê</span></a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="icon-grid"></i><span>Kiểu bài hát</span></a>
+          </li>
+          <li>
+            <a href="#"
+              ><i class="icon-people"></i><span>Kiểu người dùng</span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="icon-user"></i><span>Chặn người dùng</span></a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="icon-user"></i><span>Thêm nghệ sĩ</span></a>
+          </li>
+          <li>
+            <a href="#"><i class="icon-settings"></i><span>Settings</span></a>
+          </li>
+        </ul>
+      </div>
+      <div id="top-header">
+        <section class="header"></section>
+      </div>
+      <div id="main-content">
+        <ng-view></ng-view>
+      </div>
+    </div>
+    <script src="scripts/controllersOfAdmin/mainController.js"></script>
+    <script src="scripts/controllersOfAdmin/statisticalController.js"></script>
+    <script src="scripts/controllersOfAdmin/userController.js"></script>
+  </body>
+</html>

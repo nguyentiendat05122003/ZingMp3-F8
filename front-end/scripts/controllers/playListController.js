@@ -1,16 +1,22 @@
 import toast from "../js/toast.js";
 import Confirm from "../js/confirm.js";
 app.controller("playListCtrl", function ($http, $rootScope, $scope, $window) {
+  const account = JSON.parse(localStorage.getItem("account"));
+  if (!account) {
+    if (window.confirm("Hãy đăng nhập để có thể truy cập")) {
+      $window.location.href = "./views/auth.html";
+    } else {
+      $window.location.href = "#/discover";
+    }
+  }
   $rootScope.homeMenu = false;
   $rootScope.discoverMenu = false;
   $rootScope.followMenu = false;
   $rootScope.storeMenu = false;
-  const user = JSON.parse(localStorage.getItem("user"));
+  $rootScope.typeSongMenu = false;
   $scope.listPlayList;
   $scope.IsShowEditPlayList = true;
   $scope.valueNamePlayList = true;
-  const userId = user?.userId;
-  $scope.username = user.name;
   $scope.idPlayListDelete;
   $scope.idPlayListEdit;
   $scope.deletePlayList = ($event, playList) => {
@@ -50,6 +56,9 @@ app.controller("playListCtrl", function ($http, $rootScope, $scope, $window) {
     $scope.valueNamePlayList = playListName;
   };
   $scope.editPlayList = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user?.userId;
+    $scope.username = user.name;
     const data = {
       name: $scope.valueNamePlayList,
       userId: userId,
@@ -81,5 +90,11 @@ app.controller("playListCtrl", function ($http, $rootScope, $scope, $window) {
   };
   $scope.ShowHideEditPlayList = function () {
     $scope.IsShowEditPlayList = !$scope.IsShowEditPlayList;
+  };
+  $scope.handleClickPlayList = () => {
+    // setTimeout(() => {
+    //   const playBtn = $("button.btn.play");
+    //   playBtn.click();
+    // }, 200);
   };
 });

@@ -7,38 +7,20 @@ app.controller(
     $scope.listTypeSong = JSON.parse(localStorage.getItem("typeSong"));
     const account = JSON.parse(localStorage.getItem("account"));
     const jwt = account?.accessToken;
-    $scope.nameSong = "";
-    $scope.descSong = "";
     $scope.selectedProduct = 1;
-    $scope.source = "";
     $scope.loadFile = function (e) {
       const imageEl = document.getElementById("img-song");
       if (e.target.files && e.target.files[0]) {
-        imageEl.src = window.URL.createObjectURL(e.target.files[0]);
+        imageEl.src = URL.createObjectURL(e.target.files[0]);
         $scope.imageSong = e.target.files[0];
       }
     };
-    const audio = document.querySelector(".audio-preview");
-    $scope.previewFile = () => {
-      var preview = document.querySelector(".audio-preview");
-      var file = document.querySelector(".input-audio").files[0];
-      var reader = new FileReader();
-      reader.addEventListener(
-        "load",
-        function () {
-          preview.src = reader.result;
-        },
-        false
-      );
-      if (file) {
-        reader.readAsDataURL(file);
-        $scope.source = file;
-      }
-    };
-    $scope.uploadSong = () => {
+    $scope.addSong = () => {
+      const audio = document.querySelector(".audio-preview");
       const user = JSON.parse(localStorage.getItem("user"));
       const userId = user?.userId;
       let data = new FormData();
+      console.log(jwt);
       data.append("name", $scope.nameSong);
       data.append("desc", $scope.descSong);
       data.append("userId", userId);
@@ -53,7 +35,7 @@ app.controller(
         data: data,
         headers: {
           "Content-Type": undefined,
-          token: `Bearer ${jwt}`,
+          // token: `Bearer ${jwt}`,
         },
       }).then(
         function successCallback(response) {

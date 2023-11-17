@@ -5,5 +5,6 @@ app.controller(
     $rootScope.discoverMenu = false;
     $rootScope.followMenu = true;
     $rootScope.storeMenu = false;
+    $rootScope.typeSongMenu = false;
   }
 );

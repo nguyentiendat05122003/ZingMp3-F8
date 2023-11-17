@@ -1,0 +1,101 @@
+<div class="container-wrapper">
+  <div style="padding: 0 60px" class="container-private container-discover">
+    <div class="new-song-container comp">
+      <div class="header-info artist-page">
+        <div class="content">
+          <div class="img-wrapper">
+            <img src="{{artist.image}}" alt="" />
+          </div>
+          <div class="info-text">
+            <div class="heading-name">
+              <h3>{{artist.name}}</h3>
+              <button ng-click="clickSongOfArtist()">
+                <i class="fa-solid fa-play"></i>
+              </button>
+            </div>
+            <div class="follower">
+              <span class="follow">96.486 người quan tâm</span>
+              <button class="btn-follow">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Quan tâm</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="title">
+        <p>Bài hát nổi bật</p>
+      </div>
+      <div style="width: 100%" class="list-song row">
+        <div class="col l-6" ng-repeat="song in songsOfArtist">
+          <div class="item">
+            <div class="item-left">
+              <div class="image-song">
+                <img ng-src="{{song.image}}" alt="" />
+                <div class="icon-play">
+                  <i class="fa-solid fa-play"></i>
+                </div>
+              </div>
+              <div class="info-song">
+                <div class="name">{{song.name}}</div>
+                <div class="author">{{song.nameArtist}}</div>
+                <div class="time">1 ngày trước</div>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="song-option">
+                <i class="fa-regular fa-heart"></i>
+                <i
+                  ng-click="ShowDetailSong(song.songId)"
+                  class="fa-solid fa-ellipsis"
+                ></i>
+              </div>
+              <div class="list-detail-song list-detail-song-{{song.songId}}">
+                <ul class="menu-list">
+                  <li>
+                    <button>
+                      <i class="fa-regular fa-heart"></i>
+                      <span>Thêm vào thư viện</span>
+                    </button>
+                  </li>
+                  <li class="playList">
+                    <button class="btn-playList">
+                      <i class="fa-solid fa-circle-plus"></i>
+                      <span>Thêm vào playlist</span>
+                      <i class="fa-solid fa-angle-right icon-right"></i>
+                    </button>
+                    <div class="list-playlist">
+                      <button ng-click="ShowHideCreatePlayList()">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Tạo playlist mới</span>
+                      </button>
+                      <button
+                        ng-click="addSongIntoPlayList(playList.playListId,song.songId)"
+                        ng-repeat="playList in listPlayList"
+                      >
+                        <i class="fa-solid fa-music"></i>
+                        <span>{{playList.name}}</span>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-extra">
+        <h3>Về {{artist.name}}</h3>
+        <div class="container">
+          <div class="info-text">
+            <span>{{artist.desc}}</span>
+            <div class="follower">
+              <h3>96.486</h3>
+              <h3 class="sub-title">Người quan tâm</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

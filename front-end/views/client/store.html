@@ -2,6 +2,10 @@
   <div class="container-private">
     <div class="grid tab-container">
       <div class="tab-contents show">
+        <div class="heading">
+          <h1>Kho nhạc của tôi</h1>
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
         <div class="list-songs-wrapper row">
           <div class="list-songs col m-12 l-12 c-12">
             <div class="btn-song">
@@ -15,7 +19,7 @@
               </button>
             </div>
             <div class="songs">
-              <ul ng-repeat="song in songs" class="list">
+              <ul ng-repeat="song in listSongInStore" class="list">
                 <li class="item-song">
                   <div class="song-info">
                     <div class="song-img">
@@ -29,13 +33,13 @@
                   </div>
                   <div class="song-time">{{song.duration}}</div>
                   <div class="song-option">
-                    <span class="hide"
-                      ><i class="fa-solid fa-microphone"></i
+                    <span class="hide"></span>
+                      <i ng-click="ShowFormInfoSong(song)" class="fa-regular fa-pen-to-square"></i
                     ></span>
                     <span class="hide"
                       ><i class="fa-solid fa-heart heart"></i
                     ></span>
-                    <i class="fa-solid fa-ellipsis"></i>
+                    <i ng-click="deleteSong(song)" class="fa-solid fa-trash"></i>
                   </div>
                 </li>
               </ul>

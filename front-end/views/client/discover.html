@@ -110,7 +110,12 @@
                 ng-repeat="singer in singers"
               >
                 <div class="singer-img">
-                  <img ng-src="{{singer.image}}" alt="" />
+                  <a
+                    style="text-decoration: none"
+                    href="#/discover/artist/{{singer.userId}}"
+                  >
+                    <img ng-src="{{singer.image}}" alt="" />
+                  </a>
                 </div>
                 <h2>{{singer.name}}</h2>
                 <button>
@@ -134,11 +139,23 @@
         </a>
       </div>
       <div class="tab-country">
-        <button class="btn btn-active">VIỆT NAM</button>
-        <button class="btn">QUỐC TẾ</button>
+        <button
+          ng-click="getListSongVietNam()"
+          class="btn"
+          ng-class="{'btn-active':isActive}"
+        >
+          VIỆT NAM
+        </button>
+        <button
+          ng-click="getListSongOther()"
+          class="btn"
+          ng-class="{'btn-active':!isActive}"
+        >
+          QUỐC TẾ
+        </button>
       </div>
       <div class="list-song row">
-        <div class="col l-6" ng-repeat="song in songs">
+        <div class="col l-6" ng-repeat="song in listSong">
           <div class="item">
             <div class="item-left">
               <div class="image-song">
