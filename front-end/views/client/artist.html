@@ -15,9 +15,17 @@
             </div>
             <div class="follower">
               <span class="follow">96.486 người quan tâm</span>
-              <button class="btn-follow">
+              <button ng-click="follow()" ng-hide="isFollow" class="btn-follow">
                 <i class="fa-solid fa-user-plus"></i>
                 <span>Quan tâm</span>
+              </button>
+              <button
+                ng-click="unFollow()"
+                ng-hide="!isFollow"
+                class="btn-follow"
+              >
+                <i class="fa-solid fa-check"></i>
+                <span>Đã quan tâm</span>
               </button>
             </div>
           </div>

@@ -6,7 +6,6 @@ app.controller("homeCtrl", function ($http, $rootScope, $scope, $window) {
   $rootScope.storeMenu = false;
   $rootScope.typeSongMenu = false;
   const account = JSON.parse(localStorage.getItem("account"));
-  $scope.getListArtist();
   $scope.changeListSong = (playList) => {
     const playListId = playList.playListId;
     $http({
@@ -50,5 +49,21 @@ app.controller("homeCtrl", function ($http, $rootScope, $scope, $window) {
       }
     );
   };
+  $scope.getListArtistFollow = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user?.userId;
+    $http({
+      method: "GET",
+      url: `http://localhost:3002/follow/artist/${userId}`,
+    }).then(
+      function successCallback(response) {
+        $scope.listArtist = response.data;
+      },
+      function errorCallback(response) {
+        console.log(response);
+      }
+    );
+  };
   $scope.getListSong();
+  $scope.getListArtistFollow();
 });

@@ -1,4 +1,5 @@
 import convertTime from "../../util/covertTime.js";
+import toast from "../js/toast.js";
 app.controller(
   "artistCtrl",
   function ($http, $rootScope, $scope, $window, $routeParams) {
@@ -48,6 +49,91 @@ app.controller(
           console.log(response);
         }
       );
+    };
+    $scope.getListFollow = () => {};
+    const account = JSON.parse(localStorage.getItem("account"));
+    $scope.checkFollowing = () => {
+      if (!account) {
+        $scope.isFollow = true;
+      } else {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?.userId;
+        const useIdFollowed = artistId;
+        $http({
+          method: "GET",
+          url: `http://localhost:3002/follow/status?useIdFollowed=${useIdFollowed}&userId=${userId}`,
+        }).then(
+          function successCallback(response) {
+            $scope.isFollow = response.data[0].isFollowing;
+          },
+          function errorCallback(response) {
+            console.log(response);
+          }
+        );
+      }
+    };
+    $scope.checkFollowing();
+
+    $scope.follow = () => {
+      if (!account) {
+        toast({
+          title: "Cảnh báo",
+          message: "Vui lòng đăng nhập để trải nghiệm tốt nhất",
+          type: "warning",
+          duration: 3000,
+        });
+      } else {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?.userId;
+        $http({
+          method: "POST",
+          url: `http://localhost:3002/follow/add?useIdFollowed=${artistId}&userId=${userId}`,
+        }).then(
+          function successCallback(response) {
+            $scope.isFollow = true;
+            toast({
+              title: "Thành công!",
+              message: "Bạn đã lưu thông tin thành công",
+              type: "success",
+              duration: 2000,
+            });
+          },
+          function errorCallback(response) {
+            console.log(response);
+          }
+        );
+      }
+    };
+
+    $scope.unFollow = () => {
+      if (!account) {
+        toast({
+          title: "Cảnh báo",
+          message: "Vui lòng đăng nhập để trải nghiệm tốt nhất",
+          type: "warning",
+          duration: 2000,
+        });
+      } else {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?.userId;
+        $http({
+          method: "POST",
+          url: `http://localhost:3002/follow/delete?useIdFollowed=${artistId}&userId=${userId}`,
+        }).then(
+          function successCallback(response) {
+            $scope.isFollow = false;
+            toast({
+              title: "Thành công!",
+              message: "Bạn đã lưu thông tin thành công",
+              type: "success",
+              duration: 2000,
+            });
+          },
+          function errorCallback(response) {
+            console.log(response);
+          }
+        );
+      }
     };
   }
 );

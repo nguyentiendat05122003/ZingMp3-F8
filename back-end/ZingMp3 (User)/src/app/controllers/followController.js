@@ -2,10 +2,21 @@ const { sequelize } = require("../../config/db");
 const Follow = require("../models/Follow");
 const { QueryTypes } = require("sequelize");
 class FollowController {
-  async index(req, res) {
-    const listData = await Follow.findAll();
-    res.status(200).json(listData);
+  //[GET] /follow/status
+  async statusFollow(req, res) {
+    const result = await sequelize.query(
+      "Exec CheckFollow :userToFollowID,:userID",
+      {
+        type: QueryTypes.SELECT,
+        replacements: {
+          userID: req.query.userId,
+          userToFollowID: req.query.useIdFollowed,
+        },
+      }
+    );
+    res.status(200).json(result);
   }
+
   // [POST] /follow/add
   async follower(req, res) {
     try {
@@ -17,6 +28,7 @@ class FollowController {
       res.status(500).json(`follow failure : ${error}`);
     }
   }
+
   // [POST] /follow/delete?useIdFollowed=3&userId=4
   async unFollower(req, res) {
     try {
@@ -34,6 +46,20 @@ class FollowController {
     } catch (error) {
       res.status(500).json(`unFollow failure : ${error}`);
     }
+  }
+
+  //[GET] /follow/artist/:userId
+  async getListArtFollow(req, res) {
+    const result = await sequelize.query(
+      "Exec proc_getListArtist_Follow :userId",
+      {
+        type: QueryTypes.SELECT,
+        replacements: {
+          userId: req.params.userId,
+        },
+      }
+    );
+    res.status(200).json(result);
   }
 
   //[GET] /follow/:artistId
