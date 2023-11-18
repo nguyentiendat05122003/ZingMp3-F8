@@ -1,0 +1,76 @@
+<div class="container-wrapper">
+  <div style="padding: 0 60px" class="container-private container-discover">
+    <div class="new-song-container comp">
+      <div class="title">
+        <p>Bài hát nổi bật</p>
+      </div>
+      <div style="width: 100%" class="list-song row">
+        <div class="col l-6" ng-repeat="song in listSuggestSearch">
+          <div class="item">
+            <div class="item-left">
+              <div class="image-song">
+                <img ng-src="{{song.image}}" alt="" />
+                <div class="icon-play">
+                  <i class="fa-solid fa-play"></i>
+                </div>
+              </div>
+              <div class="info-song">
+                <div class="name">{{song.name}}</div>
+                <div class="author">{{song.nameArtist}}</div>
+                <div class="time">1 ngày trước</div>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="song-option">
+                <i class="fa-regular fa-heart"></i>
+                <i
+                  ng-click="ShowDetailSong(song.songId)"
+                  class="fa-solid fa-ellipsis"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid tab-container">
+      <div class="tab-contents show">
+        <div class="singer-wrapper">
+          <div class="singer-title">
+            <div class="text">
+              <h1>Nghệ sĩ</h1>
+              <i style="margin-top: 3px" class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="singer-move">
+              <button class="btn-prev disabled">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="singer-main grid">
+            <div class="list-singer row">
+              <div
+                class="item-singer col l-2-4 m-3 c-6"
+                ng-repeat="singer in listSuggestSearch"
+              >
+                <a href="#/discover/artist/{{singer.userId}}">
+                  <div class="singer-img">
+                    <img ng-src="{{singer.image}}" alt="" />
+                  </div>
+                </a>
+                <h2>{{singer.username}}</h2>
+                <button>
+                  <i class="fa-solid fa-check"></i>
+                  <p>ĐÃ QUAN TÂM</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

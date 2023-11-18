@@ -1,5 +1,6 @@
 import convertTime from "../../util/covertTime.js";
 import toast from "../js/toast.js";
+import Confirm from "../js/confirm.js";
 app.controller("storeCtrl", function ($http, $rootScope, $scope, $window) {
   $rootScope.homeMenu = false;
   $rootScope.discoverMenu = false;
@@ -34,27 +35,33 @@ app.controller("storeCtrl", function ($http, $rootScope, $scope, $window) {
     const songId = song.songId;
     const jwt = account?.accessToken;
     const accountId = account?.account.accountId;
-    $http({
-      method: "DELETE",
-      url: `http://localhost:3002/song/${accountId}/delete/${songId}`,
-    }).then(
-      function successCallback(response) {
-        $scope.getListSong();
-        toast({
-          title: "Thành công!",
-          message: response.data,
-          type: "success",
-          duration: 2000,
-        });
+    Confirm.open({
+      title: "Thông báo",
+      message: "Bạn có muốn xóa bài hát này không ?",
+      onok: () => {
+        $http({
+          method: "DELETE",
+          url: `http://localhost:3002/song/${accountId}/delete/${songId}`,
+        }).then(
+          function successCallback(response) {
+            $scope.getListSong();
+            toast({
+              title: "Thành công!",
+              message: response.data,
+              type: "success",
+              duration: 2000,
+            });
+          },
+          function errorCallback(response) {
+            toast({
+              title: "Thất bại!",
+              message: response.data,
+              type: "error",
+              duration: 5000,
+            });
+          }
+        );
       },
-      function errorCallback(response) {
-        toast({
-          title: "Thất bại!",
-          message: response.data,
-          type: "error",
-          duration: 5000,
-        });
-      }
-    );
+    });
   };
 });

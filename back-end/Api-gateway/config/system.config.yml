@@ -25,6 +25,10 @@ refreshTokens:
   timeToExpiry: 7200000
 authorizationCodes:
   timeToExpiry: 300000
-# plugins:
-#   auth-vip:
-#     package: "../../../plugins/auth-vip/manifest.js"
+plugins:
+  my-policy:
+    package: "../../../plugins/my-plugin/manifest.js"
+  verifyArtist-token:
+    package: "../../../plugins/verifyArtist-token/manifest.js"
+  verifyAdmin-token:
+    package: "../../../plugins/verifyAdmin-token/manifest.js"

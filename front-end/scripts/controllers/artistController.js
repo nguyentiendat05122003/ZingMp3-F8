@@ -135,5 +135,19 @@ app.controller(
         );
       }
     };
+    $scope.countFollow = () => {
+      $http({
+        method: "GET",
+        url: `http://localhost:3002/follow/${artistId}`,
+      }).then(
+        function successCallback(response) {
+          $scope.numberFollow = response.data[0].userFollownumber;
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
+    };
+    $scope.countFollow();
   }
 );

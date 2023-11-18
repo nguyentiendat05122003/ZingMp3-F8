@@ -76,5 +76,8 @@ app.config(function ($routeProvider, $locationProvider) {
       templateUrl: "views/client/playListDetail.html",
       controller: "playListDetailCtrl",
     })
+    .when("/search?:q", {
+      templateUrl: "views/client/search.html",
+    })
     .otherwise({ redirectTo: "/discover" });
 });

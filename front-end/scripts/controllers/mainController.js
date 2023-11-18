@@ -929,5 +929,38 @@ app.controller(
         }
       });
     });
+    $scope.isHideSearch = true;
+    $scope.evaluateChange = function () {
+      $scope.isHideSearch = false;
+      const input = document.querySelector(".input-search");
+      $scope.valueSearch = input.value.trim();
+      let value = input.value.trim();
+      if (value.trim() == "") {
+        $scope.listSuggestSearch = [];
+        return;
+      } else {
+        $http({
+          method: "GET",
+          url: `http://localhost:3002/search?q=${value}`,
+        }).then(
+          function successCallback(response) {
+            console.log(response);
+            if (response.data.length <= 0) {
+              $scope.listSuggestSearch = [];
+            } else {
+              $scope.listSuggestSearch = response.data;
+              $scope.listSuggestSearchMV = [response.data[0]];
+            }
+          },
+          function errorCallback(response) {
+            console.log(response);
+          }
+        );
+      }
+    };
+    $scope.handleClickItem = () => {
+      const input = document.querySelector(".input-search");
+      input.blur();
+    };
   }
 );

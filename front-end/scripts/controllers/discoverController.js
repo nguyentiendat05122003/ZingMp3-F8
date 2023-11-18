@@ -1,4 +1,5 @@
 import convertTime from "../../util/covertTime.js";
+import { coverSeconds } from "../../util/covertTime.js";
 app.controller(
   "discoverCtrl",
   function ($http, $rootScope, $scope, $location, $routeParams) {
@@ -102,6 +103,11 @@ app.controller(
           const listSong = response.data;
           [...listSong].forEach((song) => {
             song.duration = convertTime(song.duration);
+            const now = new Date();
+            const seconds = parseInt(
+              (now.getTime() - new Date(song.createdAt)) / 1000
+            );
+            song.createdAt = coverSeconds(seconds);
           });
           $scope.listSong = listSong;
         },
@@ -120,6 +126,11 @@ app.controller(
           const listSong = response.data;
           [...listSong].forEach((song) => {
             song.duration = convertTime(song.duration);
+            const now = new Date();
+            const seconds = parseInt(
+              (now.getTime() - new Date(song.createdAt)) / 1000
+            );
+            song.createdAt = coverSeconds(seconds);
           });
           $scope.listSong = listSong;
         },

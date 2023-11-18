@@ -15,54 +15,33 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <input
+          ng-model="valueSearch"
+          ng-change="evaluateChange()"
           class="input-search"
           type="text"
           placeholder="Tìm kiếm bài hát,nghệ sĩ,lời bài hát,..."
         />
         <div class="history-search">
           <div class="history-search-container">
-            <h3>Đề xuất cho bạn</h3>
             <ul class="history-list">
-              <li class="history-item">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-                <p>Em là</p>
-              </li>
-              <li class="history-item">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-                <p>Em là</p>
-              </li>
-              <li class="history-item">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-                <p>Em là</p>
-              </li>
-              <li class="history-item">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-                <p>karaoke</p>
-              </li>
-              <li class="history-item">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-                <p>XONE radio</p>
-              </li>
-            </ul>
-            <div class="history-separate"></div>
-            <div class="history-near">
-              <div class="history-near-title">
-                <h3>Tìm kiếm gần đây</h3>
-                <button class="remove">Xóa</button>
-              </div>
-              <ul class="list-video">
-                <li class="video-item">
-                  <div class="video-image">
-                    <img src="./assets/img/mvs/mono.webp" alt="" />
-                    <i class="fa-solid fa-play icon-play"></i>
-                  </div>
-                  <div class="video-discription">
-                    <h4>Em là</h4>
-                    <p>MONO,Onionn</p>
-                  </div>
+              <a
+                ng-click="handleClickItem()"
+                style="
+                  text-decoration: none;
+                  color: var(--text-color);
+                  width: 100%;
+                "
+                ng-href="#/search?q={{valueSearch}}"
+              >
+                <li
+                  ng-repeat="item in listSuggestSearch track by $index"
+                  class="history-item"
+                >
+                  <i class="fa-solid fa-arrow-trend-up"></i>
+                  <p>{{item.name}}</p>
                 </li>
-              </ul>
-            </div>
+              </a>
+            </ul>
           </div>
         </div>
       </div>

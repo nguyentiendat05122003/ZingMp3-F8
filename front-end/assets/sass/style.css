@@ -515,7 +515,7 @@ input[type=range]:active::-webkit-slider-thumb {
 }
 
 .create-playlist {
-  background-color: #411465;
+  background-color: var(--layout-bg);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -765,8 +765,8 @@ input[type=range]:active::-webkit-slider-thumb {
   position: relative;
 }
 .header .container .search .history-search .history-near .list-video .video-item .video-image img {
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   border-radius: 2px;
   opacity: 0.6;
 }
@@ -3210,6 +3210,7 @@ input[type=range]:active::-webkit-slider-thumb {
   margin-bottom: 20px;
 }
 .new-song-container .tab-country .btn {
+  cursor: pointer;
   padding: 4px 24px;
   color: var(--white-color);
   border: 1px solid var(--border-primary);

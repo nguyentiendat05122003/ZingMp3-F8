@@ -1,6 +1,9 @@
 http:
   port: 8090
 apiEndpoints:
+  addSong:
+    paths:
+      - "/song/add"
   user:
     paths:
       - "/user/*"
@@ -13,6 +16,8 @@ apiEndpoints:
 serviceEndpoints:
   userService:
     url: "http://127.0.0.1:3002"
+  userCustom:
+    url: "http://127.0.0.1:3002/user"
   adminService:
     url: "http://127.0.0.1:3001"
   authService:
@@ -21,7 +26,19 @@ policies:
   - proxy
   - cors
   - jwt
+  - verify-token
+  - verifyArtist-token
+  - verifyAdmin-token
 pipelines:
+  addSong:
+    apiEndpoints:
+      - addSong
+    policies:
+      - verifyAdmin-token:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
   auth:
     apiEndpoints:
       - auth
@@ -34,25 +51,17 @@ pipelines:
     apiEndpoints:
       - user
     policies:
-      # - jwt:
-      #     - action:
-      #         secretOrPublicKey: dat dep trai
-      #         checkCredentialExistence: false
+      - verify-token:
       - proxy:
           - action:
               serviceEndpoint: userService
               prependPath: true
               ignorePath: false
               stripPath: true
-
   admin:
     apiEndpoints:
       - admin
     policies:
-      - jwt:
-          - action:
-              secretOrPublicKey: dat dep trai
-              checkCredentialExistence: true
       - proxy:
           - action:
               serviceEndpoint: adminService
