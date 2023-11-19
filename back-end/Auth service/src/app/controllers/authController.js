@@ -53,5 +53,27 @@ class AuthController {
       res.status(500).json(error);
     }
   }
+
+  generateAccessToken(user) {
+    return jwt.sign(
+      {
+        id: user.id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.ACCESS_TOKEN_SECRET_KEY,
+      { expiresIn: "30s" }
+    );
+  }
+
+  generateRefreshToken(user) {
+    return jwt.sign(
+      {
+        id: user.id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.ACCESS_TOKEN_SECRET_KEY,
+      { expiresIn: "365d" }
+    );
+  }
 }
 module.exports = new AuthController();

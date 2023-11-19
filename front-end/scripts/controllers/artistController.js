@@ -11,7 +11,7 @@ app.controller(
     $scope.getListSong = () => {
       $http({
         method: "GET",
-        url: `http://localhost:3002/song/artist/${artistId}`,
+        url: `http://localhost:8090/song/artist/${artistId}`,
       }).then(
         function successCallback(response) {
           $scope.artist = response.data[0];
@@ -32,7 +32,7 @@ app.controller(
     $scope.clickSongOfArtist = () => {
       $http({
         method: "GET",
-        url: `http://localhost:3002/song/artist/${artistId}`,
+        url: `http://localhost:8090/song/artist/${artistId}`,
       }).then(
         function successCallback(response) {
           $scope.artist = response.data[0];
@@ -61,7 +61,7 @@ app.controller(
         const useIdFollowed = artistId;
         $http({
           method: "GET",
-          url: `http://localhost:3002/follow/status?useIdFollowed=${useIdFollowed}&userId=${userId}`,
+          url: `http://localhost:8090/follow/status?useIdFollowed=${useIdFollowed}&userId=${userId}`,
         }).then(
           function successCallback(response) {
             $scope.isFollow = response.data[0].isFollowing;
@@ -87,7 +87,7 @@ app.controller(
         const userId = user?.userId;
         $http({
           method: "POST",
-          url: `http://localhost:3002/follow/add?useIdFollowed=${artistId}&userId=${userId}`,
+          url: `http://localhost:8090/follow/add?useIdFollowed=${artistId}&userId=${userId}`,
         }).then(
           function successCallback(response) {
             $scope.isFollow = true;
@@ -118,7 +118,7 @@ app.controller(
         const userId = user?.userId;
         $http({
           method: "POST",
-          url: `http://localhost:3002/follow/delete?useIdFollowed=${artistId}&userId=${userId}`,
+          url: `http://localhost:8090/follow/delete?useIdFollowed=${artistId}&userId=${userId}`,
         }).then(
           function successCallback(response) {
             $scope.isFollow = false;
@@ -138,7 +138,7 @@ app.controller(
     $scope.countFollow = () => {
       $http({
         method: "GET",
-        url: `http://localhost:3002/follow/${artistId}`,
+        url: `http://localhost:8090/follow/${artistId}`,
       }).then(
         function successCallback(response) {
           $scope.numberFollow = response.data[0].userFollownumber;

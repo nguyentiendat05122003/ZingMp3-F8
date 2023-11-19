@@ -1,6 +1,27 @@
 http:
   port: 8090
 apiEndpoints:
+  countFollow:
+    paths:
+      - "/follow/:followId"
+  getSong:
+    paths:
+      - "/song"
+  getTypeSong:
+    paths:
+      - "/typeSong"
+  getSongFollowArtist:
+    paths:
+      - "/song/artist/*"
+  getArtist:
+    paths:
+      - "/user/getArtist"
+  getSongVietNam:
+    paths:
+      - "/song/vietnam"
+  getSongOtherCountry:
+    paths:
+      - "/song/otherCountry"
   addSong:
     paths:
       - "/song/add"
@@ -30,6 +51,63 @@ policies:
   - verifyArtist-token
   - verifyAdmin-token
 pipelines:
+  getSong:
+    apiEndpoints:
+      - getSong
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  countFollow:
+    apiEndpoints:
+      - countFollow
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  getTypeSong:
+    apiEndpoints:
+      - getTypeSong
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+
+  getSongFollowArtist:
+    apiEndpoints:
+      - getSongFollowArtist
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  getArtist:
+    apiEndpoints:
+      - getArtist
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  getSongVietNam:
+    apiEndpoints:
+      - getSongVietNam
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  getSongOtherCountry:
+    apiEndpoints:
+      - getSongOtherCountry
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
   addSong:
     apiEndpoints:
       - addSong
@@ -51,6 +129,11 @@ pipelines:
     apiEndpoints:
       - user
     policies:
+      - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              methods: "HEAD,PUT,PATCH,POST,DELETE"
+              allowedHeaders: "*"
       - verify-token:
       - proxy:
           - action:

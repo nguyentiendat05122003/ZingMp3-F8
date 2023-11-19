@@ -2,25 +2,21 @@ import convertTime from "../../util/covertTime.js";
 import toast from "../js/toast.js";
 app.controller(
   "playListDetailCtrl",
-  function ($http, $rootScope, $scope, $window, $routeParams) {
+  function ($http, $rootScope, $scope, $window, $routeParams, globalService) {
     const user = JSON.parse(localStorage.getItem("user"));
     const userId = user?.userId;
     const playListId = $routeParams.playListId;
     $scope.getListSongInPlayList = () => {
-      $http({
-        method: "GET",
-        url: `http://localhost:3002/playListSong/${playListId}`,
-      }).then(
-        function successCallback(response) {
-          const listSong = response.data;
+      globalService.ajaxGet(
+        `playListSong/${playListId}`,
+        {},
+        function (data, status, config) {
+          const listSong = data;
           [...listSong].forEach((song) => {
             song.duration = convertTime(song.duration);
           });
           $scope.listSong = listSong;
           $rootScope.songs = listSong;
-        },
-        function errorCallback(response) {
-          console.log(response);
         }
       );
     };

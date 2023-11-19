@@ -1,4 +1,4 @@
-const app = angular.module("musicApp", ["ngRoute"]);
+const app = angular.module("musicApp", ["ngRoute", "globalServices"]);
 app.directive("customOnChange", function () {
   return {
     restrict: "A",

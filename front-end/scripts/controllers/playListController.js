@@ -91,10 +91,4 @@ app.controller("playListCtrl", function ($http, $rootScope, $scope, $window) {
   $scope.ShowHideEditPlayList = function () {
     $scope.IsShowEditPlayList = !$scope.IsShowEditPlayList;
   };
-  $scope.handleClickPlayList = () => {
-    // setTimeout(() => {
-    //   const playBtn = $("button.btn.play");
-    //   playBtn.click();
-    // }, 200);
-  };
 });

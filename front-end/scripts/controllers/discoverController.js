@@ -97,7 +97,7 @@ app.controller(
       $scope.isActive = true;
       $http({
         method: "GET",
-        url: "http://localhost:3002/song/vietnam",
+        url: "http://localhost:8090/song/vietnam",
       }).then(
         function successCallback(response) {
           const listSong = response.data;
@@ -120,7 +120,7 @@ app.controller(
       $scope.isActive = false;
       $http({
         method: "GET",
-        url: "http://localhost:3002/song/otherCountry",
+        url: "http://localhost:8090/song/otherCountry",
       }).then(
         function successCallback(response) {
           const listSong = response.data;

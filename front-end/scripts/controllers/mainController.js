@@ -2,7 +2,7 @@ import toast from "../js/toast.js";
 import convertTime from "../../util/covertTime.js";
 app.controller(
   "mainController",
-  function ($http, $rootScope, $scope, $routeParams) {
+  function ($http, $rootScope, $scope, $routeParams, globalService) {
     $scope.imageUser = "https://avatar.talk.zdn.vn/default";
     $scope.imageSong = "https://photo-zmp3.zmdcdn.me/album_default.png";
     const account = JSON.parse(localStorage.getItem("account"));
@@ -24,12 +24,11 @@ app.controller(
     $scope.email = "";
     $scope.desc = "";
     $scope.getInfoUser = () => {
-      $http({
-        method: "GET",
-        url: `http://localhost:3002/user/${accountId}`,
-      }).then(
-        function successCallback(response) {
-          const user = response.data[0];
+      globalService.ajaxGet(
+        `user/${accountId}`,
+        {},
+        function (data, status, config) {
+          const user = data[0];
           const { name, birthDay, country, email, desc, image } = user;
           $scope.username = name;
           $scope.date = new Date(birthDay);
@@ -38,13 +37,10 @@ app.controller(
           $scope.desc = desc;
           $scope.imageUser = image;
           localStorage.setItem("user", JSON.stringify(user));
-          console.log(user);
-        },
-        function errorCallback(response) {
-          console.log(response);
         }
       );
     };
+
     if (account) {
       $scope.getInfoUser();
     }
@@ -139,7 +135,7 @@ app.controller(
       data.append("image", $scope.imageUser);
       $http({
         method: "PUT",
-        url: "http://localhost:3002/user/edit",
+        url: `${APP_API} + user/edit`,
         data: data,
         headers: { "Content-Type": undefined },
       }).then(
@@ -197,15 +193,11 @@ app.controller(
       );
     };
     $scope.getListPlayList = () => {
-      $http({
-        method: "GET",
-        url: `http://localhost:3002/playList/${userId}`,
-      }).then(
-        function successCallback(response) {
-          $scope.listPlayList = response.data;
-        },
-        function errorCallback(response) {
-          console.log(response);
+      globalService.ajaxGet(
+        `playList/${userId}`,
+        {},
+        function (data, status, config) {
+          $scope.listPlayList = data;
         }
       );
     };
@@ -255,7 +247,7 @@ app.controller(
     $scope.getListSong = () => {
       $http({
         method: "GET",
-        url: "http://localhost:3002/song",
+        url: `http://localhost:8090/song`,
       }).then(
         function successCallback(response) {
           const listSong = response.data;
@@ -273,7 +265,7 @@ app.controller(
     $scope.getListTypeSong = () => {
       $http({
         method: "GET",
-        url: "http://localhost:3002/typeSong",
+        url: `http://localhost:8090/typeSong`,
       }).then(
         function successCallback(response) {
           localStorage.setItem("typeSong", JSON.stringify(response.data));
@@ -284,17 +276,9 @@ app.controller(
       );
     };
     $scope.getListArtist = () => {
-      $http({
-        method: "GET",
-        url: "http://localhost:3002/user/getArtist",
-      }).then(
-        function successCallback(response) {
-          $scope.singers = response.data;
-        },
-        function errorCallback(response) {
-          console.log(response);
-        }
-      );
+      globalService.ajaxGet(`getArtist`, {}, function (data, status, config) {
+        $scope.singers = data;
+      });
     };
     $scope.editSong = () => {
       const audio = document.querySelector(".audio-preview");
@@ -341,6 +325,9 @@ app.controller(
         }
       );
     };
+    if (userId) {
+      $scope.getListPlayList();
+    }
     $scope.getListSong();
     window.addEventListener("load", () => {
       const $ = document.querySelector.bind(document);
@@ -939,21 +926,16 @@ app.controller(
         $scope.listSuggestSearch = [];
         return;
       } else {
-        $http({
-          method: "GET",
-          url: `http://localhost:3002/search?q=${value}`,
-        }).then(
-          function successCallback(response) {
-            console.log(response);
-            if (response.data.length <= 0) {
+        globalService.ajaxGet(
+          `search?q=${value}`,
+          {},
+          function (data, status, config) {
+            if (data.length <= 0) {
               $scope.listSuggestSearch = [];
             } else {
-              $scope.listSuggestSearch = response.data;
-              $scope.listSuggestSearchMV = [response.data[0]];
+              $scope.listSuggestSearch = data;
+              $scope.listSuggestSearchMV = [data[0]];
             }
-          },
-          function errorCallback(response) {
-            console.log(response);
           }
         );
       }
