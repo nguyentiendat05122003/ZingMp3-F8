@@ -13,6 +13,9 @@ apiEndpoints:
   getSongFollowArtist:
     paths:
       - "/song/artist/*"
+  getUserTypeNormal:
+    paths:
+      - "/user/typeAccount/:typeAccountId"
   getArtist:
     paths:
       - "/user/getArtist"
@@ -48,6 +51,14 @@ policies:
   - verifyArtist-token
   - verifyAdmin-token
 pipelines:
+  getUserTypeNormal:
+    apiEndpoints:
+      - getUserTypeNormal
+    policies:
+      - cors:
+      - proxy:
+          - action:
+              serviceEndpoint: adminService
   getSong:
     apiEndpoints:
       - getSong
@@ -141,6 +152,7 @@ pipelines:
     apiEndpoints:
       - admin
     policies:
+      - cors:
       - verifyAdmin-token:
       - proxy:
           - action:

@@ -97,19 +97,17 @@
                     </th>
                     <th>Mã thể loại</th>
                     <th>Tên thể loại</th>
-                    <th>Địa chỉ</th>
                     <th>Thao tác</th>
                   </tr>
                 </thead>
                 <tbody id="listCustomer"></tbody>
-                <tbody>
+                <tbody ng-repeat="type in typeSongList">
                   <tr>
                     <td style="text-align: center; padding-top: 10px">
                       <input type="checkbox" value="" id="" />
                     </td>
-                    <td>222221</td>
-                    <td>Nguyễn Văn Anh</td>
-                    <td>Gia Lộc - Hải Dương</td>
+                    <td>{{type.typeSongId}}</td>
+                    <td>{{type.name}}</td>
                     <td style="text-align: center">
                       <i class="fas fa-edit" title="Sửa"></i>
                       <i class="fas fa-trash-alt" title="Xóa"></i>
@@ -121,7 +119,8 @@
             <div class="col-12 col-s-12 padding-box">
               <div class="box-sum">
                 <div class="box-left">
-                  Số lượng thể loại: <span id="soluong">0</span>
+                  Số lượng thể loại:
+                  <span id="soluong">{{typeSongQuantity}}</span>
                 </div>
               </div>
             </div>

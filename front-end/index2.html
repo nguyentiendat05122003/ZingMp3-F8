@@ -17,6 +17,8 @@
     <script src="scripts/common/library/angularJS-route.min_1.4.0.js"></script>
     <script src="scripts/controllersOfAdmin/app.js"></script>
     <link rel="stylesheet" href="./styles/main_QT.css" />
+    <script src="scripts/js/global.js"></script>
+    <script type="module" src="scripts/js/confirm.js"></script>
   </head>
   <body ng-app="musicAppOfAdmin" ng-controller="mainController">
     <div id="warraper">
@@ -73,12 +75,17 @@
       <div id="main-content">
         <ng-view></ng-view>
       </div>
+      <div id="toast"></div>
     </div>
     <script src="scripts/controllersOfAdmin/mainController.js"></script>
     <script src="scripts/controllersOfAdmin/statisticalController.js"></script>
     <script src="scripts/controllersOfAdmin/userController.js"></script>
-    <script src="scripts/controllersOfAdmin/artistController.js"></script>
+    <script
+      type="module"
+      src="scripts/controllersOfAdmin/artistController.js"
+    ></script>
     <script src="scripts/controllersOfAdmin/typeSongController.js"></script>
     <script src="scripts/controllersOfAdmin/accountController.js"></script>
+    <script type="module" src="scripts/js/toast.js"></script>
   </body>
 </html>
