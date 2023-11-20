@@ -1,9 +1,9 @@
 app.controller(
-  "userCtrl",
+  "artistCtrl",
   function ($http, $rootScope, $scope, $window, $routeParams) {
-    $rootScope.userMenu = true;
+    $rootScope.userMenu = false;
     $rootScope.statisticalMenu = false;
-    $rootScope.artistMenu = false;
+    $rootScope.artistMenu = true;
     $rootScope.typeSongMenu = false;
     $rootScope.accountMenu = false;
   }

@@ -24,7 +24,7 @@ body{
     background-color: #f2f2f2;
     height: 40px;
     border-bottom: 1px solid #ccc;
-    padding-left: 260px;
+    padding-left: 235px;
     transition: all 0.3s;
     position: fixed;
     top: 0;
@@ -32,9 +32,9 @@ body{
     width: 100%;
   }
   #top-header i{
-    margin: 10px 15px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
   }
   
   #left-menu,#logo{
@@ -44,7 +44,7 @@ body{
   }
   
   #logo{
-    height: 40px;
+    height: 49px;
     border-bottom: 1px solid #465a6e;
     text-align: center;
     font-size: 25px;

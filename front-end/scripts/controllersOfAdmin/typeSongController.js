@@ -1,10 +1,10 @@
 app.controller(
-  "userCtrl",
+  "typeSongCtrl",
   function ($http, $rootScope, $scope, $window, $routeParams) {
-    $rootScope.userMenu = true;
+    $rootScope.userMenu = false;
     $rootScope.statisticalMenu = false;
     $rootScope.artistMenu = false;
-    $rootScope.typeSongMenu = false;
+    $rootScope.typeSongMenu = true;
     $rootScope.accountMenu = false;
   }
 );

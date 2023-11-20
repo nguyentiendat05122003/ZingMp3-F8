@@ -20,41 +20,55 @@
   </head>
   <body ng-app="musicAppOfAdmin" ng-controller="mainController">
     <div id="warraper">
-      <div id="logo"><span>Zing-MP3</span></div>
-      <span id="show-label-menu">using only small screen</span>
+      <div id="logo"><span></span></div>
       <div id="left-menu">
         <ul>
-          <li ng-class="{'active':userMenu}">
-            <a href="#/"><i class="icon-basket"></i><span>Người dùng</span></a>
-          </li>
           <li ng-class="{'active':statisticalMenu}">
             <a href="#/statistical"
-              ><i class="icon-fire"></i><span>Thống kê</span></a
+              ><i class="fa-solid fa-chart-simple"></i><span>Thống kê</span></a
             >
           </li>
-          <li>
-            <a href="#"><i class="icon-grid"></i><span>Kiểu bài hát</span></a>
-          </li>
-          <li>
-            <a href="#"
-              ><i class="icon-people"></i><span>Kiểu người dùng</span></a
+          <li ng-class="{'active':userMenu}">
+            <a href="#/user"
+              ><i class="fa-solid fa-user"></i><span>Người dùng</span></a
             >
           </li>
-          <li>
-            <a href="#"
-              ><i class="icon-user"></i><span>Chặn người dùng</span></a
+          <li ng-class="{'active':artistMenu}">
+            <a href="#/artist"
+              ><i class="fa-solid fa-person-dots-from-line"></i
+              ><span>Nghệ sĩ</span></a
             >
           </li>
-          <li>
-            <a href="#"><i class="icon-user"></i><span>Thêm nghệ sĩ</span></a>
+          <li ng-class="{'active':typeSongMenu}">
+            <a href="#/typeSong"
+              ><i class="fa-solid fa-guitar"></i
+              ><span>Thể loại bài hát</span></a
+            >
           </li>
-          <li>
-            <a href="#"><i class="icon-settings"></i><span>Settings</span></a>
+          <li ng-class="{'active':accountMenu}">
+            <a href="#/account"
+              ><i class="fa-solid fa-file-invoice"></i><span>Tài khoản</span></a
+            >
           </li>
         </ul>
       </div>
       <div id="top-header">
-        <section class="header"></section>
+        <section class="header">
+          <div class="box-login" id="box-t">
+            Xin chào, <span id="ten_nv">Admin</span>
+            <i class="fas fa-sort-down"></i>
+            <div class="box-login-bottom" id="box-b">
+              <button>
+                <a style="text-decoration: none; color: #fff" href="#/account"
+                  ><i class="fas fa-user-alt"></i> Tài khoản</a
+                >
+              </button>
+              <button ng-click="logOut()">
+                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
       <div id="main-content">
         <ng-view></ng-view>
@@ -63,5 +77,8 @@
     <script src="scripts/controllersOfAdmin/mainController.js"></script>
     <script src="scripts/controllersOfAdmin/statisticalController.js"></script>
     <script src="scripts/controllersOfAdmin/userController.js"></script>
+    <script src="scripts/controllersOfAdmin/artistController.js"></script>
+    <script src="scripts/controllersOfAdmin/typeSongController.js"></script>
+    <script src="scripts/controllersOfAdmin/accountController.js"></script>
   </body>
 </html>
