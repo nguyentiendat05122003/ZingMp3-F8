@@ -195,7 +195,7 @@
                       </button>
                       <button
                         ng-click="addSongIntoPlayList(playList.playListId,song.songId)"
-                        ng-repeat="playList in listPlayList"
+                        ng-repeat="playList in listPlayList track by $index"
                       >
                         <i class="fa-solid fa-music"></i>
                         <span>{{playList.name}}</span>

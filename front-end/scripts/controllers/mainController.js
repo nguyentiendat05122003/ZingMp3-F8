@@ -197,6 +197,7 @@ app.controller(
         `playList/${userId}`,
         {},
         function (data, status, config) {
+          console.log(data);
           $scope.listPlayList = data;
         }
       );

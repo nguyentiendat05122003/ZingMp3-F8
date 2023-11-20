@@ -72,7 +72,9 @@ app.controller(
         );
       }
     };
-    $scope.checkFollowing();
+    if (account) {
+      $scope.checkFollowing();
+    }
 
     $scope.follow = () => {
       if (!account) {

@@ -47,10 +47,10 @@ class MiddleWareController {
   };
   verifyTokenAndAdminAuth = (req, res, next) => {
     this.verifyToken(req, res, () => {
-      if (req.account.typeAccountId == 1) {
+      if (req.account.typeAccount == 1) {
         next();
       } else {
-        res.status(403).json("you're not allowed to delete other");
+        res.status(403).json("you're not allowed to use function");
       }
     });
   };

@@ -4,10 +4,6 @@ db:
     emulate: true
     namespace: EG
 
-# plugins:
-# express-gateway-plugin-example:
-#   param1: 'param from system.config'
-
 crypto:
   cipherKey: sensitiveKey
   algorithm: aes256
@@ -20,7 +16,7 @@ session:
   saveUninitialized: false
 accessTokens:
   timeToExpiry: 7200000
-  secretOrPrivateKey: "dat dep trai"
+  # secretOrPrivateKey: "dat dep trai"
 refreshTokens:
   timeToExpiry: 7200000
 authorizationCodes:

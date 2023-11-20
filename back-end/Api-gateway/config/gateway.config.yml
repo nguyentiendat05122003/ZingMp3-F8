@@ -37,8 +37,6 @@ apiEndpoints:
 serviceEndpoints:
   userService:
     url: "http://127.0.0.1:3002"
-  userCustom:
-    url: "http://127.0.0.1:3002/user"
   adminService:
     url: "http://127.0.0.1:3001"
   authService:
@@ -46,7 +44,6 @@ serviceEndpoints:
 policies:
   - proxy
   - cors
-  - jwt
   - verify-token
   - verifyArtist-token
   - verifyAdmin-token
@@ -75,7 +72,6 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: userService
-
   getSongFollowArtist:
     apiEndpoints:
       - getSongFollowArtist
@@ -145,6 +141,7 @@ pipelines:
     apiEndpoints:
       - admin
     policies:
+      - verifyAdmin-token:
       - proxy:
           - action:
               serviceEndpoint: adminService
