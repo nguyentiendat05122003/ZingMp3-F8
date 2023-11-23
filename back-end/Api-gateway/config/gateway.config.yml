@@ -56,6 +56,9 @@ pipelines:
       - getUserTypeNormal
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: adminService
@@ -64,6 +67,9 @@ pipelines:
       - getSong
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -72,6 +78,9 @@ pipelines:
       - countFollow
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -80,6 +89,9 @@ pipelines:
       - getTypeSong
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -88,6 +100,9 @@ pipelines:
       - getSongFollowArtist
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -96,6 +111,9 @@ pipelines:
       - getArtist
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -104,6 +122,9 @@ pipelines:
       - getSongVietNam
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -112,6 +133,9 @@ pipelines:
       - getSongOtherCountry
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -121,6 +145,9 @@ pipelines:
     policies:
       - verifyAdmin-token:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -129,6 +156,9 @@ pipelines:
       - auth
     policies:
       - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: authService
@@ -140,7 +170,7 @@ pipelines:
           - action:
               origin: "http://127.0.0.1:5501"
               methods: "HEAD,PUT,PATCH,POST,DELETE"
-              allowedHeaders: "*"
+              credentials: true
       - verify-token:
       - proxy:
           - action:

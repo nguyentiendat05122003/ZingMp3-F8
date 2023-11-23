@@ -5,6 +5,7 @@ const userController = require("../app/controllers/userController");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 
+router.get("/artist/:userId", userController.getAnArtist);
 router.get("/getArtist", userController.getArtist);
 router.get("/:accountId", userController.index);
 router.get("/getFollowArtist/:id", userController.getFollowArtistFromUser);

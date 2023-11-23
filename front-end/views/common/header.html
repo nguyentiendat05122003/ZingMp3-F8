@@ -23,6 +23,91 @@
         />
         <div class="history-search">
           <div class="history-search-container">
+            <h3>Kết quả tìm kiếm...</h3>
+            <div ng-hide="hideListSuggestSearchSong">
+              <div class="history-separate"></div>
+              <h3>Bài hát</h3>
+              <ul class="history-list">
+                <a
+                  ng-click="handleClickItem()"
+                  style="
+                    text-decoration: none;
+                    color: var(--text-color);
+                    width: 100%;
+                  "
+                  ng-href="#/search?q={{valueSearch}}"
+                >
+                  <li
+                    ng-repeat="song in listSuggestSearchSong"
+                    class="history-item"
+                  >
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    <p>{{song.name}}</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+            <div ng-hide="hideListSuggestSearchArtist">
+              <div class="history-separate"></div>
+              <div class="history-near">
+                <div class="history-near-title">
+                  <h3>Nghệ sĩ</h3>
+                </div>
+                <ul class="list-video">
+                  <li
+                    ng-repeat="artist in listSuggestSearchArtist"
+                    class="video-item"
+                  >
+                    <a
+                      ng-click="handleClickItem()"
+                      style="text-decoration: none; color: #fff"
+                      class="video-item"
+                      href="#/discover/artist/{{artist.userId}}"
+                    >
+                      <div class="video-image">
+                        <img src="{{artist.image}}" alt="" />
+                        <i class="fa-solid fa-play icon-play"></i>
+                      </div>
+                      <div class="video-discription">
+                        <p>{{artist.name}}</p>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div ng-hide="hideListSuggestSearchType">
+              <div class="history-separate"></div>
+              <div class="history-near">
+                <div class="history-near-title">
+                  <h3>Thể loại</h3>
+                </div>
+                <ul class="history-list">
+                  <li
+                    ng-repeat="type in listSuggestSearchType"
+                    class="history-item"
+                  >
+                    <a
+                      style="
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        color: #fff;
+                        width: 100%;
+                      "
+                      href="#/search?q={{valueSearch}}"
+                    >
+                      <i class="fa-solid fa-arrow-trend-up"></i>
+                      <p>{{type.name}}</p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="history-search">
+          <div class="history-search-container">
             <ul class="history-list">
               <a
                 ng-click="handleClickItem()"
@@ -43,7 +128,7 @@
               </a>
             </ul>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="wrapper-right">

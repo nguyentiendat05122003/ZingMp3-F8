@@ -79,6 +79,7 @@ app.controller(
     };
     $scope.ShowDetailSong = function (id) {
       const detailSong = document.querySelector(`.list-detail-song-${id}`);
+      console.log(detailSong);
       if (detailSong.classList.contains("active")) {
         detailSong.classList.remove("active");
       } else {
@@ -120,6 +121,15 @@ app.controller(
     $scope.logOut = () => {
       localStorage.removeItem("account");
       localStorage.removeItem("user");
+      $http({
+        method: "POST",
+        url: `http://localhost:8090/auth/logout`,
+      }).then(
+        function successCallback(response) {
+          console.log(response.data);
+        },
+        function errorCallback(response) {}
+      );
       $rootScope.isLogin = false;
       window.location.reload();
     };
@@ -161,7 +171,21 @@ app.controller(
     $scope.hide = function () {
       $scope.IsHidden = true;
     };
+    $scope.getListPlayList = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user.userId;
+      globalService.ajaxGet(
+        `playList/${userId}`,
+        {},
+        function (data, status, config) {
+          console.log(data);
+          $scope.listPlayList = data;
+        }
+      );
+    };
     $scope.createNewPlayList = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.userId;
       const data = {
         userId: userId,
         name: $scope.namePlayList,
@@ -192,19 +216,7 @@ app.controller(
         }
       );
     };
-    $scope.getListPlayList = () => {
-      globalService.ajaxGet(
-        `playList/${userId}`,
-        {},
-        function (data, status, config) {
-          console.log(data);
-          $scope.listPlayList = data;
-        }
-      );
-    };
-    $rootScope.$on("CallParentMethod", function () {
-      $scope.getListPlayList();
-    });
+
     if (userId) {
       $scope.getListPlayList();
     }
@@ -917,26 +929,57 @@ app.controller(
         }
       });
     });
+    $scope.listSuggestSearchSong = [];
     $scope.isHideSearch = true;
+    $scope.hideListSuggestSearchSong = true;
+    $scope.hideListSuggestSearchArtist = true;
+    $scope.hideListSuggestSearchType = true;
     $scope.evaluateChange = function () {
       $scope.isHideSearch = false;
       const input = document.querySelector(".input-search");
       $scope.valueSearch = input.value.trim();
       let value = input.value.trim();
       if (value.trim() == "") {
-        $scope.listSuggestSearch = [];
+        $scope.listSuggestSearchSong = [];
+        $scope.hideListSuggestSearchSong = true;
+        $scope.hideListSuggestSearchArtist = true;
+        $scope.hideListSuggestSearchType = true;
+        $scope.listSuggestSearchArtist = [];
+        $scope.listSuggestSearchType = [];
         return;
       } else {
         globalService.ajaxGet(
           `search?q=${value}`,
           {},
           function (data, status, config) {
-            if (data.length <= 0) {
-              $scope.listSuggestSearch = [];
-            } else {
-              $scope.listSuggestSearch = data;
-              $scope.listSuggestSearchMV = [data[0]];
+            const result = data;
+            const listSong = JSON.parse(result[0].list_json);
+            const listArtist = JSON.parse(result[1].list_json);
+            const listTypeSong = JSON.parse(result[2].list_json);
+            if (listSong) {
+              if (listSong.length <= 0) {
+                $scope.hideListSuggestSearchSong = true;
+              } else {
+                $scope.hideListSuggestSearchSong = false;
+              }
             }
+            if (listArtist) {
+              if (listArtist.length <= 0) {
+                $scope.hideListSuggestSearchArtist = true;
+              } else {
+                $scope.hideListSuggestSearchArtist = false;
+              }
+            }
+            if (listTypeSong) {
+              if (listTypeSong.length <= 0) {
+                $scope.hideListSuggestSearchType = true;
+              } else {
+                $scope.hideListSuggestSearchType = false;
+              }
+            }
+            $scope.listSuggestSearchSong = listSong;
+            $scope.listSuggestSearchArtist = listArtist;
+            $scope.listSuggestSearchType = listTypeSong;
           }
         );
       }

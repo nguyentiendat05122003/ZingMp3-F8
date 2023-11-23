@@ -19,6 +19,7 @@ app.controller("playListCtrl", function ($http, $rootScope, $scope, $window) {
   $scope.valueNamePlayList = true;
   $scope.idPlayListDelete;
   $scope.idPlayListEdit;
+  $scope.getListPlayList();
   $scope.deletePlayList = ($event, playList) => {
     Confirm.open({
       title: "Thông báo",

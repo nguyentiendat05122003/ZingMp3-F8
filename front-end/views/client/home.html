@@ -42,8 +42,12 @@
               </button>
             </div>
             <div class="songs">
-              <ul ng-repeat="song in listSong" class="list">
-                <li class="item-song">
+              <ul class="list">
+                <li
+                  style="position: relative"
+                  ng-repeat="song in listSong"
+                  class="item-song item"
+                >
                   <div class="song-info">
                     <div class="song-img">
                       <img ng-src="{{song.image}}" alt="" />
@@ -62,7 +66,22 @@
                     <span class="hide"
                       ><i class="fa-solid fa-heart heart"></i
                     ></span>
-                    <i class="fa-solid fa-ellipsis"></i>
+                    <i
+                      ng-click="ShowDetailSong(song.songId)"
+                      class="fa-solid fa-ellipsis"
+                    ></i>
+                  </div>
+                  <div
+                    class="list-detail-song-playList list-detail-song list-detail-song-{{song.songId}}"
+                  >
+                    <ul class="menu-list">
+                      <li class="playList">
+                        <button>
+                          <i class="fa-solid fa-trash"></i>
+                          <span>Xoá khỏi danh sách yêu thích</span>
+                        </button>
+                      </li>
+                    </ul>
                   </div>
                 </li>
               </ul>

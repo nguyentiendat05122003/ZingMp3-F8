@@ -111,6 +111,14 @@ class UserController {
     );
     res.json(listSong);
   }
+
+  //[GET] user/artist/:userId
+  async getAnArtist(req, res) {
+    const user = await User.findOne({
+      where: { userId: req.params.userId },
+    });
+    res.status(200).json(user);
+  }
 }
 
 module.exports = new UserController();

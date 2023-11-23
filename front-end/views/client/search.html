@@ -1,11 +1,11 @@
 <div class="container-wrapper">
   <div style="padding: 0 60px" class="container-private container-discover">
-    <div class="new-song-container comp">
+    <div ng-hide="hideInfo" class="new-song-container comp">
       <div class="title">
         <p>Bài hát nổi bật</p>
       </div>
       <div style="width: 100%" class="list-song row">
-        <div class="col l-6" ng-repeat="song in listSuggestSearch">
+        <div class="col l-6" ng-repeat="song in listSuggestSearchSong">
           <div class="item">
             <div class="item-left">
               <div class="image-song">
@@ -28,12 +28,42 @@
                   class="fa-solid fa-ellipsis"
                 ></i>
               </div>
+              <div class="list-detail-song list-detail-song-{{song.songId}}">
+                <ul class="menu-list">
+                  <li>
+                    <button>
+                      <i class="fa-regular fa-heart"></i>
+                      <span>Thêm vào thư viện</span>
+                    </button>
+                  </li>
+                  <li class="playList">
+                    <button class="btn-playList">
+                      <i class="fa-solid fa-circle-plus"></i>
+                      <span>Thêm vào playlist</span>
+                      <i class="fa-solid fa-angle-right icon-right"></i>
+                    </button>
+                    <div class="list-playlist">
+                      <button ng-click="ShowHideCreatePlayList()">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Tạo playlist mới</span>
+                      </button>
+                      <button
+                        ng-click="addSongIntoPlayList(playList.playListId,song.songId)"
+                        ng-repeat="playList in listPlayList track by $index"
+                      >
+                        <i class="fa-solid fa-music"></i>
+                        <span>{{playList.name}}</span>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="grid tab-container">
+    <div ng-hide="hideInfo" class="grid tab-container">
       <div class="tab-contents show">
         <div class="singer-wrapper">
           <div class="singer-title">
@@ -54,9 +84,12 @@
             <div class="list-singer row">
               <div
                 class="item-singer col l-2-4 m-3 c-6"
-                ng-repeat="singer in listSuggestSearch"
+                ng-repeat="singer in listArtistLocal"
               >
-                <a href="#/discover/artist/{{singer.userId}}">
+                <a
+                  style="text-decoration: none"
+                  href="#/discover/artist/{{singer.userId}}"
+                >
                   <div class="singer-img">
                     <img ng-src="{{singer.image}}" alt="" />
                   </div>
@@ -71,6 +104,43 @@
           </div>
         </div>
       </div>
+    </div>
+    <div ng-hide="hideListSuggestSearchType">
+      <div class="heading">
+        <h1>Nhạc {{valueSearch}}...</h1>
+        <i class="fa-solid fa-angle-right"></i>
+        <div
+          ng-click="playSongFollowType(typeSong.songListJson)"
+          style="flex: 1"
+          class="btn-song"
+        >
+          <button
+            style="display: flex; align-items: center; gap: 0 3px"
+            class="play-all"
+          >
+            <i style="font-size: 1.3rem" class="fa-solid fa-play"></i>
+            PHÁT TẤT CẢ
+          </button>
+        </div>
+      </div>
+      <ul style="padding-top: 20px">
+        <li class="item-song" ng-repeat="song in listSongInType">
+          <div class="song-info">
+            <div class="song-img">
+              <img ng-src="{{song.image}}" alt="" />
+              <div class="song-run none"></div>
+            </div>
+            <div class="info">
+              <h3>{{song.name}}</h3>
+              <p>{{song.singer}}</p>
+            </div>
+          </div>
+          <div class="song-time">{{song.duration}}</div>
+          <div class="song-option">
+            <span class="hide"> <i class="fa-solid fa-heart heart"></i></span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
