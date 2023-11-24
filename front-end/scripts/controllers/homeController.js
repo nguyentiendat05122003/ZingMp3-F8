@@ -1,4 +1,5 @@
 import convertTime from "../../util/covertTime.js";
+import toast from "../js/toast.js";
 app.controller(
   "homeCtrl",
   function ($http, $rootScope, $scope, $window, globalService) {
@@ -31,13 +32,20 @@ app.controller(
       );
     };
     $scope.getListSong = () => {
-      globalService.ajaxGet(`song`, {}, function (data, status, config) {
-        const listSong = data;
-        [...listSong].forEach((song) => {
-          song.duration = convertTime(song.duration);
-        });
-        $scope.listSong = listSong;
-      });
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.userId;
+      globalService.ajaxGet(
+        `favoriteSong/${userId}`,
+        {},
+        function (data, status, config) {
+          const listSong = data;
+          console.log(listSong);
+          [...listSong].forEach((song) => {
+            song.duration = convertTime(song.duration);
+          });
+          $scope.listSong = listSong;
+        }
+      );
     };
     $scope.getListArtistFollow = () => {
       const user = JSON.parse(localStorage.getItem("user"));
@@ -52,5 +60,29 @@ app.controller(
     };
     $scope.getListSong();
     $scope.getListArtistFollow();
+    $scope.getListPlayList();
+
+    $scope.handleRemoveFavoriteSong = (song) => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.userId;
+      const songId = song.songId;
+      $http({
+        method: "DELETE",
+        url: `http://localhost:8090/user/favoriteSong/delete?songId=${songId}&userId=${userId}`,
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: "Xóa thành công",
+            type: "success",
+            duration: 2000,
+          });
+          $scope.getListSong();
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
+    };
   }
 );

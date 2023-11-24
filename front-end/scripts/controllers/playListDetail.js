@@ -33,6 +33,7 @@ app.controller(
             duration: 2000,
           });
           $scope.getListPlayList();
+          $scope.getListSongInPlayList();
         },
         function errorCallback(response) {
           toast({

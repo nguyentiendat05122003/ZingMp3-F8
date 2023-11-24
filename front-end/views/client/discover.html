@@ -168,10 +168,13 @@
             </div>
             <div class="item-right">
               <div class="song-option">
-                <i class="fa-regular fa-heart"></i>
+                <i
+                  ng-click="addFavoriteSong(song,e)"
+                  class="fa-regular fa-heart icon-heart-active"
+                ></i>
                 <i
                   ng-click="ShowDetailSong(song.songId)"
-                  class="fa-solid fa-ellipsis"
+                  class="icon-detail fa-solid fa-ellipsis"
                 ></i>
               </div>
               <div class="list-detail-song list-detail-song-{{song.songId}}">

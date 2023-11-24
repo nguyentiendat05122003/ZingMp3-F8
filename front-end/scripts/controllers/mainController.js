@@ -8,7 +8,6 @@ app.controller(
     const account = JSON.parse(localStorage.getItem("account"));
     const accountId = account?.account.accountId;
     const typeAccount = account?.account.typeAccountId;
-
     $rootScope.loading = true;
     $rootScope.isLogin = account;
     $scope.IsHidden = true;
@@ -79,12 +78,20 @@ app.controller(
     };
     $scope.ShowDetailSong = function (id) {
       const detailSong = document.querySelector(`.list-detail-song-${id}`);
-      console.log(detailSong);
       if (detailSong.classList.contains("active")) {
         detailSong.classList.remove("active");
       } else {
         detailSong.classList.add("active");
       }
+    };
+    document.body.onclick = (e) => {
+      // if (
+      //   !e.target.closest(".list-detail-song") &&
+      //   !e.target.matches(".icon-detail")
+      // ) {
+      //   const detailSong = document.querySelector(`.list-detail-song`);
+      //   detailSong.classList.remove("active");
+      // }
     };
     $scope.ShowHideCreatePlayList = function () {
       $scope.IsShowPlayList = !$scope.IsShowPlayList;
@@ -325,7 +332,6 @@ app.controller(
             type: "success",
             duration: 3000,
           });
-          $scope.getListSong();
         },
         function errorCallback(response) {
           $scope.showLoader = false;
@@ -987,6 +993,37 @@ app.controller(
     $scope.handleClickItem = () => {
       const input = document.querySelector(".input-search");
       input.blur();
+    };
+
+    $scope.addFavoriteSong = (song) => {
+      if (!account) {
+        toast({
+          title: "Cảnh báo",
+          message: "Vui lòng đăng nhập để trải nghiệm tốt nhất",
+          type: "warning",
+          duration: 3000,
+        });
+      } else {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?.userId;
+        const songId = song.songId;
+        $http({
+          method: "POST",
+          url: `http://localhost:8090/user/favoriteSong/add?songId=${songId}&userId=${userId}`,
+        }).then(
+          function successCallback(response) {
+            toast({
+              title: "Thành công!",
+              message: "Bài hát đã được thêm vào danh sách yêu thích",
+              type: "success",
+              duration: 2000,
+            });
+          },
+          function errorCallback(response) {
+            console.log(response);
+          }
+        );
+      }
     };
   }
 );

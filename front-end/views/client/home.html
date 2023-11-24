@@ -55,16 +55,13 @@
                     </div>
                     <div class="info">
                       <h3>{{song.name}}</h3>
-                      <p>{{song.singer}}</p>
+                      <p>{{song.artist}}</p>
                     </div>
                   </div>
                   <div class="song-time">{{song.duration}}</div>
                   <div class="song-option">
                     <span class="hide"
                       ><i class="fa-solid fa-microphone"></i
-                    ></span>
-                    <span class="hide"
-                      ><i class="fa-solid fa-heart heart"></i
                     ></span>
                     <i
                       ng-click="ShowDetailSong(song.songId)"
@@ -76,7 +73,7 @@
                   >
                     <ul class="menu-list">
                       <li class="playList">
-                        <button>
+                        <button ng-click="handleRemoveFavoriteSong(song)">
                           <i class="fa-solid fa-trash"></i>
                           <span>Xoá khỏi danh sách yêu thích</span>
                         </button>
