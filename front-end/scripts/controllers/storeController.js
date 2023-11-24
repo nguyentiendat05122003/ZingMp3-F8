@@ -62,5 +62,9 @@ app.controller(
         },
       });
     };
+    $scope.runListSong = () => {
+      console.log($scope.listSongInStore);
+      $rootScope.songs = $scope.listSongInStore;
+    };
   }
 );

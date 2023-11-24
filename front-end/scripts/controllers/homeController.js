@@ -39,7 +39,6 @@ app.controller(
         {},
         function (data, status, config) {
           const listSong = data;
-          console.log(listSong);
           [...listSong].forEach((song) => {
             song.duration = convertTime(song.duration);
           });
@@ -83,6 +82,9 @@ app.controller(
           console.log(response);
         }
       );
+    };
+    $scope.runListSong = () => {
+      $rootScope.songs = $scope.listSong;
     };
   }
 );

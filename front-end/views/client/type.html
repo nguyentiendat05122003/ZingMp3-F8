@@ -20,7 +20,11 @@
           </div>
         </div>
         <ul style="padding-top: 20px">
-          <li class="item-song" ng-repeat="song in typeSong.songListJson">
+          <li
+            ng-click="runASong(song)"
+            class="item-song"
+            ng-repeat="song in typeSong.songListJson"
+          >
             <div class="song-info">
               <div class="song-img">
                 <img ng-src="{{song.image}}" alt="" />
@@ -33,7 +37,13 @@
             </div>
             <div class="song-time">{{song.duration}}</div>
             <div class="song-option">
-              <span class="hide"> <i class="fa-solid fa-heart heart"></i></span>
+              <span class="hide">
+                <i
+                  ng-click="addFavoriteSong(song)"
+                  class="fa-solid fa-heart heart"
+                ></i
+              ></span>
+              <i class="fa-solid fa-ellipsis"></i>
             </div>
           </li>
         </ul>

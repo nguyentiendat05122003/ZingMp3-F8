@@ -150,6 +150,7 @@ app.controller(
         }
       );
     };
+
     $scope.countFollow();
   }
 );

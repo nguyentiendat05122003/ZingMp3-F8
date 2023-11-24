@@ -1,75 +1,78 @@
 <!-- <link  href="../../assets/sass/style.css" /> -->
 <div id="play-music-id" class="play-music">
-    <div class="music-info">
-      <div class="singer-info">
-        <div class="wrapper-img">
-          <img src="./assets/img/avatar/avatar.jpg" alt="" />
-        </div>
-        <div class="info-text">
-          <div class="text-wrapper">
-            <div class="text-title">
-              <h2>Cheating On You</h2>
-              <h2 class="text-clone"></h2>
-            </div>
+  <div class="music-info">
+    <div class="singer-info">
+      <div class="wrapper-img">
+        <img src="./assets/img/avatar/avatar.jpg" alt="" />
+      </div>
+      <div class="info-text">
+        <div class="text-wrapper">
+          <div class="text-title">
+            <h2>Cheating On You</h2>
+            <h2 class="text-clone"></h2>
           </div>
-          <a href="#">Charlie Puth</a>
         </div>
-      </div>
-      <div class="icon-info">
-        <button><i class="fa-regular fa-heart icon-heart"></i></button>
-        <button><i class="fa-solid fa-ellipsis"></i></button>
+        <a href="#">Charlie Puth</a>
       </div>
     </div>
-    <div class="music-control">
-      <div class="btn-wrapper">
-        <button class="btn random hide-on-mobile">
-          <i class="fa-solid fa-shuffle"></i>
-        </button>
-        <button class="btn previous hide-on-mobile">
-          <i class="fa-solid fa-backward-step"></i>
-        </button>
-        <button class="btn play">
-          <i class="fa-solid fa-circle-pause none"></i>
-          <i class="fa-solid fa-circle-play playMusic"></i>
-        </button>
-        <button class="btn next">
-          <i class="fa-solid fa-forward-step"></i>
-        </button>
-        <button class="btn repeat hide-on-mobile">
-          <i class="fa-solid fa-arrow-rotate-right"></i>
-        </button>
-      </div>
-      <div class="progress hide-on-mobile">
-        <div><p class="time-update">00:00</p></div>
-        <div class="progress-wrapper">
-          <input
-            type="range"
-            value="0"
-            step="1"
-            min="0"
-            max="100"
-            class="input-progress"
-          />
-          <div class="input-value"></div>
-        </div>
-        <div><p class="time-end">03:03</p></div>
-      </div>
+    <div class="icon-info">
+      <button><i class="fa-regular fa-heart icon-heart"></i></button>
+      <button><i class="fa-solid fa-ellipsis"></i></button>
     </div>
-    <div class="control-other hide-on-mobile">
-      <span class="hide"><i class="fa-solid fa-video"></i></span>
-      <span class="hide"><i class="fa-solid fa-microphone"></i></span>
-      <i class="fa-solid fa-volume-high"></i>
-      <div class="volume">
+  </div>
+  <div class="music-control">
+    <div class="btn-wrapper">
+      <button class="btn random hide-on-mobile">
+        <i class="fa-solid fa-shuffle"></i>
+      </button>
+      <button class="btn previous hide-on-mobile">
+        <i class="fa-solid fa-backward-step"></i>
+      </button>
+      <button class="btn play">
+        <i class="fa-solid fa-circle-pause none"></i>
+        <i class="fa-solid fa-circle-play playMusic"></i>
+      </button>
+      <button class="btn next">
+        <i class="fa-solid fa-forward-step"></i>
+      </button>
+      <button class="btn repeat hide-on-mobile">
+        <i class="fa-solid fa-arrow-rotate-right"></i>
+      </button>
+    </div>
+    <div class="progress hide-on-mobile">
+      <div><p class="time-update">00:00</p></div>
+      <div class="progress-wrapper">
         <input
           type="range"
-          class="progress-volume"
-          min="0"
-          value="100"
-          max="100"
+          value="0"
           step="1"
+          min="0"
+          max="100"
+          class="input-progress"
         />
-        <div class="volume-value"></div>
+        <div class="input-value"></div>
       </div>
+      <div><p class="time-end">03:03</p></div>
     </div>
+  </div>
+  <div class="control-other hide-on-mobile">
+    <span class="hide"><i class="fa-solid fa-video"></i></span>
+    <span class="hide"><i class="fa-solid fa-microphone"></i></span>
+    <span
+      ><i ng-hide="IsHideVolumeIcon" class="fa-solid fa-volume-xmark"></i
+    ></span>
+    <i ng-hide="!IsHideVolumeIcon" class="fa-solid fa-volume-high"></i>
+    <div class="volume">
+      <input
+        type="range"
+        class="progress-volume"
+        min="0"
+        value="100"
+        max="100"
+        step="1"
+      />
+      <div class="volume-value"></div>
+    </div>
+  </div>
 </div>
 <audio src=""></audio>

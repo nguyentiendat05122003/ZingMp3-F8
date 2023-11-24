@@ -37,7 +37,7 @@
       <div style="width: 100%" class="list-song row">
         <div class="col l-6" ng-repeat="song in songsOfArtist">
           <div class="item">
-            <div class="item-left">
+            <div ng-click="runASong(song)" class="item-left">
               <div class="image-song">
                 <img ng-src="{{song.image}}" alt="" />
                 <div class="icon-play">

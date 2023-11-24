@@ -107,7 +107,7 @@
     </div>
     <div ng-hide="hideListSuggestSearchType">
       <div class="heading">
-        <h1>Nhạc {{valueSearch}}...</h1>
+        <h1>Nhạc theo thể loại</h1>
         <i class="fa-solid fa-angle-right"></i>
         <div
           ng-click="playSongFollowType(typeSong.songListJson)"
@@ -117,6 +117,7 @@
           <button
             style="display: flex; align-items: center; gap: 0 3px"
             class="play-all"
+            ng-click="runListSong()"
           >
             <i style="font-size: 1.3rem" class="fa-solid fa-play"></i>
             PHÁT TẤT CẢ
@@ -124,7 +125,11 @@
         </div>
       </div>
       <ul style="padding-top: 20px">
-        <li class="item-song" ng-repeat="song in listSongInType">
+        <li
+          class="item-song"
+          ng-repeat="song in listSongInType"
+          ng-click="runASong(song)"
+        >
           <div class="song-info">
             <div class="song-img">
               <img ng-src="{{song.image}}" alt="" />

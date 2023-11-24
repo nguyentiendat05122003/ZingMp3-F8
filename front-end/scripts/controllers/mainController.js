@@ -13,6 +13,7 @@ app.controller(
     $scope.IsHidden = true;
     $scope.IsShowDetailSong = true;
     $scope.IsShowBtnEditSong = true;
+    $scope.IsHideVolumeIcon = true;
     $scope.IsShowInfoSong = true;
     $scope.listPlayList;
     $scope.IsShowPlayList = true;
@@ -872,6 +873,11 @@ app.controller(
           inputVolume.oninput = (e) => {
             audio.volume = inputVolume.value / 100;
             valueVolumeInput.style.width = inputVolume.value / 2 + "%";
+            if (audio.volume == 0) {
+              $scope.IsHideVolumeIcon = false;
+            } else {
+              $scope.IsHideVolumeIcon = true;
+            }
           };
           valueVolumeInput.style.width = inputVolume.value / 2 + "%";
           function NextSong() {
@@ -908,10 +914,16 @@ app.controller(
           // }
         },
         loadCurrentSong: function () {
+          const user = JSON.parse(localStorage.getItem("user"));
+          const author = user.name;
           const currentSong = $rootScope.songs[this.currentIndex];
           thumb.setAttribute("src", currentSong.image);
           nameSong.innerText = currentSong.name;
-          nameSinger.innerText = currentSong.nameArtist || currentSong.singer;
+          nameSinger.innerText =
+            currentSong.nameArtist ||
+            currentSong.singer ||
+            currentSong.artist ||
+            author;
           textClone.innerText = currentSong.name;
           audio.setAttribute("src", currentSong.source);
           timeEnd.innerText = currentSong.duration;
@@ -1024,6 +1036,10 @@ app.controller(
           }
         );
       }
+    };
+
+    $scope.runASong = (song) => {
+      $rootScope.songs = [song, ...$rootScope.songs];
     };
   }
 );

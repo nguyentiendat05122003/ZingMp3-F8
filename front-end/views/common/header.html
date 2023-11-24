@@ -88,6 +88,7 @@
                     class="history-item"
                   >
                     <a
+                      ng-click="handleClickItem()"
                       style="
                         text-decoration: none;
                         display: flex;
@@ -106,29 +107,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="history-search">
-          <div class="history-search-container">
-            <ul class="history-list">
-              <a
-                ng-click="handleClickItem()"
-                style="
-                  text-decoration: none;
-                  color: var(--text-color);
-                  width: 100%;
-                "
-                ng-href="#/search?q={{valueSearch}}"
-              >
-                <li
-                  ng-repeat="item in listSuggestSearch track by $index"
-                  class="history-item"
-                >
-                  <i class="fa-solid fa-arrow-trend-up"></i>
-                  <p>{{item.name}}</p>
-                </li>
-              </a>
-            </ul>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="wrapper-right">

@@ -1,3 +1,4 @@
+import convertTime from "../../util/covertTime.js";
 app.controller(
   "searchCtrl",
   function ($http, $rootScope, $scope, $window, globalService) {
@@ -9,6 +10,9 @@ app.controller(
         `/song/typeSong/${id}`,
         {},
         function (data, status, config) {
+          [...data].forEach((song) => {
+            song.duration = convertTime(song.duration);
+          });
           $scope.listSongInType = [...$scope.listSongInType, ...data];
         }
       );
@@ -44,5 +48,14 @@ app.controller(
       }
     };
     $scope.load();
+
+    $scope.runListSong = () => {
+      const typeSong = $scope.listSuggestSearchType;
+      if (typeSong) {
+        if (typeSong.length > 0) {
+          $rootScope.songs = $scope.listSongInType;
+        }
+      }
+    };
   }
 );

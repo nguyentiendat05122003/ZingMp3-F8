@@ -9,18 +9,18 @@
         <div class="list-songs-wrapper row">
           <div class="list-songs col m-12 l-12 c-12">
             <div class="btn-song">
-              <button class="upload">
+              <button ng-click="ShowFormInfoSong()" class="upload">
                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
                 TẢI LÊN
               </button>
-              <button class="play-all">
+              <button ng-click="runListSong()" class="play-all">
                 <i class="fa-solid fa-play"></i>
                 PHÁT TẤT CẢ
               </button>
             </div>
             <div class="songs">
               <ul ng-repeat="song in listSongInStore" class="list">
-                <li class="item-song">
+                <li ng-click="runASong(song)" class="item-song">
                   <div class="song-info">
                     <div class="song-img">
                       <img ng-src="{{song.image}}" alt="" />
@@ -37,7 +37,8 @@
                       <i ng-click="ShowFormInfoSong(song)" class="fa-regular fa-pen-to-square"></i
                     ></span>
                     <span class="hide"
-                      ><i class="fa-solid fa-heart heart"></i
+                  
+                  ><i ng-click="addFavoriteSong(song)" class="fa-solid fa-heart heart"></i
                     ></span>
                     <i ng-click="deleteSong(song)" class="fa-solid fa-trash"></i>
                   </div>

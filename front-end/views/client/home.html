@@ -36,7 +36,7 @@
                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
                 TẢI LÊN
               </button>
-              <button class="play-all">
+              <button ng-click="runListSong()" class="play-all">
                 <i class="fa-solid fa-play"></i>
                 PHÁT TẤT CẢ
               </button>
@@ -44,6 +44,7 @@
             <div class="songs">
               <ul class="list">
                 <li
+                  ng-click="runASong(song)"
                   style="position: relative"
                   ng-repeat="song in listSong"
                   class="item-song item"
