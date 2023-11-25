@@ -1,3 +1,4 @@
+import toast from "../js/toast.js";
 app.controller(
   "typeSongCtrl",
   function ($http, $rootScope, $scope, $window, $routeParams) {
@@ -21,9 +22,57 @@ app.controller(
         }
       );
     };
-
     if (account) {
       $scope.getListTypeSong();
     }
+    $scope.addType = () => {
+      const input = document.querySelector("#typeSongName");
+      const value = input.value;
+      if (value.trim() == "") {
+        return;
+      } else {
+        const data = { name: value };
+        $http({
+          method: "POST",
+          url: `http://localhost:8090/admin/typeSong/add`,
+          data: JSON.stringify(data),
+        }).then(
+          function successCallback(response) {
+            toast({
+              title: "Thành công!",
+              message: response.data,
+              type: "success",
+              duration: 2000,
+            });
+            $scope.getListTypeSong();
+            input.value = "";
+          },
+          function errorCallback(response) {
+            console.log(response);
+          }
+        );
+      }
+    };
+
+    $scope.deleteTypeSong = (type) => {
+      const typeId = type?.typeSongId;
+      $http({
+        method: "DELETE",
+        url: `http://localhost:8090/admin/typeSong/${typeId}/delete`,
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: response.data,
+            type: "success",
+            duration: 2000,
+          });
+          $scope.getListTypeSong();
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
+    };
   }
 );

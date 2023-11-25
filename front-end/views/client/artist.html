@@ -14,7 +14,7 @@
               </button>
             </div>
             <div class="follower">
-              <span class="follow">96.486 người quan tâm</span>
+              <span class="follow">{{numberFollow}} người quan tâm</span>
               <button ng-click="follow()" ng-hide="isFollow" class="btn-follow">
                 <i class="fa-solid fa-user-plus"></i>
                 <span>Quan tâm</span>
@@ -97,10 +97,10 @@
         <div class="container">
           <div class="info-text">
             <span>{{artist.desc}}</span>
-            <div class="follower">
-              <h3>{{numberFollow}}</h3>
-              <h3 class="sub-title">Người quan tâm</h3>
-            </div>
+            <!-- <div style="display: flex" class="follower">
+              <h3 style="display: inline">{{numberFollow}}</h3>
+              <span class="sub-title">Người quan tâm</span>
+            </div> -->
           </div>
         </div>
       </div>

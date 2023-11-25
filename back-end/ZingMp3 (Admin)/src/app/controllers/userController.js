@@ -100,10 +100,15 @@ class UserController {
   //[GET] user/typeAccount/:id
   async getUserFollowType(req, res) {
     const listUser = await sequelize.query(
-      "Exec pro_GetUserFollowTypeAccount :typeAccountId",
+      "Exec pro_SearchUserFollowTypeAccount :page_index,:page_size,:name,:typeAccountId",
       {
         type: QueryTypes.SELECT,
-        replacements: { typeAccountId: req.params.id },
+        replacements: {
+          page_index: req.query.page_index,
+          page_size: req.query.page_size,
+          name: req.query.name,
+          typeAccountId: req.params.id,
+        },
       }
     );
     res.json(listUser);

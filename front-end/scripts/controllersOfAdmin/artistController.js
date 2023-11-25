@@ -10,26 +10,9 @@ app.controller(
     $rootScope.accountMenu = false;
 
     const account = localStorage.getItem("account");
-    $scope.getListArtist = () => {
-      $http({
-        method: "GET",
-        url: `http://localhost:8090/user/typeAccount/2`,
-      }).then(
-        function successCallback(response) {
-          [...response.data].forEach((item) => {
-            item.isBan = item.isBan ? "Ban" : "";
-          });
-          $scope.listArtist = response.data;
-          $scope.qualityArtist = response.data.length;
-        },
-        function errorCallback(response) {
-          console.log(response);
-        }
-      );
-    };
-    if (account) {
-      $scope.getListArtist();
-    }
+    // if (account) {
+    //   $scope.getListArtist();
+    // }
     $scope.handleBanAccount = (artist) => {
       const artistId = artist.userId;
       const isBan = artist.isBan;
@@ -92,6 +75,38 @@ app.controller(
           },
         });
       }
+    };
+
+    $scope.handleRemoveArtist = (artist) => {
+      const accountId = artist.accountId;
+      Confirm.open({
+        title: "Thông báo",
+        message: "Bạn có muốn xóa nghệ sĩ này không ?",
+        onok: () => {
+          $http({
+            method: "DELETE",
+            url: `http://localhost:8090/admin/account/${accountId}/delete`,
+          }).then(
+            function successCallback(response) {
+              toast({
+                title: "Thành công!",
+                message: response.data,
+                type: "success",
+                duration: 2000,
+              });
+              $scope.getListArtist();
+            },
+            function errorCallback(response) {
+              toast({
+                title: "Thất bại!",
+                message: "Ca sĩ này đã có dữ liệu chỉ nên chặn",
+                type: "error",
+                duration: 5000,
+              });
+            }
+          );
+        },
+      });
     };
   }
 );

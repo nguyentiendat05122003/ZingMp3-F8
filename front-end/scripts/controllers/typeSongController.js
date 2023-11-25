@@ -16,9 +16,11 @@ app.controller(
         function (data, status, config) {
           data.forEach((item) => {
             item.songListJson = JSON.parse(item.songListJson);
-            [...item.songListJson].forEach((song) => {
-              song.duration = convertTime(song.duration);
-            });
+            if (item.songListJson != null) {
+              item.songListJson.forEach((song) => {
+                song.duration = convertTime(song.duration);
+              });
+            }
           });
           $scope.listFollowType = data;
         }

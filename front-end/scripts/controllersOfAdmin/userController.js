@@ -8,10 +8,10 @@ app.controller(
     $rootScope.accountMenu = false;
 
     const account = localStorage.getItem("account");
-    $scope.getListUser = () => {
+    $scope.getListUser = (page_index = 0, page_size = 0, name = "") => {
       $http({
         method: "GET",
-        url: `http://localhost:8090/user/typeAccount/3`,
+        url: `http://localhost:8090/user/typeAccount/3?page_index=${page_index}&page_size=${page_size}&name=${name}`,
       }).then(
         function successCallback(response) {
           $scope.listUser = response.data;

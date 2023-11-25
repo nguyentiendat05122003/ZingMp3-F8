@@ -1,3 +1,5 @@
+const { QueryTypes } = require("sequelize");
+const { sequelize } = require("../../config/db");
 const Account = require("../models/Accounts");
 class AccountController {
   //[GET] /account
@@ -13,10 +15,9 @@ class AccountController {
   //[DELETE] /account/:id/delete
   async delete(req, res) {
     try {
-      await Account.destroy({
-        where: {
-          accountId: req.params.id,
-        },
+      const result = await sequelize.query("Exec delete_Account :id", {
+        type: QueryTypes.DELETE,
+        replacements: { id: req.params.id },
       });
       res.status(200).json("Delete successful");
     } catch (error) {

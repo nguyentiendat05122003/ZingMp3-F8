@@ -30,6 +30,7 @@ app.controller(
         function (data, status, config) {
           const user = data[0];
           const { name, birthDay, country, email, desc, image } = user;
+          console.log(user);
           $scope.username = name;
           $scope.date = new Date(birthDay);
           $scope.country = country;
@@ -85,45 +86,47 @@ app.controller(
         detailSong.classList.add("active");
       }
     };
-    document.body.onclick = (e) => {
-      // if (
-      //   !e.target.closest(".list-detail-song") &&
-      //   !e.target.matches(".icon-detail")
-      // ) {
-      //   const detailSong = document.querySelector(`.list-detail-song`);
-      //   detailSong.classList.remove("active");
-      // }
-    };
     $scope.ShowHideCreatePlayList = function () {
       $scope.IsShowPlayList = !$scope.IsShowPlayList;
     };
     $scope.ShowFormInfoSong = function (song) {
-      const preview = document.querySelector(".audio-preview");
-      const imageEl = document.getElementById("img-song");
-      const selectTypeSongEl = document.getElementById("selectedProduct");
-      $scope.IsShowInfoSong = !$scope.IsShowInfoSong;
-      $scope.IsShowBtnEditSong = true;
-      if ($scope.IsShowInfoSong) {
-        imageEl.setAttribute(
-          "src",
-          "https://photo-zmp3.zmdcdn.me/album_default.png"
-        );
-        preview.setAttribute("src", null);
-      }
-      $scope.nameSong = "";
-      $scope.descSong = "";
-      $scope.source = "";
-      if (song) {
-        const { songId, name, image, source, desc, typeSongId } = song;
-        $scope.IsShowBtnEditSong = false;
-        $scope.songId = songId;
-        $scope.nameSong = name;
-        $scope.descSong = desc;
-        imageEl.setAttribute("src", image);
-        preview.setAttribute("src", source);
-        $scope.imageSong = image;
-        $scope.source = source;
-        selectTypeSongEl.value = typeSongId;
+      const user = JSON.parse(localStorage.getItem("user"));
+      const isBan = user?.isBan;
+      if (isBan) {
+        toast({
+          title: "Thất bại!",
+          message: "Tài khoản của bạn đã bị chặn",
+          type: "warning",
+          duration: 5000,
+        });
+      } else {
+        const preview = document.querySelector(".audio-preview");
+        const imageEl = document.getElementById("img-song");
+        const selectTypeSongEl = document.getElementById("selectedProduct");
+        $scope.IsShowInfoSong = !$scope.IsShowInfoSong;
+        $scope.IsShowBtnEditSong = true;
+        if ($scope.IsShowInfoSong) {
+          imageEl.setAttribute(
+            "src",
+            "https://photo-zmp3.zmdcdn.me/album_default.png"
+          );
+          preview.setAttribute("src", null);
+        }
+        $scope.nameSong = "";
+        $scope.descSong = "";
+        $scope.source = "";
+        if (song) {
+          const { songId, name, image, source, desc, typeSongId } = song;
+          $scope.IsShowBtnEditSong = false;
+          $scope.songId = songId;
+          $scope.nameSong = name;
+          $scope.descSong = desc;
+          imageEl.setAttribute("src", image);
+          preview.setAttribute("src", source);
+          $scope.imageSong = image;
+          $scope.source = source;
+          selectTypeSongEl.value = typeSongId;
+        }
       }
     };
     $scope.logOut = () => {
@@ -153,18 +156,18 @@ app.controller(
       data.append("image", $scope.imageUser);
       $http({
         method: "PUT",
-        url: `${APP_API} + user/edit`,
+        url: `http://localhost:3002/user/edit`,
         data: data,
         headers: { "Content-Type": undefined },
       }).then(
         function successCallback(response) {
-          $scope.getInfoUser();
           toast({
             title: "Thành công!",
             message: "Bạn đã lưu thông tin thành công",
             type: "success",
             duration: 5000,
           });
+          $scope.getInfoUser();
         },
         function errorCallback(response) {
           toast({
@@ -181,15 +184,17 @@ app.controller(
     };
     $scope.getListPlayList = () => {
       const user = JSON.parse(localStorage.getItem("user"));
-      const userId = user.userId;
-      globalService.ajaxGet(
-        `playList/${userId}`,
-        {},
-        function (data, status, config) {
-          console.log(data);
-          $scope.listPlayList = data;
-        }
-      );
+      if (user) {
+        const userId = user.userId;
+        globalService.ajaxGet(
+          `playList/${userId}`,
+          {},
+          function (data, status, config) {
+            console.log(data);
+            $scope.listPlayList = data;
+          }
+        );
+      }
     };
     $scope.createNewPlayList = () => {
       const user = JSON.parse(localStorage.getItem("user"));
@@ -358,19 +363,12 @@ app.controller(
       const btnFormInfo = $(".setting-item-info-user");
       const modalFormInfo = $(".container-formInfo");
       const btnCloseFormInfo = $(".btn-close-formInfo");
-      const btnFormInfoSong = $(".btn.upload");
-      const modalFormInfoSong = $(".container-formInfoSong");
-      const btnCloseInfoSong = $(".btn-close-formInfoSong");
       const HistoryELement = $(".history-search");
-      const inputElement = $(".input-search");
       const btnClose = $(".btn-close-bc");
       const btnSetting = $(".setting");
       const settingMenu = $(".setting-list");
       const ContainerModalBC = $(".wrapper-content");
       const ContainerPlayMusic = $(".play-music");
-      const playlistElements = $$(".list-playlist");
-      const btnMovePrevPlaylists = $$(".playlist-move .btn-prev");
-      const btnMoveNextPlaylists = $$(".playlist-move .btn-next");
       const thumb = $(".wrapper-img img");
       const nameSong = $(".info-text h2");
       const textClone = $(".text-clone");
@@ -405,7 +403,6 @@ app.controller(
       const VALUE_THEME = JSON.parse(
         localStorage.getItem("LOAD_FIRST_THEME")
       ) || [0, 0]; // giá trị lưu bc
-      //
       const tmp = `url(./assets/img/BCplaymusic/theme1.png)`;
       const app = {
         currentIndex: 0,
@@ -520,21 +517,6 @@ app.controller(
               modalFormInfo.classList.remove("active");
             };
           }
-          //click form upload song
-          // if (btnFormInfoSong) {
-          //   btnFormInfoSong.onclick = (e) => {
-          //     modalFormInfoSong.classList.add("active");
-          //   };
-          //   modalFormInfoSong.onclick = (e) => {
-          //     const childrenElement = e.target.closest(".container-formInfoSong");
-          //     if (!childrenElement) {
-          //       modalFormInfoSong.classList.remove("active");
-          //     }
-          //   };
-          //   btnCloseInfoSong.onclick = (e) => {
-          //     modalFormInfoSong.classList.remove("active");
-          //   };
-          // }
           // click input search
           HistoryELement.onmousedown = (e) => {
             e.preventDefault();
@@ -550,93 +532,8 @@ app.controller(
           document.onclick = (e) => {
             settingMenu.classList.remove("active");
           };
-          // Chuyển đổi sang các tab khác
-          const tabs = $$(".tab-title");
-          const tabContents = $$(".tab-contents");
-          Array.from(tabs).forEach((tab, index) => {
-            tab.onclick = (e) => {
-              let content = tabContents[index];
-              let activeTab = $(".tab-title.active");
-              let contentActive = $(".tab-contents.show");
-              if (activeTab) {
-                activeTab.classList.remove("active");
-              }
-              contentActive.classList.remove("show");
-              contentActive.classList.add("none");
-              e.target.classList.add("active");
-              content.classList.add("show");
-            };
-          });
           // click list song
           const itemSongs = $$(".item-song");
-          const hearts = $$(".heart");
-          // Array.from(itemSongs).forEach((song, index) => {
-          //   song.onclick = (e) => {
-          //     let songActive = document.querySelector(".item-song.active");
-          //     let songRun = songActive.querySelector(".song-run");
-          //     if (songActive) {
-          //       songActive.classList.remove("active");
-          //       songRun.classList.add("none");
-          //       _this.currentIndex = index;
-          //       _this.loadCurrentSong();
-          //       audio.play();
-          //     }
-          //     if (
-          //       e.target.closest(".item-song") &&
-          //       !e.target.matches(".item-song")
-          //     ) {
-          //       const node = getParent(e.target, ".item-song");
-          //       node.classList.add("active");
-          //     } else {
-          //       e.target.classList.add("active");
-          //     }
-          //   };
-          // });
-          // active color
-          Array.from(hearts).forEach((heart) => {
-            heart.onclick = (e) => {
-              let color = getThemeNow().colors.purplePrimary;
-              if (e.target.classList.contains("show")) {
-                e.target.style.color = "#fff";
-                e.target.classList.remove("show");
-              } else {
-                e.target.style.color = `${color}`;
-                e.target.classList.add("show");
-              }
-            };
-          });
-          // scroll list
-          // function handleScroll(next, prev, element) {
-          //   const scroll = element.scrollWidth - element.clientWidth;
-          //   next.onclick = (e) => {
-          //     element.scrollLeft += scroll;
-          //     if (
-          //       element.clientWidth + Math.round(element.scrollLeft) ===
-          //       element.scrollWidth - scroll
-          //     ) {
-          //       next.classList.add("disabled");
-          //       prev.classList.remove("disabled");
-          //     }
-          //   };
-          //   prev.onclick = (e) => {
-          //     element.scrollLeft -= scroll;
-          //     if (
-          //       element.scrollLeft === 0 ||
-          //       Math.round(element.scrollLeft) === scroll
-          //     ) {
-          //       next.classList.remove("disabled");
-          //       prev.classList.add("disabled");
-          //     }
-          //   };
-          // }
-          //scroll playlist
-          // for (i = 0; i < Array.from(playlistElements).length; i++) {
-          //   handleScroll(
-          //     btnMoveNextPlaylists[i],
-          //     btnMovePrevPlaylists[i],
-          //     playlistElements[i]
-          //   );
-          // }
           function ScaleImage(selector) {
             imageElements = $$(selector);
             imageElements.forEach((image) => {
@@ -778,11 +675,11 @@ app.controller(
           );
           TitleID.pause();
           ThumbID.pause();
-          playBtn.onclick = (e) => {
+          playBtn.onclick = async (e) => {
             if (!isPLay) {
-              audio.play();
+              return audio.play();
             } else {
-              audio.pause();
+              return audio.pause();
             }
           };
           //khi audio play
@@ -792,11 +689,6 @@ app.controller(
             isPLay = true;
             ThumbID.play();
             TitleID.play();
-            // let songActive = $(".item-song.active");
-            // if (songActive) {
-            //   let songRun = songActive.querySelector(".song-run");
-            //   songRun.classList.remove("none");
-            // }
           };
           // khi audio dừng
           audio.onpause = function (e) {
@@ -843,11 +735,9 @@ app.controller(
               PlayRandom();
               _this.loadCurrentSong();
               audio.play();
-              // ScrollActiveSong();
             } else {
               NextSong();
               audio.play();
-              // ScrollActiveSong();
             }
           };
           // previous song
@@ -904,18 +794,12 @@ app.controller(
             console.log(newIndexSong);
             _this.currentIndex = newIndexSong;
           }
-          // function ScrollActiveSong() {
-          //   setTimeout(function () {
-          //     $(".item-song.active").scrollIntoView({
-          //       behavior: "smooth",
-          //       inline: "nearest",
-          //     });
-          //   }, 300);
-          // }
         },
         loadCurrentSong: function () {
           const user = JSON.parse(localStorage.getItem("user"));
-          const author = user.name;
+          if (user) {
+            var author = user.name;
+          }
           const currentSong = $rootScope.songs[this.currentIndex];
           thumb.setAttribute("src", currentSong.image);
           nameSong.innerText = currentSong.name;
@@ -933,7 +817,6 @@ app.controller(
           audio.play();
         },
         start: function () {
-          // this.defineProperties();
           this.render();
           this.handlerEvent();
           this.loadCurrentSong();
@@ -1021,7 +904,7 @@ app.controller(
         const songId = song.songId;
         $http({
           method: "POST",
-          url: `http://localhost:8090/user/favoriteSong/add?songId=${songId}&userId=${userId}`,
+          url: `${APP_API}favoriteSong/add?songId=${songId}&userId=${userId}`,
         }).then(
           function successCallback(response) {
             toast({
@@ -1040,6 +923,25 @@ app.controller(
 
     $scope.runASong = (song) => {
       $rootScope.songs = [song, ...$rootScope.songs];
+    };
+
+    $scope.getListSongInStore = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.userId;
+      globalService.ajaxGet(
+        `song/artist/${userId}`,
+        {},
+        function (data, status, config) {
+          $scope.nameSinger = data[0].name;
+          const listSong = JSON.parse(data[0].list_json_song);
+          if (listSong) {
+            [...listSong].forEach((song) => {
+              song.duration = convertTime(song.duration);
+            });
+            $rootScope.listSongInStore = listSong;
+          }
+        }
+      );
     };
   }
 );

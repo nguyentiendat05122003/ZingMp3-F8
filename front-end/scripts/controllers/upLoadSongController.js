@@ -2,7 +2,7 @@ import toast from "../js/toast.js";
 
 app.controller(
   "uploadSongController",
-  function ($http, $rootScope, $scope, $routeParams) {
+  function ($http, $rootScope, $scope, $routeParams, globalService) {
     $scope.imageSong = "https://photo-zmp3.zmdcdn.me/album_default.png";
     $scope.listTypeSong = JSON.parse(localStorage.getItem("typeSong"));
     const account = JSON.parse(localStorage.getItem("account"));
@@ -16,47 +16,56 @@ app.controller(
       }
     };
     $scope.addSong = () => {
-      const audio = document.querySelector(".audio-preview");
       const user = JSON.parse(localStorage.getItem("user"));
       const userId = user?.userId;
-      let data = new FormData();
-      console.log(jwt);
-      data.append("name", $scope.nameSong);
-      data.append("desc", $scope.descSong);
-      data.append("userId", userId);
-      data.append("image", $scope.imageSong);
-      data.append("source", $scope.source);
-      data.append("duration", audio.duration);
-      data.append("typeSongId", $scope.selectedProduct);
-      $scope.showLoader = true;
-      $http({
-        method: "POST",
-        url: "http://localhost:3002/song/add",
-        data: data,
-        headers: {
-          "Content-Type": undefined,
-          // token: `Bearer ${jwt}`,
-        },
-      }).then(
-        function successCallback(response) {
-          $scope.showLoader = false;
-          toast({
-            title: "Thành công!",
-            message: "Đăng bài hát thành công",
-            type: "success",
-            duration: 3000,
-          });
-        },
-        function errorCallback(response) {
-          $scope.showLoader = false;
-          toast({
-            title: "Thất bại!",
-            message: response.data,
-            type: "error",
-            duration: 5000,
-          });
-        }
-      );
+      const isBan = user?.isBan;
+      if (isBan) {
+        return;
+      } else {
+        const audio = document.querySelector(".audio-preview");
+        let data = new FormData();
+        data.append("name", $scope.nameSong);
+        data.append("desc", $scope.descSong);
+        data.append("userId", userId);
+        data.append("image", $scope.imageSong);
+        data.append("source", $scope.source);
+        data.append("duration", audio.duration);
+        data.append("typeSongId", $scope.selectedProduct);
+        $scope.showLoader = true;
+        $http({
+          method: "POST",
+          url: `${APP_API}/song/add`,
+          data: data,
+          headers: {
+            "Content-Type": undefined,
+          },
+        }).then(
+          function successCallback(response) {
+            $scope.showLoader = false;
+            toast({
+              title: "Thành công!",
+              message: "Đăng bài hát thành công",
+              type: "success",
+              duration: 3000,
+            });
+            $scope.nameSong = "";
+            $scope.descSong = "";
+            $scope.imageSong = "https://photo-zmp3.zmdcdn.me/album_default.png";
+            $scope.source = null;
+            $scope.getListSongInStore();
+            $scope.ShowFormInfoSong();
+          },
+          function errorCallback(response) {
+            $scope.showLoader = false;
+            toast({
+              title: "Thất bại!",
+              message: response.data,
+              type: "error",
+              duration: 5000,
+            });
+          }
+        );
+      }
     };
   }
 );

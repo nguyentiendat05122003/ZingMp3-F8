@@ -10,43 +10,13 @@
           <div class="row">
             <form>
               <div class="col-12 col-s-12 padding-box">
-                <label for="txtright">Tên thể loại:</label>
+                <label for="typeSongName">Tên thể loại:</label>
               </div>
               <div class="col-12 col-s-12 padding-box">
                 <input
                   type="text"
-                  id="tenkh"
+                  id="typeSongName"
                   placeholder="Nhập tên thể loại..."
-                />
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txtright">Địa chỉ:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="email"
-                  id="emailkh"
-                  placeholder="Nhập quốc gia thể loại..."
-                />
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txt-login">Tên đăng nhập:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="text"
-                  id="txt-login"
-                  placeholder="Nhập tên đăng nhập thể loại..."
-                />
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txtright">Mật khẩu:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="password"
-                  id="mkkh"
-                  placeholder="Nhập mật khẩu thể loại..."
                 />
               </div>
             </form>
@@ -54,15 +24,10 @@
           <hr />
           <button
             class="btn-form"
+            ng-click="addType()"
             style="background-color: rgba(44, 140, 15, 0.8)"
           >
             Thêm thể loại
-          </button>
-          <button
-            class="btn-form"
-            style="background-color: rgba(227, 32, 21, 0.8)"
-          >
-            Nhập mới
           </button>
         </div>
       </div>
@@ -109,8 +74,12 @@
                     <td>{{type.typeSongId}}</td>
                     <td>{{type.name}}</td>
                     <td style="text-align: center">
-                      <i class="fas fa-edit" title="Sửa"></i>
-                      <i class="fas fa-trash-alt" title="Xóa"></i>
+                      <i class="fas fa-edit btn-editType" title="Sửa"></i>
+                      <i
+                        ng-click="deleteTypeSong(type)"
+                        class="fas fa-trash-alt"
+                        title="Xóa"
+                      ></i>
                     </td>
                   </tr>
                 </tbody>

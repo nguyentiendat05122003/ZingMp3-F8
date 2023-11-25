@@ -53,33 +53,23 @@ angular
         username: $scope.usernameLogin,
         password: $scope.passwordLogin,
       };
-      $scope.showLoader = true;
       $http({
         method: "POST",
         url: "http://localhost:8090/auth/login",
         data: JSON.stringify(data),
       }).then(
         function successCallback(response) {
-          $scope.showLoader = false;
-          toast({
-            title: "Thành công!",
-            message: "Đăng nhập thành công",
-            type: "success",
-            duration: 5000,
-          });
           localStorage.setItem("account", JSON.stringify(response.data));
           const typeId = response.data.account.typeAccountId;
           if (typeId == 3 || typeId == 2) {
-            $window.location.href = "../index.html";
+            $window.location.href = "../user.html";
           } else {
-            $window.location.href = "../index2.html";
+            $window.location.href = "../admin.html";
           }
         },
         function errorCallback(response) {
-          $scope.showLoader = false;
           if (response.status == 0) {
           }
-
           toast({
             title: "Thất bại!",
             message: response.data,

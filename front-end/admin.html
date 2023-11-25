@@ -12,11 +12,11 @@
       rel="stylesheet"
       href="assets/font/fontawesome-free-6.1.1-web/css/all.min.css"
     />
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="assets/styles/main.css" />
     <script src="scripts/common/library/angularJS.min_1.4.0.js"></script>
     <script src="scripts/common/library/angularJS-route.min_1.4.0.js"></script>
     <script src="scripts/controllersOfAdmin/app.js"></script>
-    <link rel="stylesheet" href="./styles/main_QT.css" />
+    <link rel="stylesheet" href="assets/styles/main_QT.css" />
     <script src="scripts/js/global.js"></script>
     <script type="module" src="scripts/js/confirm.js"></script>
   </head>
@@ -76,15 +76,77 @@
         <ng-view></ng-view>
       </div>
       <div id="toast"></div>
+      <div ng-hide="isHideFormArtist" class="container-formType form-typeSong">
+        <div class="content">
+          <div class="content-header">
+            <h1>Thông tin</h1>
+            <i
+              ng-click="hideFormArtist()"
+              class="fa-solid fa-xmark btn-close-formInfo"
+            ></i>
+          </div>
+          <div class="wrapper-content">
+            <form class="form-info">
+              <div class="form-text">
+                <div class="left">
+                  <label for="name">Tên nghệ sĩ :</label>
+                  <input
+                    ng-model="nameUser"
+                    type="text"
+                    id="name"
+                    name="name"
+                  />
+
+                  <label for="email">Email nghệ sĩ :</label>
+                  <input
+                    ng-model="emailUser"
+                    type="text"
+                    id="email"
+                    name="email"
+                  />
+                  <label for="nameAccount">Tên tài khoản:</label>
+                  <input
+                    ng-model="nameAccount"
+                    type="text"
+                    id="nameAccount"
+                    name="nameAccount"
+                  />
+                  <label for="password">Mật khẩu:</label>
+                  <input
+                    ng-model="passwordAccount"
+                    type="password"
+                    id="password"
+                    name="password"
+                  />
+                </div>
+              </div>
+              <button
+                ng-click="addArtist()"
+                style="padding: 5px 10px"
+                type="submit"
+                class="btn-submit"
+              >
+                Thêm nghệ sĩ
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="scripts/controllersOfAdmin/mainController.js"></script>
+    <script
+      type="module"
+      src="scripts/controllersOfAdmin/mainController.js"
+    ></script>
     <script src="scripts/controllersOfAdmin/statisticalController.js"></script>
     <script src="scripts/controllersOfAdmin/userController.js"></script>
     <script
       type="module"
       src="scripts/controllersOfAdmin/artistController.js"
     ></script>
-    <script src="scripts/controllersOfAdmin/typeSongController.js"></script>
+    <script
+      type="module"
+      src="scripts/controllersOfAdmin/typeSongController.js"
+    ></script>
     <script src="scripts/controllersOfAdmin/accountController.js"></script>
     <script type="module" src="scripts/js/toast.js"></script>
   </body>

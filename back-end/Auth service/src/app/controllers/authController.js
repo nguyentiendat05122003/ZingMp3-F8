@@ -33,8 +33,8 @@ class AuthController {
         ...req.body,
         password: hashedPassword,
       });
-      console.log(account);
-      res.send("register successful");
+      const { password, ...rest } = account.dataValues;
+      return res.status(200).json(rest);
     } catch (error) {
       res.status(500).json(error);
     }

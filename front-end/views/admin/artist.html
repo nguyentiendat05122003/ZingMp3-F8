@@ -1,77 +1,12 @@
 <section class="main">
   <div class="row">
     <div class="col-12 col-s-12">
-      <div class="col-4 col-s-12 content">
-        <div class="tabcontent">
-          <div class="title">
-            <i class="fas fa-users"></i> Nhập thông tin nghệ sĩ
-            <hr />
-          </div>
-          <div class="row">
-            <form>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txtright">Tên nghệ sĩ:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="text"
-                  id="tenkh"
-                  placeholder="Nhập tên nghệ sĩ..."
-                />
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txtright">Địa chỉ:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="email"
-                  id="emailkh"
-                  placeholder="Nhập quốc gia nghệ sĩ..."
-                />
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txt-login">Tên đăng nhập:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="text"
-                  id="txt-login"
-                  placeholder="Nhập tên đăng nhập nghệ sĩ..."
-                />
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="txtright">Mật khẩu:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="password"
-                  id="mkkh"
-                  placeholder="Nhập mật khẩu nghệ sĩ..."
-                />
-              </div>
-            </form>
-          </div>
-          <hr />
-          <button
-            class="btn-form"
-            style="background-color: rgba(44, 140, 15, 0.8)"
-          >
-            Thêm nghệ sĩ
-          </button>
-          <button
-            class="btn-form"
-            style="background-color: rgba(227, 32, 21, 0.8)"
-          >
-            Nhập mới
-          </button>
-        </div>
-      </div>
-      <div class="col-8 col-s-12 content">
+      <div class="col-12 col-s-12 content">
         <div class="tabcontent">
           <div class="title">
             <i class="fas fa-users"></i> Danh sách nghệ sĩ
-            <button style="margin-right: 3px">
-              <i class="far fa-trash-alt"></i> Xóa chọn
+            <button ng-click="showFormArtist()" style="margin-right: 3px">
+              <i class="fa-solid fa-user-plus"></i> Thêm mới
             </button>
             <hr />
           </div>
@@ -88,15 +23,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-s-12 padding-box">
+            <div style="min-height: 250px" class="col-12 col-s-12 padding-box">
               <table>
                 <thead>
                   <tr>
-                    <th style="padding-top: 10px">
-                      <input type="checkbox" />
-                    </th>
                     <th>Mã nghệ sĩ</th>
                     <th>Tên nghệ sĩ</th>
+                    <th>Email</th>
                     <th>Địa chỉ</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
@@ -104,17 +37,18 @@
                 </thead>
                 <tbody id="listCustomer"></tbody>
                 <tbody ng-repeat="artist in listArtist">
-                  <tr>
-                    <td style="text-align: center; padding-top: 10px">
-                      <input type="checkbox" value="" id="" />
-                    </td>
-                    <td>{{artist.userId}}</td>
+                  <tr style="text-align: center">
+                    <td>{{artist.RowNumber }}</td>
                     <td>{{artist.name}}</td>
+                    <td>{{artist.email}}</td>
                     <td>{{artist.country}}</td>
                     <td>{{artist.isBan}}</td>
                     <td style="text-align: center">
-                      <i class="fas fa-edit" title="Sửa"></i>
-                      <i class="fas fa-trash-alt" title="Xóa"></i>
+                      <i
+                        ng-click="handleRemoveArtist(artist)"
+                        class="fas fa-trash-alt"
+                        title="Xóa"
+                      ></i>
                       <i
                         ng-click="handleBanAccount(artist)"
                         class="fa-solid fa-ban"
@@ -127,7 +61,20 @@
             <div class="col-12 col-s-12 padding-box">
               <div class="box-sum">
                 <div class="box-left">
-                  Số lượng nghệ sĩ: <span id="soluong">{{qualityArtist}}</span>
+                  Tổng số lượng nghệ sĩ:
+                  <span id="soluong">{{qualityArtist}}</span>
+                </div>
+                <div class="box-right">
+                  <button><i class="fas fa-angle-left"></i></button>
+                  <button
+                    ng-click="handleClickPage(index)"
+                    style="margin: 0 2px; opacity: 0.2"
+                    ng-repeat="index in listPage"
+                    class="btn-page btn-page-{{index}}"
+                  >
+                    {{index + 1}}
+                  </button>
+                  <button><i class="fas fa-angle-right"></i></button>
                 </div>
               </div>
             </div>

@@ -20,8 +20,8 @@
             </div>
             <div class="songs">
               <ul ng-repeat="song in listSongInStore" class="list">
-                <li ng-click="runASong(song)" class="item-song">
-                  <div class="song-info">
+                <li class="item-song">
+                  <div ng-click="runASong(song)" class="song-info">
                     <div class="song-img">
                       <img ng-src="{{song.image}}" alt="" />
                       <div class="song-run none"></div>
