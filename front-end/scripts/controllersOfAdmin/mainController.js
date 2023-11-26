@@ -3,15 +3,21 @@ app.controller(
   "mainController",
   function ($http, $rootScope, $scope, $window, $routeParams, $timeout) {
     $scope.nameUser = "";
+    $scope.isHideFormArtist = true;
     $scope.nameAccount = "";
     $scope.passwordAccount = "";
     $scope.emailUser = "";
+    $scope.isHideFormInfoUser = true;
+    $scope.isHideFormAccount = true;
+    $scope.nameUserAccount = "";
+    $scope.emailUserAccount = "";
+    $scope.nameLogin = "";
+    $scope.passwordLogin = "";
     $scope.logOut = () => {
       localStorage.removeItem("account");
       localStorage.removeItem("user");
       $window.location.href = "./views/auth.html";
     };
-    $scope.isHideFormArtist = true;
     $scope.showFormArtist = (type) => {
       $scope.isHideFormArtist = false;
     };
@@ -32,11 +38,11 @@ app.controller(
         function successCallback(response) {
           toast({
             title: "Thành công!",
-            message: "Bạn đã đăng ký thành công tài khoản tại F8.",
+            message: "Bạn đã đăng ký thành công.",
             type: "success",
             duration: 5000,
           });
-          $scope.updateUser(response.data.accountId);
+          $scope.updateUser(response.data.accountId, 2);
         },
         function errorCallback(response) {
           if (
@@ -61,12 +67,19 @@ app.controller(
       );
     };
 
-    $scope.updateUser = (accountId) => {
+    $scope.updateUser = (accountId, typeAccountId) => {
       let data = new FormData();
-      data.append("name", $scope.nameUser);
-      data.append("email", $scope.emailUser);
-      data.append("isBan", 0);
-      data.append("accountId", accountId);
+      if (typeAccountId === 2) {
+        data.append("name", $scope.nameUser);
+        data.append("email", $scope.emailUser);
+        data.append("isBan", 0);
+        data.append("accountId", accountId);
+      } else if (typeAccountId === 1) {
+        data.append("name", $scope.nameUserAccount);
+        data.append("email", $scope.emailUserAccount);
+        data.append("isBan", 0);
+        data.append("accountId", accountId);
+      }
       $http({
         method: "PUT",
         url: `http://localhost:3002/user/edit`,
@@ -74,11 +87,20 @@ app.controller(
         headers: { "Content-Type": undefined },
       }).then(
         function successCallback(response) {
-          $scope.getListArtist();
-          $scope.nameUser = "";
-          $scope.emailUser = "";
-          $scope.passwordAccount = "";
-          $scope.emailUser = "";
+          if (typeAccountId === 1) {
+            $scope.getListUser();
+            $scope.nameUserAccount = "";
+            $scope.emailUserAccount = "";
+            $scope.nameLogin = "";
+            $scope.passwordLogin = "";
+            $scope.isHideFormAccount = !$scope.isHideFormAccount;
+          } else if (typeAccountId === 2) {
+            $scope.getListArtist();
+            $scope.nameUser = "";
+            $scope.emailUser = "";
+            $scope.passwordAccount = "";
+            $scope.emailUser = "";
+          }
         },
         function errorCallback(response) {}
       );
@@ -123,9 +145,136 @@ app.controller(
         }
       });
     };
-    window.onload = () => {
-      const listBtn = document.querySelectorAll(`.btn-page`);
-      listBtn[0].classList.add("active");
+
+    $scope.getInfoUser = () => {
+      const account = JSON.parse(localStorage.getItem("account"));
+      const accountId = account.account.accountId;
+      $http({
+        method: "GET",
+        url: `http://localhost:8090/user/user/${accountId}`,
+      }).then(
+        function successCallback(response) {
+          const user = response.data[0];
+          const { name, country, email } = user;
+          console.log(user);
+          $scope.username = name;
+          $scope.country = country;
+          $scope.email = email;
+          localStorage.setItem("user", JSON.stringify(user));
+          $rootScope.infoAccount = user;
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
+    };
+
+    $scope.getInfoUser();
+
+    $scope.showFromUser = () => {
+      $scope.isHideFormInfoUser = false;
+      const user = JSON.parse(localStorage.getItem("user"));
+      $scope.nameOfAccount = user.name;
+      $scope.emailAccount = user.email;
+      $scope.countryAccount = user.country;
+    };
+    $scope.showFromAccount = () => {
+      $scope.isHideFormAccount = !$scope.isHideFormAccount;
+    };
+    $scope.hideShowFromUser = () => {
+      $scope.isHideFormInfoUser = true;
+    };
+
+    $scope.updateInfoUser = () => {
+      const account = JSON.parse(localStorage.getItem("account"));
+      const accountId = account.account.accountId;
+      let data = new FormData();
+      data.append("name", $scope.nameOfAccount);
+      data.append("email", $scope.emailAccount);
+      data.append("country", $scope.countryAccount);
+      data.append("isBan", 0);
+      data.append("accountId", accountId);
+      $http({
+        method: "PUT",
+        url: `http://localhost:3002/user/edit`,
+        data: data,
+        headers: { "Content-Type": undefined },
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: "Bạn đã lưu thông tin thành công",
+            type: "success",
+            duration: 5000,
+          });
+          $scope.getInfoUser();
+        },
+        function errorCallback(response) {
+          toast({
+            title: "Thất bại!",
+            message: response.data,
+            type: "error",
+            duration: 5000,
+          });
+        }
+      );
+    };
+
+    $scope.addAccount = () => {
+      let data = {
+        username: $scope.nameLogin,
+        password: $scope.passwordLogin,
+        typeAccountId: 1,
+      };
+      $http({
+        method: "POST",
+        url: "http://localhost:8090/auth/register",
+        data: JSON.stringify(data),
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: "Bạn đã đăng ký thành công",
+            type: "success",
+            duration: 3000,
+          });
+          $scope.updateUser(response.data.accountId, 1);
+        },
+        function errorCallback(response) {
+          if (
+            response.data.errors[0].message ==
+            "UQ__Accounts__F3DBC572C017D43E must be unique"
+          ) {
+            toast({
+              title: "Thất bại!",
+              message: "Tên tài khoản của bạn đã được đặt",
+              type: "error",
+              duration: 5000,
+            });
+          } else {
+            toast({
+              title: "Thất bại!",
+              message: response.data,
+              type: "error",
+              duration: 5000,
+            });
+          }
+        }
+      );
+    };
+    $scope.getListUser = (page_index = 0, page_size = 0, name = "") => {
+      $http({
+        method: "GET",
+        url: `http://localhost:8090/user/typeAccount/1?page_index=${page_index}&page_size=${page_size}&name=${name}`,
+      }).then(
+        function successCallback(response) {
+          $scope.listUser = response.data;
+          $scope.qualityUser = response.data.length;
+        },
+        function errorCallback(response) {
+          console.log(response);
+        }
+      );
     };
   }
 );

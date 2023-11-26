@@ -9,10 +9,6 @@ app.controller(
     $rootScope.typeSongMenu = false;
     $rootScope.accountMenu = false;
 
-    const account = localStorage.getItem("account");
-    // if (account) {
-    //   $scope.getListArtist();
-    // }
     $scope.handleBanAccount = (artist) => {
       const artistId = artist.userId;
       const isBan = artist.isBan;
@@ -76,7 +72,12 @@ app.controller(
         });
       }
     };
-
+    window.onload = () => {
+      const listBtn = document.querySelectorAll(`.btn-page`);
+      if (listBtn) {
+        listBtn[0].classList.add("active");
+      }
+    };
     $scope.handleRemoveArtist = (artist) => {
       const accountId = artist.accountId;
       Confirm.open({

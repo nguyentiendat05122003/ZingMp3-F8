@@ -4,9 +4,9 @@
       <div class="col-12 col-s-12 content">
         <div class="tabcontent">
           <div class="title">
-            <i class="fas fa-users"></i> Danh sách người dùng
-            <button style="margin-right: 3px">
-              <i class="far fa-trash-alt"></i> Xóa chọn
+            <i class="fas fa-users"></i> Danh sách tài khoản admin
+            <button ng-click="showFromAccount()" style="margin-right: 3px">
+              <i class="fa-solid fa-user-plus"></i> Thêm mới
             </button>
             <hr />
           </div>
@@ -26,28 +26,26 @@
             <div class="col-12 col-s-12 padding-box">
               <table>
                 <thead>
-                  <tr>
-                    <th style="padding-top: 10px">
-                      <input type="checkbox" />
-                    </th>
+                  <tr style="text-align: center">
                     <th>Mã người dùng</th>
                     <th>Tên người dùng</th>
+                    <th>Email</th>
                     <th>Địa chỉ</th>
                     <th>Thao tác</th>
                   </tr>
                 </thead>
-                <tbody id="listCustomer"></tbody>
                 <tbody ng-repeat="user in listUser">
-                  <tr>
-                    <td style="text-align: center; padding-top: 10px">
-                      <input type="checkbox" value="" id="" />
-                    </td>
-                    <td>{{user.userId}}</td>
+                  <tr style="text-align: center">
+                    <td>{{user.RowNumber}}</td>
                     <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
                     <td>{{user.country}}</td>
                     <td style="text-align: center">
-                      <i class="fas fa-edit" title="Sửa"></i>
-                      <i class="fas fa-trash-alt" title="Xóa"></i>
+                      <i
+                        ng-click="handleRemoveUser(user)"
+                        class="fas fa-trash-alt"
+                        title="Xóa"
+                      ></i>
                     </td>
                   </tr>
                 </tbody>

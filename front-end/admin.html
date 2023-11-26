@@ -32,7 +32,7 @@
           </li>
           <li ng-class="{'active':userMenu}">
             <a href="#/user"
-              ><i class="fa-solid fa-user"></i><span>Người dùng</span></a
+              ><i class="fa-solid fa-user"></i><span>Tài khoản (admin)</span></a
             >
           </li>
           <li ng-class="{'active':artistMenu}">
@@ -132,13 +132,123 @@
           </div>
         </div>
       </div>
+      <div
+        ng-hide="isHideFormInfoUser"
+        class="container-formType form-typeSong"
+      >
+        <div class="content">
+          <div class="content-header">
+            <h1>Thông tin</h1>
+            <i
+              ng-click="hideShowFromUser()"
+              class="fa-solid fa-xmark btn-close-formInfo"
+            ></i>
+          </div>
+          <div class="wrapper-content">
+            <form class="form-info">
+              <div class="form-text">
+                <div class="left">
+                  <label for="nameOfAccount">Tên người dùng :</label>
+                  <input
+                    ng-model="nameOfAccount"
+                    type="text"
+                    id="nameOfAccount"
+                    name="nameOfAccount"
+                  />
+                  <label for="emailAccount">Email người dùng :</label>
+                  <input
+                    ng-model="emailAccount"
+                    type="text"
+                    id="emailAccount"
+                    name="emailAccount"
+                  />
+                  <label for="countryAccount">Quốc gia :</label>
+                  <input
+                    ng-model="countryAccount"
+                    type="text"
+                    id="countryAccount"
+                    name="countryAccount"
+                  />
+                </div>
+              </div>
+              <button
+                ng-click="updateInfoUser()"
+                style="padding: 5px 10px"
+                type="submit"
+                class="btn-submit"
+              >
+                Thay đổi
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div ng-hide="isHideFormAccount" class="container-formType form-typeSong">
+        <div class="content">
+          <div class="content-header">
+            <h1>Thông tin</h1>
+            <i
+              ng-click="showFromAccount()"
+              class="fa-solid fa-xmark btn-close-formInfo"
+            ></i>
+          </div>
+          <div class="wrapper-content">
+            <form class="form-info">
+              <div class="form-text">
+                <div class="left">
+                  <label for="name">Tên tài khoản :</label>
+                  <input
+                    ng-model="nameUserAccount"
+                    type="text"
+                    id="nameUserAccount"
+                    name="nameUserAccount"
+                  />
+
+                  <label for="emailUserAccount">Email tài khoản :</label>
+                  <input
+                    ng-model="emailUserAccount"
+                    type="text"
+                    id="emailUserAccount"
+                    name="emailUserAccount"
+                  />
+                  <label for="nameLogin">Tên đăng nhâp:</label>
+                  <input
+                    ng-model="nameLogin"
+                    type="text"
+                    id="nameLogin"
+                    name="nameLogin"
+                  />
+                  <label for="passwordLogin">Mật khẩu:</label>
+                  <input
+                    ng-model="passwordLogin"
+                    type="password"
+                    id="passwordLogin"
+                    name="passwordLogin"
+                  />
+                </div>
+              </div>
+              <button
+                ng-click="addAccount()"
+                style="padding: 5px 10px"
+                type="submit"
+                class="btn-submit"
+              >
+                Thêm tài khoản
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     <script
       type="module"
       src="scripts/controllersOfAdmin/mainController.js"
     ></script>
     <script src="scripts/controllersOfAdmin/statisticalController.js"></script>
-    <script src="scripts/controllersOfAdmin/userController.js"></script>
+    <script
+      type="module"
+      src="scripts/controllersOfAdmin/userController.js"
+    ></script>
     <script
       type="module"
       src="scripts/controllersOfAdmin/artistController.js"

@@ -1,3 +1,5 @@
+import Confirm from "../js/confirm.js";
+import toast from "../js/toast.js";
 app.controller(
   "userCtrl",
   function ($http, $rootScope, $scope, $window, $routeParams) {
@@ -8,22 +10,39 @@ app.controller(
     $rootScope.accountMenu = false;
 
     const account = localStorage.getItem("account");
-    $scope.getListUser = (page_index = 0, page_size = 0, name = "") => {
-      $http({
-        method: "GET",
-        url: `http://localhost:8090/user/typeAccount/3?page_index=${page_index}&page_size=${page_size}&name=${name}`,
-      }).then(
-        function successCallback(response) {
-          $scope.listUser = response.data;
-          $scope.qualityUser = response.data.length;
-        },
-        function errorCallback(response) {
-          console.log(response);
-        }
-      );
-    };
     if (account) {
       $scope.getListUser();
     }
+    $scope.handleRemoveUser = (user) => {
+      const accountId = user.accountId;
+      Confirm.open({
+        title: "Thông báo",
+        message: "Bạn có muốn xóa người dùng này không ?",
+        onok: () => {
+          $http({
+            method: "DELETE",
+            url: `http://localhost:8090/admin/account/${accountId}/delete`,
+          }).then(
+            function successCallback(response) {
+              toast({
+                title: "Thành công!",
+                message: response.data,
+                type: "success",
+                duration: 2000,
+              });
+              $scope.getListUser();
+            },
+            function errorCallback(response) {
+              toast({
+                title: "Thất bại!",
+                message: "Người dùng này đã có dữ liệu chỉ nên chặn",
+                type: "error",
+                duration: 5000,
+              });
+            }
+          );
+        },
+      });
+    };
   }
 );

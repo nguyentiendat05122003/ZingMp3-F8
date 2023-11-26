@@ -8,12 +8,5 @@ app.controller(
     $rootScope.accountMenu = true;
     const account = JSON.parse(localStorage.getItem("account"));
     const user = JSON.parse(localStorage.getItem("user"));
-    $scope.getInfoAccount = () => {
-      const info = { ...account, ...user };
-      $scope.infoAccount = info.account;
-    };
-    if (account) {
-      $scope.getInfoAccount();
-    }
   }
 );
