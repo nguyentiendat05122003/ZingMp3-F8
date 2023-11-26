@@ -3,27 +3,6 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 class AuthController {
-  // generateAccessToken(account) {
-  //   return jwt.sign(
-  //     {
-  //       accountId: account.accountId,
-  //       typeAccount: account.typeAccountId,
-  //     },
-  //     process.env.ACCESS_TOKEN_SECRET_KEY,
-  //     { expiresIn: "30s" }
-  //   );
-  // }
-
-  // async generateRefreshToken(account) {
-  //   return jwt.sign(
-  //     {
-  //       accountId: account.accountId,
-  //       typeAccount: account.typeAccountId,
-  //     },
-  //     process.env.ACCESS_TOKEN_SECRET_KEY,
-  //     { expiresIn: "365d" }
-  //   );
-  // }
   //[POST] /register
   async register(req, res) {
     try {
@@ -75,12 +54,6 @@ class AuthController {
           process.env.ACCESS_TOKEN_SECRET_KEY,
           { expiresIn: "365d" }
         );
-        // res.cookie("refreshToken", refreshToken, {
-        //   httpOnly: true,
-        //   secure: false,
-        //   path: "/",
-        //   sameSite: "strict",
-        // });
         const { password, ...rest } = account.dataValues;
         return res
           .status(200)
@@ -125,7 +98,7 @@ class AuthController {
     );
   }
 
-  //
+  //[POST] /logout
   logOut(req, res) {
     res.clearCookie("refreshToken");
     res.status(200).json("Logged out successfully!");

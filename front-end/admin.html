@@ -239,6 +239,50 @@
           </div>
         </div>
       </div>
+      <div
+        ng-hide="isHideFormChangePassword"
+        class="container-formType form-typeSong"
+      >
+        <div class="content">
+          <div class="content-header">
+            <h1>Thông tin</h1>
+            <i
+              ng-click="showFromChangePassword()"
+              class="fa-solid fa-xmark btn-close-formInfo"
+            ></i>
+          </div>
+          <div class="wrapper-content">
+            <form class="form-info">
+              <div class="form-text">
+                <div class="left">
+                  <label for="oldPassword">Mật khẩu cũ :</label>
+                  <input
+                    ng-model="oldPassword"
+                    type="password"
+                    id="oldPassword"
+                    name="oldPassword"
+                  />
+                  <label for="newPassword">Mật khẩu mới :</label>
+                  <input
+                    ng-model="newPassword"
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                  />
+                </div>
+              </div>
+              <button
+                ng-click="handleClickChangePassword()"
+                style="padding: 5px 10px"
+                type="submit"
+                class="btn-submit"
+              >
+                Thay đổi
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     <script
       type="module"

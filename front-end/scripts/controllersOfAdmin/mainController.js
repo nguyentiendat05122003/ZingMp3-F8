@@ -9,10 +9,13 @@ app.controller(
     $scope.emailUser = "";
     $scope.isHideFormInfoUser = true;
     $scope.isHideFormAccount = true;
+    $scope.isHideFormChangePassword = true;
     $scope.nameUserAccount = "";
     $scope.emailUserAccount = "";
     $scope.nameLogin = "";
     $scope.passwordLogin = "";
+    $scope.oldPassword = "";
+    $scope.newPassword = "";
     $scope.logOut = () => {
       localStorage.removeItem("account");
       localStorage.removeItem("user");
@@ -181,6 +184,9 @@ app.controller(
     $scope.showFromAccount = () => {
       $scope.isHideFormAccount = !$scope.isHideFormAccount;
     };
+    $scope.showFromChangePassword = () => {
+      $scope.isHideFormChangePassword = !$scope.isHideFormChangePassword;
+    };
     $scope.hideShowFromUser = () => {
       $scope.isHideFormInfoUser = true;
     };
@@ -273,6 +279,40 @@ app.controller(
         },
         function errorCallback(response) {
           console.log(response);
+        }
+      );
+    };
+
+    $scope.handleClickChangePassword = () => {
+      let data = {
+        oldPassword: $scope.oldPassword,
+        newPassword: $scope.newPassword,
+      };
+      const account = JSON.parse(localStorage.getItem("account"));
+      const accountId = account.account.accountId;
+      $http({
+        method: "POST",
+        url: `http://localhost:8090/admin/account/${accountId}/changePassword`,
+        data: JSON.stringify(data),
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: "Bạn đã đổi mật khẩu thành công",
+            type: "success",
+            duration: 3000,
+          });
+          $scope.oldPassword = "";
+          $scope.newPassword = "";
+          $scope.isHideFormChangePassword = !$scope.isHideFormChangePassword;
+        },
+        function errorCallback(response) {
+          toast({
+            title: "Thất bại!",
+            message: response.data,
+            type: "error",
+            duration: 5000,
+          });
         }
       );
     };
