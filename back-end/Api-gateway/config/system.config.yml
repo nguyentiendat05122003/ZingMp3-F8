@@ -28,3 +28,5 @@ plugins:
     package: "../../../plugins/verifyArtist-token/manifest.js"
   verifyAdmin-token:
     package: "../../../plugins/verifyAdmin-token/manifest.js"
+  verifyArtistSelf-token:
+    package: "../../../plugins/verifyArtistSelf-token/manifest.js"

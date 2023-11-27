@@ -17,6 +17,7 @@ app.controller(
     };
     $scope.addSong = () => {
       const user = JSON.parse(localStorage.getItem("user"));
+      const account = JSON.parse(localStorage.getItem("account"));
       const userId = user?.userId;
       const isBan = user?.isBan;
       if (isBan) {
@@ -34,7 +35,7 @@ app.controller(
         $scope.showLoader = true;
         $http({
           method: "POST",
-          url: `${APP_API}/song/add`,
+          url: `${APP_API}/song/add/${account.accountId}`,
           data: data,
           headers: {
             "Content-Type": undefined,

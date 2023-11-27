@@ -27,8 +27,8 @@ class MiddleWareController {
   verifyTokenAndArtistSelfAuth = (req, res, next) => {
     this.verifyToken(req, res, () => {
       if (
-        req.account.typeAccount == process.env.ID_ARTIST &&
-        req.account.accountId == req.params.artistId
+        req.account.typeAccount == 2 &&
+        req.account.accountId == req.params.id
       ) {
         next();
       } else {
@@ -48,6 +48,18 @@ class MiddleWareController {
   verifyTokenAndAdminAuth = (req, res, next) => {
     this.verifyToken(req, res, () => {
       if (req.account.typeAccount == 1) {
+        next();
+      } else {
+        res.status(403).json("you're not allowed to use function");
+      }
+    });
+  };
+  verifyTokenAndAdminSelfAuth = (req, res, next) => {
+    this.verifyToken(req, res, () => {
+      if (
+        req.account.typeAccount == 1 &&
+        req.account.accountId == req.params.id
+      ) {
         next();
       } else {
         res.status(403).json("you're not allowed to use function");

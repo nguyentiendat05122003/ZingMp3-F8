@@ -16,7 +16,7 @@ class SongControllers {
     });
     return res.status(200).json(listSong);
   }
-  //[POST] song/add
+  //[POST] song/add/:id
   async add(req, res, next) {
     if (!req.files["image"] && !req.files["source"]) {
       res.status(500).json("add song failure because miss audio or image");

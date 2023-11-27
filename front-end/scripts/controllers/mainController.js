@@ -835,7 +835,7 @@ app.controller(
     $scope.hideListSuggestSearchSong = true;
     $scope.hideListSuggestSearchArtist = true;
     $scope.hideListSuggestSearchType = true;
-    $scope.evaluateChange = function () {
+    $scope.handleChangeSearch = function () {
       $scope.isHideSearch = false;
       const input = document.querySelector(".input-search");
       $scope.valueSearch = input.value.trim();

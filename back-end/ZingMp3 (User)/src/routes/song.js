@@ -13,8 +13,7 @@ router.get("/typeSong/:typeSongId", songController.getSongFollowTypeSongDetail);
 router.get("/typeSong", songController.getSongFollowTypeSong);
 router.get("/", songController.index);
 router.post(
-  "/add",
-  // middlewareController.verifyTokenAndArtistAuth,
+  "/add/:id",
   upload.fields([
     { name: "image", maxCount: 1 },
     { name: "source", maxCount: 1 },

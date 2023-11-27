@@ -1,10 +1,10 @@
 http:
   port: 8090
 apiEndpoints:
-  countFollow:
+  apiCountFollow:
     paths:
       - "/follow/:followId"
-  getSong:
+  apiGetSong:
     paths:
       - "/song"
   getTypeSong:
@@ -27,7 +27,7 @@ apiEndpoints:
       - "/song/otherCountry"
   addSong:
     paths:
-      - "/song/add"
+      - "/song/add/:id"
   user:
     paths:
       - "/user/*"
@@ -49,6 +49,7 @@ policies:
   - cors
   - verify-token
   - verifyArtist-token
+  - verifyArtistSelf-token
   - verifyAdmin-token
 pipelines:
   getUserTypeNormal:
@@ -62,9 +63,9 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: adminService
-  getSong:
+  apiGetSong:
     apiEndpoints:
-      - getSong
+      - apiGetSong
     policies:
       - cors:
           - action:
@@ -73,9 +74,9 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: userService
-  countFollow:
+  apiCountFollow:
     apiEndpoints:
-      - countFollow
+      - apiCountFollow
     policies:
       - cors:
           - action:
@@ -143,11 +144,10 @@ pipelines:
     apiEndpoints:
       - addSong
     policies:
-      - verifyAdmin-token:
       - cors:
+      - verifyArtistSelf-token:
           - action:
               origin: "http://127.0.0.1:5501"
-              credentials: true
       - proxy:
           - action:
               serviceEndpoint: userService
