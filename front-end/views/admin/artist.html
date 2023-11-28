@@ -13,8 +13,10 @@
           <div class="row">
             <div class="col-10 col-s-12 padding-box">
               <input
+                ng-model="valueSearch"
                 type="text"
-                id="search-customer"
+                id="search-artist"
+                ng-change="handleChangeSearch()"
                 placeholder="Nhập mã, tên hoặc số điện thoại nghệ sĩ..."
               />
             </div>

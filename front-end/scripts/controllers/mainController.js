@@ -23,6 +23,12 @@ app.controller(
     $scope.country = "";
     $scope.email = "";
     $scope.desc = "";
+    $scope.IsShowFromChangePassword = true;
+    $scope.oldPassword = "";
+    $scope.newPassword = "";
+    $scope.hideFormChangePassword = () => {
+      $scope.IsShowFromChangePassword = !$scope.IsShowFromChangePassword;
+    };
     $scope.getInfoUser = () => {
       globalService.ajaxGet(
         `user/${accountId}`,
@@ -41,7 +47,39 @@ app.controller(
         }
       );
     };
-
+    $scope.handleClickChangePassword = () => {
+      let data = {
+        oldPassword: $scope.oldPassword,
+        newPassword: $scope.newPassword,
+      };
+      const account = JSON.parse(localStorage.getItem("account"));
+      const accountId = account.account.accountId;
+      $http({
+        method: "POST",
+        url: `http://localhost:8090/user/account/${accountId}/changePassword`,
+        data: JSON.stringify(data),
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: "Bạn đã đổi mật khẩu thành công",
+            type: "success",
+            duration: 3000,
+          });
+          $scope.oldPassword = "";
+          $scope.newPassword = "";
+          $scope.IsShowFromChangePassword = !$scope.IsShowFromChangePassword;
+        },
+        function errorCallback(response) {
+          toast({
+            title: "Thất bại!",
+            message: response.data,
+            type: "error",
+            duration: 5000,
+          });
+        }
+      );
+    };
     if (account) {
       $scope.getInfoUser();
     }

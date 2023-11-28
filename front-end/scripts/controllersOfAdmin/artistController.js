@@ -109,5 +109,15 @@ app.controller(
         },
       });
     };
+    $scope.handleChangeSearch = () => {
+      const input = document.querySelector("#search-artist");
+      $scope.valueSearch = input.value.trim();
+      let value = input.value.trim();
+      if (value !== "") {
+        $scope.getListArtist(0, 0, $scope.valueSearch);
+      } else {
+        $scope.getListArtist();
+      }
+    };
   }
 );

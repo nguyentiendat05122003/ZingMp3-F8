@@ -1,6 +1,9 @@
 http:
   port: 8090
 apiEndpoints:
+  apiUserChangePassword:
+    paths:
+      - "/account/changePassword/:id"
   apiCountFollow:
     paths:
       - "/follow/:followId"
@@ -51,7 +54,19 @@ policies:
   - verifyArtist-token
   - verifyArtistSelf-token
   - verifyAdmin-token
+  - verifyUserSelf-token
 pipelines:
+  apiUserChangePassword:
+    apiEndpoints:
+      - apiUserChangePassword
+    policies:
+      - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+      - verifyUserSelf-token:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
   getUserTypeNormal:
     apiEndpoints:
       - getUserTypeNormal

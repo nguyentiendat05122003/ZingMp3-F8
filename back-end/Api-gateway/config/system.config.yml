@@ -30,3 +30,5 @@ plugins:
     package: "../../../plugins/verifyAdmin-token/manifest.js"
   verifyArtistSelf-token:
     package: "../../../plugins/verifyArtistSelf-token/manifest.js"
+  verifyUserSelf-token:
+    package: "../../../plugins/verifyUserSelf-token/manifest.js"

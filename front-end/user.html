@@ -275,6 +275,43 @@
             </div>
           </div>
         </div>
+
+        <div ng-hide="IsShowFromChangePassword" class="modal-playList">
+          <div class="modal-wrapper">
+            <div class="modal-content">
+              <div class="form-playList-list">
+                <button
+                  ng-click="hideFormChangePassword()"
+                  class="btn-close btn-close-playList"
+                >
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <h3 class="title">Thay mật khẩu</h3>
+                <div>
+                  <input
+                    type="text"
+                    class="input-playList"
+                    placeholder="Nhập mật khẩu cũ"
+                    ng-model="oldPassword"
+                  />
+                  <input
+                    style="margin-top: 10px"
+                    type="text"
+                    class="input-playList"
+                    placeholder="Nhập mật khẩu mới"
+                    ng-model="newPassword"
+                  />
+                  <button
+                    ng-click="handleClickChangePassword()"
+                    class="btn-create btn-create-playlist"
+                  >
+                    Lưu
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div id="loading">
           <img
             src="https://gucongnghe.com/wp-content/uploads/2018/05/Zing-MP3.jpg"

@@ -115,13 +115,15 @@ app.controller(
         url: `http://localhost:8090/user/typeAccount/2?page_index=${page_index}&page_size=${page_size}&name=${name}`,
       }).then(
         function successCallback(response) {
-          [...response.data].forEach((item) => {
-            item.isBan = item.isBan ? "Ban" : "";
-          });
-          const data = response.data;
-          $scope.listArtist = data;
-          $scope.qualityArtist = data[0].RecordCount;
-          $scope.renderPage(data[0].RecordCount);
+          if (response.data) {
+            [...response.data].forEach((item) => {
+              item.isBan = item.isBan ? "Ban" : "";
+            });
+            const data = response.data;
+            $scope.listArtist = data;
+            $scope.qualityArtist = data[0].RecordCount;
+            $scope.renderPage(data[0].RecordCount);
+          }
         },
         function errorCallback(response) {
           console.log(response);
