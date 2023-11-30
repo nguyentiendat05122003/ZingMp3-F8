@@ -3,7 +3,6 @@ const router = express.Router();
 const songController = require("../app/controllers/songController");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
-const middlewareController = require("../app/controllers/middleWareController");
 
 router.get("/vietnam", songController.getSongVietNam);
 router.get("/otherCountry", songController.getSongOtherCountry);
@@ -28,9 +27,5 @@ router.put(
   ]),
   songController.edit
 );
-router.delete(
-  "/:artistId/delete/:id",
-  middlewareController.verifyTokenAndArtistSelfAuth,
-  songController.delete
-);
+router.delete("/:artistId/delete/:id", songController.delete);
 module.exports = router;

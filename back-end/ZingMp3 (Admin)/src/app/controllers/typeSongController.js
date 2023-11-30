@@ -1,4 +1,6 @@
+const { QueryTypes } = require("sequelize");
 const TypeSong = require("../models/TypeSongs");
+const { sequelize } = require("../../config/db");
 class TypeSongController {
   //[GET] /typeSong
   async index(req, res) {
@@ -44,6 +46,19 @@ class TypeSongController {
       },
     });
     res.status(200).json("Delete successful");
+  }
+
+  //[POST] /typeSong/customApi
+  async custom(req, res) {
+    const results = await sequelize.query(
+      "Exec sp_type_song_update_insert_delete :list_json_listType",
+      {
+        replacements: {
+          list_json_listType: JSON.stringify(req.body),
+        },
+      }
+    );
+    res.json("update successful");
   }
 }
 

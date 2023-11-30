@@ -3230,7 +3230,7 @@ input[type=range]:active::-webkit-slider-thumb {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  min-height: 150px;
+  min-height: 220px;
 }
 .new-song-container .list-song .item {
   position: relative;

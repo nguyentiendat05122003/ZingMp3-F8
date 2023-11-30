@@ -1,6 +1,9 @@
 http:
   port: 8090
 apiEndpoints:
+  apiSearch:
+    paths:
+      - "/search"
   apiUserChangePassword:
     paths:
       - "/account/changePassword/:id"
@@ -56,6 +59,16 @@ policies:
   - verifyAdmin-token
   - verifyUserSelf-token
 pipelines:
+  apiSearch:
+    apiEndpoints:
+      - apiSearch
+    policies:
+      - cors:
+          - action:
+              origin: "http://127.0.0.1:5501"
+      - proxy:
+          - action:
+              serviceEndpoint: userService
   apiUserChangePassword:
     apiEndpoints:
       - apiUserChangePassword

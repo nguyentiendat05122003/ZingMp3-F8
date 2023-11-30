@@ -56,7 +56,7 @@ app.controller(
       const accountId = account.account.accountId;
       $http({
         method: "POST",
-        url: `http://localhost:8090/user/account/${accountId}/changePassword`,
+        url: `http://localhost:8090/account/changePassword/${accountId}`,
         data: JSON.stringify(data),
       }).then(
         function successCallback(response) {
@@ -376,6 +376,7 @@ app.controller(
             type: "success",
             duration: 3000,
           });
+          $scope.getListSongInStore();
         },
         function errorCallback(response) {
           $scope.showLoader = false;
@@ -887,11 +888,12 @@ app.controller(
         $scope.listSuggestSearchType = [];
         return;
       } else {
-        globalService.ajaxGet(
-          `search?q=${value}`,
-          {},
-          function (data, status, config) {
-            const result = data;
+        $http({
+          method: "GET",
+          url: `http://localhost:8090/search?q=${value}`,
+        }).then(
+          function successCallback(response) {
+            const result = response.data;
             const listSong = JSON.parse(result[0].list_json);
             const listArtist = JSON.parse(result[1].list_json);
             const listTypeSong = JSON.parse(result[2].list_json);
@@ -919,6 +921,9 @@ app.controller(
             $scope.listSuggestSearchSong = listSong;
             $scope.listSuggestSearchArtist = listArtist;
             $scope.listSuggestSearchType = listTypeSong;
+          },
+          function errorCallback(response) {
+            console.log(response);
           }
         );
       }

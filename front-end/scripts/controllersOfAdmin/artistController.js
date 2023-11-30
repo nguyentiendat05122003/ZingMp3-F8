@@ -8,7 +8,6 @@ app.controller(
     $rootScope.artistMenu = true;
     $rootScope.typeSongMenu = false;
     $rootScope.accountMenu = false;
-
     $scope.handleBanAccount = (artist) => {
       const artistId = artist.userId;
       const isBan = artist.isBan;
@@ -72,12 +71,12 @@ app.controller(
         });
       }
     };
-    window.onload = () => {
+    setTimeout(() => {
       const listBtn = document.querySelectorAll(`.btn-page`);
       if (listBtn) {
         listBtn[0].classList.add("active");
       }
-    };
+    }, 100);
     $scope.handleRemoveArtist = (artist) => {
       const accountId = artist.accountId;
       Confirm.open({
@@ -117,6 +116,106 @@ app.controller(
         $scope.getListArtist(0, 0, $scope.valueSearch);
       } else {
         $scope.getListArtist();
+      }
+    };
+
+    $scope.updateMultiple = () => {
+      $http({
+        method: "POST",
+        url: `http://localhost:3001/user/editMultiple`,
+        data: JSON.stringify($rootScope.listTempDataUpdate),
+      }).then(
+        function successCallback(response) {
+          toast({
+            title: "Thành công!",
+            message: response.data,
+            type: "success",
+            duration: 2000,
+          });
+          $scope.getListArtist();
+          $rootScope.listTempDataUpdate = [];
+        },
+        function errorCallback(response) {}
+      );
+    };
+    $scope.handelChangeInput = (index, id) => {
+      const element = document.querySelectorAll(`.input-${id}`);
+      let tmpList = $rootScope.listTempDataUpdate.filter(
+        (item) => item.userId !== id
+      );
+      let numberIsExist = $rootScope.listTempDataUpdate.filter(
+        (item) => item.userId === id
+      );
+      switch (index) {
+        case 0:
+          if (numberIsExist.length === 0) {
+            const newItem = {
+              userId: id,
+              name: element[0].value,
+              email: element[1].dataset.email,
+              country: element[2].dataset.country,
+            };
+            $rootScope.listTempDataUpdate = [
+              ...$rootScope.listTempDataUpdate,
+              newItem,
+            ];
+          } else {
+            const newItem = {
+              userId: id,
+              name: element[0].value,
+              email: element[1].dataset.email,
+              country: element[2].dataset.country,
+            };
+            $rootScope.listTempDataUpdate = [...tmpList, newItem];
+          }
+
+          break;
+        case 1:
+          if (numberIsExist.length === 0) {
+            const newItem = {
+              userId: id,
+              name: element[0].dataset.name,
+              email: element[1].value,
+              country: element[2].dataset.country,
+            };
+            $rootScope.listTempDataUpdate = [
+              ...$rootScope.listTempDataUpdate,
+              newItem,
+            ];
+          } else {
+            const newItem = {
+              userId: id,
+              name: element[0].dataset.name,
+              email: element[1].value,
+              country: element[2].dataset.country,
+            };
+            $rootScope.listTempDataUpdate = [...tmpList, newItem];
+          }
+          break;
+        case 2:
+          if (numberIsExist.length === 0) {
+            const newItem = {
+              userId: id,
+              name: element[index].dataset.name,
+              email: element[1].dataset.email,
+              country: element[2].value,
+            };
+            $rootScope.listTempDataUpdate = [
+              ...$rootScope.listTempDataUpdate,
+              newItem,
+            ];
+          } else {
+            const newItem = {
+              userId: id,
+              name: element[index].dataset.name,
+              email: element[1].dataset.email,
+              country: element[2].value,
+            };
+            $rootScope.listTempDataUpdate = [...tmpList, newItem];
+          }
+          break;
+        default:
+          break;
       }
     };
   }

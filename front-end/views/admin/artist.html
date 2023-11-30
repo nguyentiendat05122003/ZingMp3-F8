@@ -29,7 +29,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Mã nghệ sĩ</th>
+                    <th style="max-width: 100px">Mã nghệ sĩ</th>
                     <th>Tên nghệ sĩ</th>
                     <th>Email</th>
                     <th>Địa chỉ</th>
@@ -40,10 +40,34 @@
                 <tbody id="listCustomer"></tbody>
                 <tbody ng-repeat="artist in listArtist">
                   <tr style="text-align: center">
-                    <td>{{artist.RowNumber }}</td>
-                    <td>{{artist.name}}</td>
-                    <td>{{artist.email}}</td>
-                    <td>{{artist.country}}</td>
+                    <td>{{artist.RowNumber}}</td>
+                    <td>
+                      <input
+                        class="input-table input-nameArtist input-{{artist.userId}}"
+                        type="text"
+                        data-name="{{artist.name}}"
+                        ng-model="artist.name"
+                        ng-change="handelChangeInput(0,artist.userId,artist.name)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        class="input-table input-email input-{{artist.userId}}"
+                        type="text"
+                        data-email="{{artist.email}}"
+                        ng-model="artist.email"
+                        ng-change="handelChangeInput(1,artist.userId,artist.name)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        class="input-table input-country input-{{artist.userId}}"
+                        type="text"
+                        data-country="{{artist.country}}"
+                        ng-model="artist.country"
+                        ng-change="handelChangeInput(2,artist.userId,artist.country)"
+                      />
+                    </td>
                     <td>{{artist.isBan}}</td>
                     <td style="text-align: center">
                       <i
@@ -59,7 +83,20 @@
                   </tr>
                 </tbody>
               </table>
+              <button
+                style="
+                  margin-top: 10px;
+                  max-width: 100px;
+                  float: right;
+                  background-color: rgba(44, 140, 15, 0.8);
+                "
+                class="btn-submit"
+                ng-click="updateMultiple()"
+              >
+                Lưu dữ liệu
+              </button>
             </div>
+
             <div class="col-12 col-s-12 padding-box">
               <div class="box-sum">
                 <div class="box-left">

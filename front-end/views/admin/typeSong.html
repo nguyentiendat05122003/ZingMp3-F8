@@ -1,42 +1,12 @@
 <section class="main">
   <div class="row">
     <div class="col-12 col-s-12">
-      <div class="col-4 col-s-12 content">
-        <div class="tabcontent">
-          <div class="title">
-            <i class="fas fa-users"></i> Nhập thông tin thể loại
-            <hr />
-          </div>
-          <div class="row">
-            <form>
-              <div class="col-12 col-s-12 padding-box">
-                <label for="typeSongName">Tên thể loại:</label>
-              </div>
-              <div class="col-12 col-s-12 padding-box">
-                <input
-                  type="text"
-                  id="typeSongName"
-                  placeholder="Nhập tên thể loại..."
-                />
-              </div>
-            </form>
-          </div>
-          <hr />
-          <button
-            class="btn-form"
-            ng-click="addType()"
-            style="background-color: rgba(44, 140, 15, 0.8)"
-          >
-            Thêm thể loại
-          </button>
-        </div>
-      </div>
-      <div class="col-8 col-s-12 content">
+      <div class="col-12 col-s-12 content">
         <div class="tabcontent">
           <div class="title">
             <i class="fas fa-users"></i> Danh sách thể loại
-            <button style="margin-right: 3px">
-              <i class="far fa-trash-alt"></i> Xóa chọn
+            <button ng-click="handleClickAddItem()" style="margin-right: 3px">
+              <i class="fa-solid fa-plus"></i> Thêm mới
             </button>
             <hr />
           </div>
@@ -54,27 +24,44 @@
           </div>
           <div class="row">
             <div class="col-12 col-s-12 padding-box">
-              <table>
+              <table id="myTable">
                 <thead>
                   <tr>
                     <th style="padding-top: 10px">
-                      <input type="checkbox" />
+                      <input
+                        ng-change="handelChangeAll()"
+                        class="input-all"
+                        type="checkbox"
+                        ng-model="valueSelectAll"
+                      />
                     </th>
-                    <th>Mã thể loại</th>
                     <th>Tên thể loại</th>
                     <th>Thao tác</th>
                   </tr>
                 </thead>
-                <tbody id="listCustomer"></tbody>
-                <tbody ng-repeat="type in typeSongList">
-                  <tr>
+                <tbody class="bodyTable">
+                  <tr ng-repeat="type in typeSongList track by $index">
                     <td style="text-align: center; padding-top: 10px">
-                      <input type="checkbox" value="" id="" />
+                      <input
+                        class="input-check"
+                        name="input-check"
+                        type="checkbox"
+                        ng-change="handleChangeCheckBox()"
+                        ng-model="$index"
+                        data-id="{{type.typeSongId}}"
+                        data-value="{{type.name}}"
+                      />
                     </td>
-                    <td>{{type.typeSongId}}</td>
-                    <td>{{type.name}}</td>
+                    <td>
+                      <input
+                        data-id="{{type.typeSongId}}"
+                        class="input-table input-type"
+                        type="text"
+                        data-value="{{type.name}}"
+                        value="type.name"
+                      />
+                    </td>
                     <td style="text-align: center">
-                      <i class="fas fa-edit btn-editType" title="Sửa"></i>
                       <i
                         ng-click="deleteTypeSong(type)"
                         class="fas fa-trash-alt"
@@ -82,11 +69,51 @@
                       ></i>
                     </td>
                   </tr>
+                  <tr ng-repeat="type in newListItem track by $index">
+                    <td style="text-align: center; padding-top: 10px"></td>
+                    <td>
+                      <input
+                        data-id="{{$index}}"
+                        class="input-table input-type"
+                        type="text"
+                      />
+                    </td>
+                    <td style="text-align: center">
+                      <i
+                        ng-click="handleRemoveUi($index)"
+                        class="fa-solid fa-xmark"
+                      ></i>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <div class="col-12 col-s-12 padding-box">
-              <div class="box-sum">
+              <button
+                style="
+                  max-width: 100px;
+                  float: right;
+                  background-color: rgba(44, 140, 15, 0.8);
+                "
+                class="btn-submit"
+                ng-click="saveData()"
+              >
+                Lưu dữ liệu
+              </button>
+              <button
+                ng-hide="isHideBtnRemove"
+                style="
+                  max-width: 100px;
+                  float: right;
+                  margin-right: 10px;
+                  background-color: #d53f;
+                "
+                ng-click="handleRemoveItem()"
+              >
+                Xóa tất cả
+              </button>
+
+              <div style="margin-top: 45px" class="box-sum">
                 <div class="box-left">
                   Số lượng thể loại:
                   <span id="soluong">{{typeSongQuantity}}</span>
@@ -99,3 +126,8 @@
     </div>
   </div>
 </section>
+<script>
+  const handleRemoveItemUi = () => {
+    console.log("run");
+  };
+</script>

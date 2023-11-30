@@ -28,13 +28,13 @@ app.controller(
             url: `http://localhost:3002/song/${accountId}/delete/${songId}`,
           }).then(
             function successCallback(response) {
-              $scope.getListSongInStore();
               toast({
                 title: "Thành công!",
                 message: response.data,
                 type: "success",
                 duration: 2000,
               });
+              $scope.getListSongInStore();
             },
             function errorCallback(response) {
               toast({

@@ -7,7 +7,7 @@ app.controller(
     $scope.hideInfo = false;
     $scope.getSongInType = (id) => {
       globalService.ajaxGet(
-        `/song/typeSong/${id}`,
+        `song/typeSong/${id}`,
         {},
         function (data, status, config) {
           [...data].forEach((song) => {

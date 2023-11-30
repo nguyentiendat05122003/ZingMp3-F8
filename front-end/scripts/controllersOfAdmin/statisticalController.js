@@ -23,5 +23,6 @@ app.controller(
       );
     };
     $scope.getStatistical();
+    $scope.renderChart();
   }
 );

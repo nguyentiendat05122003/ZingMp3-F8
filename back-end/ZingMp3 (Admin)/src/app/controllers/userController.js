@@ -113,5 +113,18 @@ class UserController {
     );
     res.json(listUser);
   }
+
+  //[POST] user/editMultiple
+  async editMultiple(req, res) {
+    const results = await sequelize.query(
+      "Exec sp_artist_update :list_json_listArtist",
+      {
+        replacements: {
+          list_json_listArtist: JSON.stringify(req.body),
+        },
+      }
+    );
+    res.json("update successful");
+  }
 }
 module.exports = new UserController();

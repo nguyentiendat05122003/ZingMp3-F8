@@ -630,3 +630,346 @@ body {
   .btn-page.active{
     opacity: 1 !important;
   }
+
+  .input-table{
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border-color: transparent !important;
+    text-align: center;
+  }
+  .btn-disable{
+    opacity: 0.5;
+    cursor: unset !important;
+  }
+
+
+
+/*  */
+.Details>.home{
+    display: none;
+}
+.Details>.home>.logohome>a{
+    display: flex;
+    justify-content: center;
+}
+.Details>.home>.homehello{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: rgb(20, 12, 235);
+}
+.Details>.home>.homett{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    color: #064d0c;
+}
+.Details>.home>.infhome{
+    margin-left: 5%;
+    font-size: 20px;
+    font-weight: 500;
+    color: #064d0c;
+    margin-top: 10px;
+}
+.Details>.home>a>#changepww{
+    float: right;
+    margin-right: 30px;
+    background-color: #90ed64;
+    line-height: 30px;
+    border: none;
+    font-weight: 500;
+    border-radius: 3px;
+}
+.Details>.home>a>#changepww:hover{
+    background-color: chocolate;
+}
+.Details>.home>a>#changepww i{
+   padding-right: 3px;
+}
+.Details>.home>.homedetails{
+    display: flex;
+   justify-content: center;
+ }
+ .Details>.home>.homedetails>table{
+     line-height: 30px;
+ }
+ .Details>.home>.homedetails>table tr td:first-child{
+    padding-right: 50px;
+    font-weight: bold;
+}
+.Details>.home>.homedetails>table tr td:last-child{
+    font-size: 14px;
+}
+.all>.Details>.computer_company{
+    display: none;
+}
+.all>.Details>.computer_company>.headerCP{
+    padding-top: 5px;
+    padding-left: 20px;
+    line-height: 30px;
+    box-shadow: 2px 3px 2px 0 rgba(33, 33, 33, 0.3),-2px 0px 2px 0 rgba(33, 33, 33, 0.3);
+}
+.all>.Details>.computer_company>.headerCP button{
+    float: right;
+    margin-right: 20px;
+    background-color: rgb(13, 230, 136);
+    border: none;
+    line-height: 25px;
+    border-radius: 3px;
+    color: rgb(32, 32, 25);
+    font-weight: 500;
+   
+}
+.all>.Details>.computer_company>.searchCP{
+    padding-left: 20px;
+    line-height: 30px;
+    background-color: #dee2de;
+    margin-top: 3px;
+}
+.all>.Details>.computer_company>.searchCPdetail{
+    border-bottom: 1px solid rgb(224, 222, 222);
+    border-right: 1px solid rgb(224, 222, 222);
+    border-top: 1px solid rgb(224, 222, 222);
+
+}
+.all>.Details>.computer_company>.searchCPdetail>.searchCP1{
+    display: flex;
+    width: 50%;
+    padding-top: 20px;
+    margin-left: 20%;
+    line-height: 25px;
+
+}
+.all>.Details>.computer_company>.searchCPdetail>.searchCP1 span{
+    width: 20%;
+    font-weight: 600;
+    color: #1bc129;
+}
+.all>.Details>.computer_company>.searchCPdetail>.searchCP1 input{
+    width: 80%;
+    border: 1px solid rgb(44, 150, 44);
+    border-radius: 3px;
+}
+.all>.Details>.computer_company>.searchCPdetail>.searchCP1 #mota{
+    width: 80%;
+    border: 1px solid rgb(44, 150, 44);
+    border-radius: 3px;
+}
+.all>.Details>.computer_company>.searchCPdetail button{
+    width: 100px;
+    line-height: 25px;
+    margin-left:60.5%;
+    margin-top: 15px;
+    border-radius: 3px;
+    background-color: #04700d;
+    border: none;
+    color: white;
+    margin-bottom: 20px;
+
+}
+.all>.Details>.computer_company>.company_details{
+    margin-top: 10px;
+}
+.all>.Details>.computer_company>.company_details>.company_detail1{
+    font-size: 20px;
+    font-weight: bold;
+    color:#07b916;
+    margin-bottom: 10px;
+    padding-left: 30px;
+}
+
+.all>.Details>.computer_company>.company_details>.company_detail2 table{
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.all>.Details>.computer_company>.company_details>.company_detail2 >table th{
+   padding: 8px;
+   border: 1px solid black;
+}
+.all>.Details>.computer_company>.company_details>.company_detail2 >table td{
+    padding: 8px;
+    border: 1px solid black;
+    text-align: center;
+}
+.all>.Details>.computer_company>.company_details>.company_detail2 >table td i{
+    margin: 8px;
+    cursor: pointer;
+    color: #07b916;
+}
+.all>.Details>.overview
+{
+   padding: 20px;
+   padding-right: 50px;
+   display: none;
+}
+.all>.Details>.overview>.overview1
+{
+   
+    margin-left: 20px;
+    border: 1px solid rgb(232, 233, 235);
+    margin-right: 20px;
+  
+}
+.all>.Details>.overview>.overview1>span
+{
+    color: #064d0c;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 30px; 
+    line-height: 40px;
+    background-color: white;
+}
+.all>.Details>.overview>.overview1>.Bieudo
+{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    border-top: 2px solid rgb(204, 205, 208);
+    background-color: white;
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo11>i
+{
+    font-size: 22px;
+    border-radius: 50%;
+    color: white;
+    width: 45px;
+    height: 45px;
+    padding-top: 10px;
+    padding-left: 10px;
+   
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo11
+{
+    display: flex;
+   
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo11
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-right: 1px solid silver;
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo11>span
+{
+   margin-left: 5px;
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo1
+{
+   margin-left: 5px;
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo1>i
+{
+   
+    border: 1px solid rgb(37, 163, 242);
+    background-color: rgb(37, 163, 242);
+    
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo1>span>span
+{
+   color: rgb(37, 163, 242)
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo2>i
+{
+  
+    border: 1px solid rgb(37, 242, 181);
+   
+    background-color: rgb(37, 242, 181);
+   
+    padding-left: 13px;
+   
+}
+
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo2>span>span
+{
+    color: rgb(37, 242, 181);
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo3>i
+{
+   
+    border: 1px solid rgb(242, 143, 37);
+   
+    background-color: rgb(242, 143, 37);
+  
+ 
+}
+
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo3>span>span
+{
+    color: rgb(242, 143, 37);
+}
+/* .all>.Details>.overview>.overview1>.Bieudo>.bieudo4
+{
+    
+} */
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo4>i
+{
+  
+    border: 1px solid rgb(242, 85, 37);
+   
+    background-color: rgb(242, 85, 37);
+   padding-left: 8px;
+}
+.all>.Details>.overview>.overview1>.Bieudo>.bieudo4>span>span
+{
+    color: rgb(242, 85, 37);
+}
+.all>.Details>.overview>.overview1>.chooseover
+{
+   line-height: 50px;
+}
+/* .all>.Details>.overview>.overview1>.chooseover>select
+{
+    margin-left: 20px;
+   height: 25px;
+} */
+.all>.Details>.overview>.overview1>.sales
+{
+    background-color: white;
+    display: none;
+  
+}
+
+
+.all>.Details>.overview>.overview1>.sales_week
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   display: none;
+}
+.all>.Details>.overview>.overview1>.sales_week i
+{
+    font-size: 30px;
+    margin-right: 10px;
+   
+}
+.all>.Details>.overview>.overview1>.sales_week >.week1
+{
+    display: flex;
+    padding: 10px;
+    color: white;
+}
+.all>.Details>.overview>.overview1>.sales_week >.money_week
+{
+   background-color: rgb(60, 174, 245);
+   margin-right: 20px;
+}
+.all>.Details>.overview>.overview1>.sales_week >.product_week
+{
+   background-color: rgb(12, 147, 68);
+   margin-right: 10px;
+   margin-left: 10px;
+}
+.all>.Details>.overview>.overview1>.sales_week >.return_week
+{
+   background-color: rgb(227, 56, 13);
+   margin-left: 20px;
+}
+
+  
+  

@@ -35,9 +35,51 @@
               </div>
             </div>
           </div>
-          
+          <div
+            style="margin-bottom: 20px"
+            class="col-11 col-s-12 col-m-12 Details"
+          >
+            <div class="col-12 col-s-12 col-m-12 overview Page">
+              <div class="col-12 col-s-12 col-m-12 overview1">
+                <div class="tabcontent"></div>
+                <div class="chooseover">
+                  <label for="txt_over">Tổng quan về thống kê </label>
+                  <select
+                    onchange="Thongke()"
+                    id="txt_over"
+                    style="outline: none; margin-top: 20px"
+                  >
+                    <option value="tuan">Theo tuần</option>
+                    <option value="thang">Theo tháng</option>
+                    <option value="nam">Theo năm</option>
+                  </select>
+                </div>
+                <div class="col-12 col-s-12 col-m-12 sales">
+                  <div
+                    id="chartContainerTuan"
+                    style="height: 400px; width: 60%; margin: auto"
+                  ></div>
+                </div>
+                <div class="col-12 col-s-12 col-m-12 sales_week"></div>
+                <div class="col-12 col-s-12 col-m-12 sales">
+                  <div
+                    id="chartContainerthang"
+                    style="height: 400px; width: 100%"
+                  ></div>
+                </div>
+                <div class="col-12 col-s-12 col-m-12 sales_week"></div>
+                <div class="col-12 col-s-12 col-m-12 sales">
+                  <div
+                    id="chartContainer"
+                    style="height: 400px; width: 100%"
+                  ></div>
+                </div>
+                <div class="col-12 col-s-12 col-m-12 sales_week"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 </section>
-  
