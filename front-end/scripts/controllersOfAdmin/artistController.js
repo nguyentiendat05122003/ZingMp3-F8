@@ -196,7 +196,7 @@ app.controller(
           if (numberIsExist.length === 0) {
             const newItem = {
               userId: id,
-              name: element[index].dataset.name,
+              name: element[0].dataset.name,
               email: element[1].dataset.email,
               country: element[2].value,
             };
@@ -207,7 +207,7 @@ app.controller(
           } else {
             const newItem = {
               userId: id,
-              name: element[index].dataset.name,
+              name: element[0].dataset.name,
               email: element[1].dataset.email,
               country: element[2].value,
             };
@@ -216,6 +216,13 @@ app.controller(
           break;
         default:
           break;
+      }
+      if ($rootScope.listTempDataUpdate.length > 0) {
+        const btnSubmit = document.querySelector(".btn-submit");
+        btnSubmit.classList.remove("btn-disable");
+      } else {
+        const btnSubmit = document.querySelector(".btn-submit");
+        btnSubmit.classList.add("btn-disable");
       }
     };
   }

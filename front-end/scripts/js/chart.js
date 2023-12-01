@@ -1,7 +1,20 @@
 var listsale = document.getElementsByClassName("sales");
 var listsalew = document.getElementsByClassName("sales_week");
 
-function Bieutuan() {
+async function Bieutuan() {
+  const response = await fetch("http://localhost:3001/statistical/week");
+  let data = await response.json();
+  const newData = data.map((item, idx) => {
+    if (idx === 0) {
+      return (item = { ...item, label: "Chủ nhật", y: item.account_count });
+    } else {
+      return (item = {
+        ...item,
+        label: `Thứ ${item.DayNumber} `,
+        y: item.account_count,
+      });
+    }
+  });
   var chart = new CanvasJS.Chart("chartContainerTuan", {
     animationEnabled: true,
     theme: "light2",
@@ -16,21 +29,18 @@ function Bieutuan() {
     data: [
       {
         type: "column",
-        dataPoints: [
-          { label: "Thứ 2", y: 46 },
-          { label: "Thứ 3", y: 87 },
-          { label: "Thứ 4", y: 76 },
-          { label: "Thứ 5", y: 39 },
-          { label: "Thứ 6", y: 87 },
-          { label: "Thứ 7", y: 42 },
-          { label: "Chủ nhật", y: 60 },
-        ],
+        dataPoints: newData,
       },
     ],
   });
   chart.render();
 }
-function Bieuthang() {
+async function Bieuthang() {
+  const response = await fetch("http://localhost:3001/statistical/month");
+  let data = await response.json();
+  const newData = data.map((item, idx) => {
+    return (item = { ...item, label: idx + 1, y: item.account_count });
+  });
   var chart = new CanvasJS.Chart("chartContainerthang", {
     animationEnabled: true,
     theme: "light2",
@@ -45,44 +55,22 @@ function Bieuthang() {
     data: [
       {
         type: "column",
-        dataPoints: [
-          { label: "1", y: 46 },
-          { label: "2", y: 27 },
-          { label: "3", y: 26 },
-          { label: "4", y: 39 },
-          { label: "5", y: 37 },
-          { label: "6", y: 42 },
-          { label: "7", y: 60 },
-          { label: "8", y: 91 },
-          { label: "9", y: 82 },
-          { label: "10", y: 79 },
-          { label: "11", y: 76 },
-          { label: "12", y: 72 },
-          { label: "13", y: 26 },
-          { label: "14", y: 39 },
-          { label: "15", y: 37 },
-          { label: "16", y: 42 },
-          { label: "17", y: 60 },
-          { label: "18", y: 91 },
-          { label: "19", y: 82 },
-          { label: "20", y: 79 },
-          { label: "21", y: 76 },
-          { label: "22", y: 72 },
-          { label: "23", y: 26 },
-          { label: "24", y: 39 },
-          { label: "25", y: 37 },
-          { label: "26", y: 42 },
-          { label: "27", y: 60 },
-          { label: "28", y: 91 },
-          { label: "29", y: 82 },
-          { label: "30", y: 79 },
-        ],
+        dataPoints: newData,
       },
     ],
   });
   chart.render();
 }
-function Bieunam() {
+async function Bieunam() {
+  const response = await fetch("http://localhost:3001/statistical/year");
+  let data = await response.json();
+  const newData = data.map((item, idx) => {
+    return (item = {
+      ...item,
+      label: `Tháng ${item.MonthNumber} `,
+      y: item.account_count,
+    });
+  });
   var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
     theme: "light2",
@@ -98,20 +86,7 @@ function Bieunam() {
       {
         type: "column",
         padding: 20,
-        dataPoints: [
-          { label: "Tháng 1", y: 46 },
-          { label: "Tháng 2", y: 27 },
-          { label: "Tháng 3", y: 26 },
-          { label: "Tháng 4", y: 39 },
-          { label: "Tháng 5", y: 37 },
-          { label: "Tháng 6", y: 42 },
-          { label: "Tháng 7", y: 60 },
-          { label: "Tháng 8", y: 91 },
-          { label: "Tháng 9", y: 82 },
-          { label: "Tháng 10", y: 79 },
-          { label: "Tháng 11", y: 76 },
-          { label: "Tháng 12", y: 72 },
-        ],
+        dataPoints: newData,
       },
     ],
   });
@@ -119,38 +94,41 @@ function Bieunam() {
 }
 
 function Thongke() {
-  if ($("#txt_over").val() == "tuan") {
-    for (x of listsale) {
-      x.style.display = "none";
-    }
-    for (y of listsalew) {
-      y.style.display = "none";
-    }
+  if (document.querySelector("#txt_over").value == "tuan") {
+    [...listsale].forEach((item) => {
+      item.style.display = "none";
+    });
+
+    [...listsalew].forEach((item) => {
+      item.style.display = "none";
+    });
     listsale[0].style.display = "block";
     listsalew[0].style.display = "grid";
     Bieutuan();
   }
   if ($("#txt_over").val() == "thang") {
-    for (x of listsale) {
-      x.style.display = "none";
-    }
-    for (y of listsalew) {
-      y.style.display = "none";
-    }
+    [...listsale].forEach((item) => {
+      item.style.display = "none";
+    });
+
+    [...listsalew].forEach((item) => {
+      item.style.display = "none";
+    });
     listsale[1].style.display = "block";
     listsalew[1].style.display = "grid";
     Bieuthang();
   }
-  if ($("#txt_over").val() == "nam") {
-    for (x of listsale) {
-      x.style.display = "none";
-    }
-    for (y of listsalew) {
-      y.style.display = "none";
-    }
+  if (document.querySelector("#txt_over").value == "nam") {
+    [...listsale].forEach((item) => {
+      item.style.display = "none";
+    });
+
+    [...listsalew].forEach((item) => {
+      item.style.display = "none";
+    });
     listsale[2].style.display = "block";
     listsalew[2].style.display = "grid";
     Bieunam();
   }
 }
-Thongke();
+export default Thongke;

@@ -43,13 +43,17 @@
               <div class="col-12 col-s-12 col-m-12 overview1">
                 <div class="tabcontent"></div>
                 <div class="chooseover">
-                  <label for="txt_over">Tổng quan về thống kê </label>
+                  <label for="txt_over"
+                    >Tổng quan về thống kê số người dùng tham gia hệ
+                    thống</label
+                  >
                   <select
-                    onchange="Thongke()"
+                    ng-model="valueDefault"
+                    ng-change="renderChart()"
                     id="txt_over"
                     style="outline: none; margin-top: 20px"
                   >
-                    <option value="tuan">Theo tuần</option>
+                    <option selected value="tuan">Theo tuần</option>
                     <option value="thang">Theo tháng</option>
                     <option value="nam">Theo năm</option>
                   </select>

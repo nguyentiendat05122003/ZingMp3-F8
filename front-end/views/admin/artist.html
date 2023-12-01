@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="row">
-            <div style="min-height: 250px" class="col-12 col-s-12 padding-box">
+            <div style="min-height: 410px" class="col-12 col-s-12 padding-box">
               <table>
                 <thead>
                   <tr>
@@ -45,7 +45,6 @@
                       <input
                         class="input-table input-nameArtist input-{{artist.userId}}"
                         type="text"
-                        data-name="{{artist.name}}"
                         ng-model="artist.name"
                         ng-change="handelChangeInput(0,artist.userId,artist.name)"
                       />
@@ -90,7 +89,7 @@
                   float: right;
                   background-color: rgba(44, 140, 15, 0.8);
                 "
-                class="btn-submit"
+                class="btn-submit btn-disable"
                 ng-click="updateMultiple()"
               >
                 Lưu dữ liệu

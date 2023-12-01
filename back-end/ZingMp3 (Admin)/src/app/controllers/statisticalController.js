@@ -23,6 +23,30 @@ class StatisticalController {
     );
     res.status(200).json(data[0]);
   }
+
+  //[GET] statistical/week
+  async week(req, res) {
+    const data = await sequelize.query("Exec GetAccountCountLastWeek", {
+      type: QueryTypes.SELECT,
+    });
+    res.status(200).json(data);
+  }
+
+  //[GET] statistical/year
+  async year(req, res) {
+    const data = await sequelize.query("Exec GetAccountCountByMonthAllMonths", {
+      type: QueryTypes.SELECT,
+    });
+    res.status(200).json(data);
+  }
+
+  //[GET] statistical/month
+  async month(req, res) {
+    const data = await sequelize.query("Exec GetAccountCountByDayLast30Days", {
+      type: QueryTypes.SELECT,
+    });
+    res.status(200).json(data);
+  }
 }
 
 module.exports = new StatisticalController();
